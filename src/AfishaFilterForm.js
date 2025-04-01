@@ -273,7 +273,7 @@ export class AfishaFilterForm {
 		this.outOfTimeContent.innerHTML = data.outOfTimeContent;
 
 		if (!data.content && !data.outOfTimeContent) {
-			this.emptyContent.style.display = 'block';
+			this.emptyContent.style.display = 'flex';
 		} else {
 			this.emptyContent.style.display = null;
 		}
