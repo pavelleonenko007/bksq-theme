@@ -513,3 +513,66 @@ function bksq_get_activity_icon( $activity ) {
 
 	return $icon_url;
 }
+
+add_action( 'wp_ajax_load_more_passed_events', 'bksq_load_more_passed_events_via_ajax' );
+add_action( 'wp_ajax_nopriv_load_more_passed_events', 'bksq_load_more_passed_events_via_ajax' );
+function bksq_load_more_passed_events_via_ajax() {
+	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'load_more_passed_event' ) ) {
+		error_log( 'Не пройдена проверка nonce при попытке загрузки прошедших мероприятий на странице Афиша' );
+
+		wp_send_json_error(
+			array(
+				'message' => 'Ошибка в запросе!',
+			)
+		);
+	}
+
+	if ( empty( $_POST['page'] ) ) {
+		wp_send_json_error(
+			array(
+				'message' => 'Не указан обязательный параметр page',
+			)
+		);
+	}
+
+	$page = intval( sanitize_text_field( wp_unslash( $_POST['page'] ) ) );
+
+	$passed_event_args = array(
+		'post_type'      => 'events',
+		'posts_per_page' => 18,
+		'paged'          => $page,
+		'meta_key'       => 'end_date',
+		'meta_type'      => 'DATE',
+		'orderby'        => 'meta_value',
+		'order'          => 'ASC',
+		'meta_query'     => array(
+			array(
+				'key'   => 'in_archive',
+				'value' => '1',
+			),
+		),
+	);
+
+	$passed_event_query = new WP_Query( $passed_event_args );
+
+	ob_start();
+
+	if ( $passed_event_query->have_posts() ) :
+		while ( $passed_event_query->have_posts() ) :
+			$passed_event_query->the_post();
+			?>
+			<?php get_template_part( 'component-passed-event' ); ?>
+			<?php
+		endwhile;
+		wp_reset_postdata();
+	endif;
+
+	$html = ob_get_clean();
+
+	wp_send_json_success(
+		array(
+			'html' => $html,
+			'page' => $page,
+		)
+	);
+}

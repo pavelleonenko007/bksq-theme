@@ -22,7 +22,7 @@ $company    = get_field( 'kompaniya' ); ?>
 								<?php
 								if ( ! empty( $start_date ) ) :
 									?>
-									<div class="text-neue-36 colored"><?php echo date_i18n( 'd/m', $start_date ); ?></div>
+									<div class="text-neue-36 colored"><?php echo date_i18n( 'd/m', strtotime( $start_date ) ); ?></div>
 								<?php endif; ?>
 							</div>
 							<div class="event-left2">
@@ -60,9 +60,9 @@ $company    = get_field( 'kompaniya' ); ?>
 					<?php endif; ?>
 					<div class="wp-slide-bottom g16">
 						<?php if ( ! empty( $start_date ) ) : ?>
-							<div class="text-16 mob-16 opacity-60-tab modified bolded"><?php echo esc_html( $start_date ); ?></div>
+							<div class="text-16 mob-16 opacity-60-tab modified bolded"><?php echo esc_html( date_i18n( 'd/m', strtotime( $start_date ) ) ); ?></div>
 						<?php endif; ?>
-						<div data-acf="head" class="new-p-36-32 mmax638">МАММ и ИФК Горизонт Капитал</div>
+						<div class="new-p-36-32 mmax638"><?php the_title(); ?></div>
 						<div data-acf="rich" class="text-16 mob-16 opacity-60-tab modified">Организация корпоративной экскурсии <br>по выставкам Эрика Булатова, Алексей Каллимы и проекта про спорт</div>
 					</div>
 				</div>

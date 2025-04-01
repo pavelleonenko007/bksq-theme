@@ -1010,9 +1010,10 @@ defined( 'ABSPATH' ) || exit; ?>
 							</div>
 						</section>
 						<?php
-						$passed_event_args = array(
+						$passed_events_posts_per_page = 18;
+						$passed_event_args            = array(
 							'post_type'      => 'events',
-							'posts_per_page' => 18,
+							'posts_per_page' => $passed_events_posts_per_page,
 							'meta_key'       => 'end_date',
 							'meta_type'      => 'DATE',
 							'orderby'        => 'meta_value',
@@ -1035,7 +1036,7 @@ defined( 'ABSPATH' ) || exit; ?>
 										<h2 data-acf="zagolovokfreand" class="h1">Прошедшие мероприятия</h2>
 									</div>
 									<div class="new-events">
-										<div class="events-core">
+										<div id="passedEventList" class="events-core">
 											<?php
 											while ( $passed_event_query->have_posts() ) :
 												$passed_event_query->the_post();
@@ -1046,9 +1047,26 @@ defined( 'ABSPATH' ) || exit; ?>
 											wp_reset_postdata();
 											?>
 										</div>
-										<a href="#" class="load-more w-inline-block">
-											<div>Показать еще</div>
-										</a>
+
+										<?php
+										// echo '<pre>';
+										// var_dump( $passed_event_query->max_num_pages, $passed_event_query->get( 'paged' ) );
+										// echo '</pre>';
+										?>
+										
+										<?php if ( $passed_event_query->max_num_pages > $passed_event_query->get( 'paged' ) + 1 ) : ?>
+											<button 
+												type="button" 
+												class="load-more w-inline-block"
+												data-page="<?php echo esc_attr( $passed_event_query->get( 'paged' ) + 1 ); ?>"
+												data-max-pages="<?php echo esc_attr( $passed_event_query->max_num_pages ); ?>"
+												data-js-load-more-passed-events=""
+												data-output-selector="#passedEventList"
+												data-nonce="<?php echo esc_attr( wp_create_nonce( 'load_more_passed_event' ) ); ?>"
+											>
+												<div>Показать еще</div>
+											</button>
+										<?php endif; ?>
 									</div>
 								</div>
 							</section>
