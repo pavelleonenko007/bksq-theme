@@ -310,6 +310,10 @@ border:0 solid black
          </div>
 		</div>
 		
+		
+		 <div id="barba-wrapper" class="barba-wrapper" aria-live="polite">
+         <div class="barba-container magazine-body">
+		
 	 <div class="page-wrap">
          <div class="main-wrap">
             <section class="section magazine-hero-section is-yellow-bg">
@@ -928,7 +932,22 @@ if ($query->have_posts()) {
                   			$target = $link['target'] ? $link['target'] : '_self'; 
                   		?>
                <a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="nav-link cursor-hover" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
-               <a href="#" class="nav-link cursor-hover hidden">афиша</a><?php $query_args = array( 'posts_per_page' => 1,
+               
+               
+              
+               
+               <?php $link = get_field( 'ssylka_na_telegramm_2', 'option' );
+                  if ( ! empty( $link ) ) :
+                  			$url = $link['url'];
+                  			$title = $link['title'];
+                  			$target = $link['target'] ? $link['target'] : '_self'; 
+                  		?>
+                  <a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" target="<?php echo esc_attr( $target ); ?>" class="nav-link cursor-hover"><?php echo esc_html( $title ); ?></a>
+                  <?php endif; ?>
+               
+               
+               
+               <?php $query_args = array( 'posts_per_page' => 1,
                   'post_type' => 'magazine',
                    );
                   $custom_query = new WP_Query( $query_args );
@@ -990,25 +1009,53 @@ if ($query->have_posts()) {
                </div>
             </div>
          </div>
+        
          <div class="mobmenu">
             <a data-lenis-toggle="" href="#" class="mob-btn w-inline-block">
                <div class="code-embed-2 w-embed">
-                   <svg width="100%" height="100%" viewBox="0 0 375 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 <svg width="100%" height="100%" viewBox="0 0 375 44" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M213.03 8.43015C220.813 15.4131 229.56 23 240.017 23H351C364.255 23 375 23 375 23V92C375 105.255 364.255 116 351 116H24C10.7452 116 0 105.255 0 92V23H24H135.983C146.44 23 155.187 15.4131 162.969 8.43014C168.811 3.18846 176.533 0 185 0H191C199.467 0 207.189 3.18847 213.03 8.43015Z" fill="black"/>
 <path d="M180 16.5H196M180 23.5H196" stroke="white" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
-</svg>  <svg style="display:none" class="kres" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+</svg>
+				   
+				   <svg style="display:none" class="kres" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" fill="white"/>
 </svg>
+
+				   
+				  
+
                </div>
             </a>
             <div data-lenis-prevent="" class="mob-menu-line">
-               <a href="/" class="menu-btn">BKSQ</a><?php $link = get_field( 'menyu_o_proekte', 'option' );
+               <a href="/" aria-current="page" class="menu-btn w--current">BKSQ</a><?php $link = get_field( 'menyu_o_proekte', 'option' );
                   if ( ! empty( $link ) ) :
                   			$url = $link['url'];
                   			$title = $link['title'];
                   			$target = $link['target'] ? $link['target'] : '_self'; 
                   		?>
-               <a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="menu-btn" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
+               <a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="menu-btn" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a>
+               <?php endif; ?>
+               
+               
+                <?php $link = get_field( 'ssylka_na_telegramm', 'option' );
+                  if ( ! empty( $link ) ) :
+                  			$url = $link['url'];
+                  			$title = $link['title'];
+                  			$target = $link['target'] ? $link['target'] : '_self'; 
+                  		?>
+                  <a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" target="<?php echo esc_attr( $target ); ?>" class="menu-btn"><?php echo esc_html( $title ); ?></a>
+                  <?php endif; ?>
+               
+                 <?php $link = get_field( 'ssylka_na_telegramm_2', 'option' );
+                  if ( ! empty( $link ) ) :
+                  			$url = $link['url'];
+                  			$title = $link['title'];
+                  			$target = $link['target'] ? $link['target'] : '_self'; 
+                  		?>
+                  <a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" target="<?php echo esc_attr( $target ); ?>" class="menu-btn"><?php echo esc_html( $title ); ?></a>
+                  <?php endif; ?>
+               
              <?php $query_args = array( 'posts_per_page' => 1,
                   'post_type' => 'magazine',
                    );
@@ -1186,8 +1233,21 @@ if ($query->have_posts()) {
             </div>
          </div>
       </div>
+      
+      </div>
+      </div>
 	
-	
+		<div class="perehod-flex">
+			<div class="preloader-content">
+				<div class="preloader-fugure-prerhod">
+					<div class="preloader-fugure_front"></div>
+					<div class="preloader-fugure_right"></div>
+					<div class="preloader-fugure_left"></div>
+					<div class="preloader-fugure_back"></div>
+				</div>
+			</div>
+		</div>
+		
 		<!-- FOOTER CODE -->
 		<?php get_template_part("footer_block", ""); ?>
 	</body>
