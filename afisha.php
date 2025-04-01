@@ -461,7 +461,7 @@ defined( 'ABSPATH' ) || exit; ?>
 											</div>
 											<button 
 												type="reset" 
-												class="rest-filter-btn w-inline-block"
+												class="afisha-reset-button rest-filter-btn w-inline-block"
 												data-js-afisha-filter-form-reset-button
 											>
 												<img src="<?php echo get_template_directory_uri(); ?>/images/67b5d1a56230e560fbb0ef7d_Frame201321316448.svg" loading="lazy" alt class="new-icon-13">
@@ -547,7 +547,7 @@ defined( 'ABSPATH' ) || exit; ?>
 													<div class="new-p-18-21 upper">К сожалению, по вашему запросу ничего не нашлось</div>
 													<div class="new-p-16-19">Попробуйте изменить критерии фильтрации или уменьшить количество условий, чтобы увеличить вероятность нахождения нужного результата.</div>
 												</div>
-												<button type="reset" data-js-afisha-filter-form-reset-button form="afishaFilterForm" class="rest-filter-btn w-inline-block">
+												<button type="reset" data-js-afisha-filter-form-reset-button form="afishaFilterForm" class="afisha-reset-button rest-filter-btn w-inline-block">
 													<img src="<?php echo get_template_directory_uri(); ?>/images/67b5d1a56230e560fbb0ef7d_Frame201321316448.svg" loading="lazy" alt class="new-icon-13">
 													<div>Сбросить фильтр</div>
 												</button>

@@ -132,7 +132,7 @@ export const initCustomDatePicker = () => {
 		}
 
 		const calendar = flatpickr(dateControl, {
-			// altInput: true,
+			altInput: true,
 			mode: 'range',
 			altFormat: 'F j, Y',
 			enableYear: false,

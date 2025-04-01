@@ -9,6 +9,10 @@ export const initCustomSelectComponents = () => {
 		searchable: true,
 	});
 
+	$customSelect.on('select2:open', function () {
+		$('.select2-dropdown').attr('data-lenis-prevent', '');
+	});
+
 	const bubbleEvent = (e) => {
 		$customSelect.off('change', bubbleEvent);
 

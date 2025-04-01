@@ -1,0 +1,49 @@
+.select2 {
+	$root: &;
+
+	&-search__field {
+		padding: 28rem 0rem 12rem;
+		border: none;
+		border-bottom: 1rem solid #000;
+		background-color: #ebdbd3;
+	}
+
+	&-dropdown {
+		padding: 24rem;
+		border: 1rem solid #000;
+		border-radius: 0;
+		background-color: #ebdbd3;
+	}
+
+	&-container {
+		&--default {
+			.select2-selection--single {
+				border: none;
+				border-bottom: 1rem solid #000;
+				border-radius: 0rem;
+				background-color: #ebdbd3;
+			}
+		}
+	}
+
+	&-results {
+		&__option {
+			$option: &;
+
+			padding: 24rem 0rem;
+
+			&--selectable {
+				&#{$option}--selected,
+				&#{$option}--highlighted {
+					background-color: #000 !important;
+					color: #fff;
+				}
+			}
+		}
+	}
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+	border: none;
+	border-bottom: 1rem solid #000;
+}

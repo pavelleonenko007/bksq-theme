@@ -5,9 +5,10 @@
 
 @use './afisha-form.scss' as *;
 @use './datepicker.scss' as *;
-@use './button.scss' as *;
 
+@use './components/button.scss' as *;
 @use './components/field.scss' as *;
+@use './components/select.scss' as *;
 
 *[hidden] {
 	display: none !important;
