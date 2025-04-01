@@ -58,7 +58,7 @@ export default class YandexMap {
 		this.map.addChild(new YMapDefaultFeaturesLayer({}));
 
 		this.setLocation();
-		this.setMarkers();
+		this.setMarkers(BKSQ.LOCATIONS);
 	}
 
 	async setLocation(city) {
@@ -244,11 +244,7 @@ export default class YandexMap {
 			this.map.removeChild(location);
 		});
 
-		const resultLocations = locations.length > 0 ? locations : BKSQ.LOCATIONS;
-
-		// console.log(resultLocations);
-
-		this.selectedLocations = resultLocations.map((location) => {
+		this.selectedLocations = locations.map((location) => {
 			return new CustomMarkerWithPopup(location);
 		});
 

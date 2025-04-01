@@ -18,7 +18,7 @@ function bksq_enqueue_scripts() {
 		'BKSQ',
 		array(
 			'AJAX_URL'  => admin_url( 'admin-ajax.php' ),
-			'LOCATIONS' => bksq_get_all_afisha_locations(),
+			'LOCATIONS' => bksq_format_events_map_markers( bksq_get_events_by_months()['all_events'] ),
 		)
 	);
 }
@@ -93,6 +93,7 @@ function bksq_get_events_by_months( $params = array() ) {
 	if ( count( $events ) < 1 ) {
 		return array(
 			'data'        => array(),
+			'all_events'  => array(),
 			'page'        => $page,
 			'total_count' => 0,
 		);
@@ -133,7 +134,36 @@ function bksq_get_events_by_months( $params = array() ) {
 	return array(
 		'data'       => array_slice( $result, $offset, $months_per_page ),
 		'page'       => $page,
+		'all_events' => array_map(
+			function ( $p ) {
+				return $p->ID;
+			},
+			$events
+		),
 		'totalCount' => count( $result ),
+	);
+}
+
+function bksq_format_events_map_markers( $events = array() ) {
+	return array_map(
+		function ( $p ) {
+			if ( ! ( $p instanceof WP_Post ) ) {
+				$p = get_post( $p );
+			}
+
+			$object = array(
+				'id'             => $p->ID,
+				'title'          => get_the_title( $p->ID ),
+				'coordinates'    => array_map( 'floatval', array_values( get_field( 'coordinates', $p->ID ) ?? array() ) ),
+				'city'           => get_field( 'city', $p->ID ),
+				'address'        => get_field( 'full_address', $p->ID ),
+				'icon'           => bksq_get_activity_icon( bksq_get_event_activity( $p ) ),
+				'is_out_of_time' => get_field( 'is_out_of_time', $p->ID ),
+			);
+
+			return $object;
+		},
+		$events
 	);
 }
 
@@ -262,6 +292,7 @@ function bksq_filter_afisha_posts_via_ajax() {
 			'page'       => $page,
 			'totalCount' => $event_blocks['totalCount'],
 			'message'    => 'Блоки с постами успешно загружены',
+			'all_events' => $event_blocks['all_events'],
 		)
 	);
 }
@@ -384,6 +415,12 @@ function bksq_get_all_afisha_locations() {
 		array(
 			'post_type'   => 'events',
 			'numberposts' => -1,
+			'meta_query'  => array(
+				'relation' => 'OR',
+				array(
+					'key' => 'start_date',
+				),
+			),
 		)
 	);
 

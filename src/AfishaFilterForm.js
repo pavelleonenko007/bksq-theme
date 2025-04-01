@@ -73,8 +73,6 @@ export class AfishaFilterForm {
 
 	getFormData() {
 		console.log(this.root);
-
-		// const controls = this.root.
 	}
 
 	hasFormChanges() {
@@ -236,6 +234,8 @@ export class AfishaFilterForm {
 	 * @param {Event} event
 	 */
 	onChange = async (event) => {
+		console.log(event);
+		
 		this.map.setLocation(this.root.city.value);
 
 		this.state.hasChanges = this.hasFormChanges();
@@ -250,6 +250,13 @@ export class AfishaFilterForm {
 			this.showError(error);
 
 			return;
+		}
+
+		if (this.map) {
+			const newMarkers = BKSQ.LOCATIONS.filter((location) =>
+				data.all_events.includes(location.id)
+			);
+			this.map.setMarkers(newMarkers);
 		}
 
 		if (data.page === 1) {
