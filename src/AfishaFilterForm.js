@@ -236,8 +236,6 @@ export class AfishaFilterForm {
 	 * @param {Event} event
 	 */
 	onChange = async (event) => {
-		console.log(event);
-
 		this.map.setLocation(this.root.city.value);
 
 		this.state.hasChanges = this.hasFormChanges();
@@ -332,8 +330,6 @@ export class AfishaFilterForm {
 		if (value) {
 			if (targetControl.type.includes('select')) {
 				Array.from(targetControl.options).forEach((option) => {
-					console.log(option, value, option.value === value);
-
 					option.selected = option.value === value;
 				});
 			} else {
