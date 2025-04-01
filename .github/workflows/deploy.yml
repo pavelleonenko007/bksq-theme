@@ -3,7 +3,7 @@ name: 🚀 Deploy Code via SFTP
 on:
   push:
     branches:
-      - master
+      - main
 
 permissions:
   contents: write
