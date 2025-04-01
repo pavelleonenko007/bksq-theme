@@ -141,6 +141,7 @@ function bksq_get_events_by_months( $params = array() ) {
 			$events
 		),
 		'totalCount' => count( $result ),
+		'maxPages'   => ceil( count( $result ) / $months_per_page ),
 	);
 }
 
@@ -346,6 +347,7 @@ function bksq_filter_afisha_posts_via_ajax() {
 			'totalCount'       => $event_blocks['totalCount'],
 			'message'          => 'Блоки с постами успешно загружены',
 			'all_events'       => $event_blocks['all_events'],
+			'maxPages'         => $event_blocks['maxPages'],
 		)
 	);
 }
