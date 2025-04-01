@@ -86,6 +86,11 @@
 	border-color: #000;
 }
 
+.flatpickr-day.selected.startRange, .flatpickr-day.startRange.startRange, .flatpickr-day.endRange.startRange {
+	border-radius: 0;
+	border-color: #000;
+}
+
 .flatpickr-day.inRange {
 	box-shadow: 0px 0 0 #e6e6e6, 0px 0 0 #e6e6e6;
 }

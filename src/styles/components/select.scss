@@ -50,3 +50,21 @@
 	border: none;
 	border-bottom: 1rem solid #000;
 }
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+	padding-left: 0;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+	margin: 0;
+	position: absolute;
+	top: auto;
+	left: auto;
+	right: 0;
+	bottom: 22rem;
+	width: 10rem;
+	height: 10rem;
+	border: none;
+	background-color: #000;
+	clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+}

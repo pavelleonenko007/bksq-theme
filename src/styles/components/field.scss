@@ -12,4 +12,19 @@
 	&__select {
 		width: 100%;
 	}
+
+	&--with-icon {
+		position: relative;
+
+		&::after {
+			content: '';
+			position: absolute;
+			right: 0;
+			bottom: 22rem;
+			width: 10rem;
+			height: 10rem;
+			background-color: #000;
+			clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+		}
+	}
 }

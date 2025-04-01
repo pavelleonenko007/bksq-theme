@@ -376,7 +376,7 @@ defined( 'ABSPATH' ) || exit; ?>
 												</button>
 											</div>
 											<div class="vert g32 afisha-form__fields">
-												<div class="afisha-form__field field">
+												<div class="afisha-form__field field field--with-icon">
 													<input 
 														id="afishaFilterFormDateControl"
 														type="text" 
