@@ -11,6 +11,7 @@ export const initCustomSelectComponents = () => {
 
 	$customSelect.on('select2:open', function () {
 		$('.select2-dropdown').attr('data-lenis-prevent', '');
+		$('.select2-search__field').attr('placeholder', 'Поиск');
 	});
 
 	const bubbleEvent = (e) => {

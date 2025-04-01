@@ -152,12 +152,20 @@ function bksq_format_events_map_markers( $events = array() ) {
 				$p = get_post( $p );
 			}
 
+			$date_range = array_filter(
+				array(
+					date_i18n( 'd F', strtotime( get_field( 'start_date', $p ) ) ),
+					date_i18n( 'd F', strtotime( get_field( 'end_date', $p ) ) ),
+				)
+			);
+
 			$object = array(
 				'id'             => $p->ID,
 				'title'          => get_the_title( $p->ID ),
+				'date'           => implode( ' – ', $date_range ),
 				'coordinates'    => array_map( 'floatval', array_values( get_field( 'coordinates', $p->ID ) ?? array() ) ),
 				'city'           => get_field( 'city', $p->ID ),
-				'address'        => get_field( 'full_address', $p->ID ),
+				'address'        => str_replace( 'text-black', 'text-white', do_shortcode( get_field( 'full_address', $p->ID ) ) ),
 				'icon'           => bksq_get_activity_icon( bksq_get_event_activity( $p ) ),
 				'is_out_of_time' => get_field( 'is_out_of_time', $p->ID ),
 			);

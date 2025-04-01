@@ -173,7 +173,11 @@ export default class YandexMap {
 				this._marker.element.classList.add('marker--selected');
 
 				const element = document.createElement('div');
-				element.className = 'popup';
+				element.className = 'popup popup--afisha';
+
+				const dateElement = document.createElement('div');
+				dateElement.className = 'popup__date';
+				dateElement.innerHTML = this._props.date;
 
 				const headerElement = document.createElement('header');
 				headerElement.className = 'popup__header';
@@ -181,7 +185,7 @@ export default class YandexMap {
 
 				const bodyElement = document.createElement('div');
 				bodyElement.className = 'popup__body';
-				bodyElement.textContent = this._props.address;
+				bodyElement.innerHTML = this._props.address;
 
 				if (this._props.linkToShop) {
 					const separatorElement = document.createElement('div');
@@ -208,7 +212,7 @@ export default class YandexMap {
 				// closeBtn.textContent = 'Close Popup';
 				// closeBtn.onclick = () => this._closePopup();
 
-				element.append(headerElement, bodyElement);
+				element.append(dateElement, headerElement, bodyElement);
 
 				document.body.addEventListener(
 					'click',
