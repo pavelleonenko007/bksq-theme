@@ -262,6 +262,34 @@ function bksq_filter_afisha_posts_via_ajax() {
 
 	$event_blocks = bksq_get_events_by_months( $params );
 
+	$out_of_time_event_args = array(
+		'post_type'      => 'events',
+		'posts_per_page' => -1,
+		'meta_query'     => array(
+			array(
+				'key'   => 'is_out_of_time',
+				'value' => '1',
+			),
+		),
+	);
+
+	if ( ! empty( $city ) ) {
+		$out_of_time_event_args['meta_query'][] = array(
+			'key'   => 'city',
+			'value' => $city,
+		);
+	}
+
+	if ( ! empty( $activity ) ) {
+		$out_of_time_event_args['tax_query'][] = array(
+			'taxonomy' => 'activity',
+			'field'    => 'slug',
+			'terms'    => array( $activity ),
+		);
+	}
+
+	$out_of_time_event_query = new WP_Query( $out_of_time_event_args );
+
 	if ( ! empty( $event_blocks['data'] ) ) {
 		foreach ( $event_blocks['data'] as $date => $event_block ) :
 			?>
@@ -286,13 +314,38 @@ function bksq_filter_afisha_posts_via_ajax() {
 
 	$html = ob_get_clean();
 
+	ob_start();
+
+	if ( $out_of_time_event_query->have_posts() ) :
+		?>
+		<div class="month-core">
+			<div class="vert g20 month-line">
+				<div class="new-p-18-21 black">Вечное</div>
+			</div>
+			<div class="month-core-events">
+				<?php
+				while ( $out_of_time_event_query->have_posts() ) {
+					$out_of_time_event_query->the_post();
+					get_template_part( 'component-afisha-item' );
+				}
+
+				wp_reset_postdata();
+				?>
+			</div>
+		</div>
+		<?php
+	endif;
+
+	$out_of_time_html = ob_get_clean();
+
 	wp_send_json_success(
 		array(
-			'content'    => $html,
-			'page'       => $page,
-			'totalCount' => $event_blocks['totalCount'],
-			'message'    => 'Блоки с постами успешно загружены',
-			'all_events' => $event_blocks['all_events'],
+			'content'          => $html,
+			'outOfTimeContent' => $out_of_time_html,
+			'page'             => $page,
+			'totalCount'       => $event_blocks['totalCount'],
+			'message'          => 'Блоки с постами успешно загружены',
+			'all_events'       => $event_blocks['all_events'],
 		)
 	);
 }

@@ -35,6 +35,9 @@ export class AfishaFilterForm {
 		this.outOfTimeContent = document.querySelector(
 			this.selectors.outOfTimeContent
 		);
+
+		console.log(this.outOfTimeContent);
+		
 		/**
 		 * @type {HTMLButtonElement}
 		 */
@@ -265,9 +268,7 @@ export class AfishaFilterForm {
 			this.afishaContent.innerHTML += data.content;
 		}
 
-		if (data.outOfTimeContent) {
-			this.outOfTimeContent.innerHTML = data.outOfTimeContent;
-		}
+		this.outOfTimeContent.innerHTML = data.outOfTimeContent;
 
 		if (data.maxPages) {
 			this.state.maxPages = parseInt(data.maxPages);
