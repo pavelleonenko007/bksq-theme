@@ -1,0 +1,35 @@
+.button {
+	--text-color: #fff;
+	--bg-color: #000;
+	--border: 1px solid #000;
+
+	padding-inline: 24rem;
+	height: 44rem;
+	border: var(--border);
+	border-radius: 50rem;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 16rem;
+	line-height: 1.2;
+	color: var(--text-color, #fff);
+	background-color: var(--bg-color, #000);
+	transition: all 0.3s ease-out;
+	text-decoration: none;
+
+	&--link {
+		--bg-color: transparent;
+		--border: 1rem solid transparent;
+		--text-color: #000;
+	}
+	
+	&--outline {
+		--border: 1rem solid #000;
+		--bg-color: transparent;
+		--text-color: #000;
+	}
+
+	&:disabled {
+		opacity: 0.6;
+	}
+}

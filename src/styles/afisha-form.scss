@@ -1,0 +1,13 @@
+.afisha-form {
+	align-items: stretch;
+
+	&__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4rem;
+	}
+
+	&__field {
+		width: 100%;
+	}
+}
