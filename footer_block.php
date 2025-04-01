@@ -9,7 +9,11 @@
 <?php if(file_exists(dirname( __FILE__ ).'/footer_code.php')){ include_once 'footer_code.php'; } ?>
 <script type="text/javascript"
   src="<?php echo get_template_directory_uri() ?>/js/shop.js?ver=1736940039"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script><script src="https://thevogne.ru/clients/creativepeople/bsqr/lenis.js"></script><script src="https://thevogne.ru/clients/creativepeople/bsqr/swiper.js"></script><script src="https://thevogne.ru/clients/creativepeople/bsqr/script.js"></script><script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<script src="https://thevogne.ru/customfiles/barba.js"></script>
+<script src="https://thevogne.ru/clients/creativepeople/bsqr/lenis.js"></script>
+<script src="https://thevogne.ru/clients/creativepeople/bsqr/swiper.js"></script>
+<script src="https://thevogne.ru/clients/creativepeople/bsqr/script2.js"></script><script>
 $(document).ready(function(){
   
   
