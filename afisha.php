@@ -234,18 +234,36 @@ defined( 'ABSPATH' ) || exit; ?>
 								<div class="about-hero-content afisha-p">
 									<div class="aficha-left">
 										<div class="vert g32">
-											<h1 data-acf="head1" class="h1 new-h1">Афиша</h1>
-											<div class="event-title mmax468">Современная культурная повестка, <br>выбор качественных событий и их осмысление — один из главных <br>интересов проекта Black Square. </div>
+											<h1 class="h1 new-h1"><?php the_title(); ?></h1>
+											<?php
+											$subtitle = get_field( 'subtitle' );
+											if ( ! empty( $subtitle ) ) :
+												?>
+												<div class="event-title mmax468"><?php echo wp_kses_post( $subtitle ); ?></div>
+											<?php endif; ?>
 										</div>
-										<div class="about-hero-left scrollobs no-bott _2">
-											<div data-acf="richpage" class="text-16 _20-on1900 _16-mob">Этот принцип отражается в создании журнала, развитии телеграм-канала и в других направлениях деятельности BKSQ. <br><br>Для вашего самостоятельного знакомства с избранными событиями мы собрали афишу выставок, театральных, музыкальных, кинособытий и других культурных направлений, отобранных экспертами,  которым можно доверять.</div>
-										</div>
+										<?php
+										$descriotion = get_field( 'description' );
+										if ( ! empty( $descriotion ) ) :
+											?>
+											<div class="about-hero-left scrollobs no-bott _2">
+												<div class="text-16 _20-on1900 _16-mob"><?php echo wp_kses_post( $descriotion ); ?></div>
+											</div>
+										<?php endif; ?>
 									</div>
 									<div class="about-hero-right afisha-mimimg">
-										<div class="about-hero-image scrollobs no-bott"><img class="image-cover" src="<?php echo get_template_directory_uri(); ?>/images/679b632bc8c7eafe301cefb1_Frame201321315861.webp" alt data-acf-image="glavnoe_izobrazhenie" loading="eager"></div>
-										<div class="about-hero-left scrollobs no-bott _3">
-											<div data-acf="richpage" class="text-16 _20-on1900 _16-mob">Этот принцип отражается в создании журнала, развитии телеграм-канала и в других направлениях деятельности BKSQ. <br><br>Для вашего самостоятельного знакомства с избранными событиями мы собрали афишу выставок, театральных, музыкальных, кинособытий и других культурных направлений, отобранных экспертами,  которым можно доверять.</div>
+										<div class="about-hero-image scrollobs no-bott">
+											<?php if ( has_post_thumbnail() ) : ?>
+												<img class="image-cover" src="<?php echo esc_url( get_the_post_thumbnail_url( get_the_ID(), 'large' ) ); ?>" alt  loading="eager">
+											<?php endif; ?>
 										</div>
+										<?php
+										if ( ! empty( $descriotion ) ) :
+											?>
+											<div class="about-hero-left scrollobs no-bott _3">
+												<div class="text-16 _20-on1900 _16-mob"><?php echo wp_kses_post( $descriotion ); ?></div>
+											</div>
+										<?php endif; ?>
 									</div>
 								</div>
 							</div>
