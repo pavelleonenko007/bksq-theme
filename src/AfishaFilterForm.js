@@ -10,6 +10,7 @@ export class AfishaFilterForm {
 		moreButton: '[data-js-afisha-filter-form-more-button]',
 		resetButton: '[data-js-afisha-filter-form-reset-button]',
 		preSelectedFilterButton: '[data-js-afisha-filter-form-preselected-button]',
+		emptyContent: '[data-js-afisha-filter-form-empty]',
 	};
 
 	stateSelectors = {
@@ -35,9 +36,10 @@ export class AfishaFilterForm {
 		this.outOfTimeContent = document.querySelector(
 			this.selectors.outOfTimeContent
 		);
+		this.emptyContent = document.querySelector(this.selectors.emptyContent);
 
 		console.log(this.outOfTimeContent);
-		
+
 		/**
 		 * @type {HTMLButtonElement}
 		 */
@@ -238,7 +240,7 @@ export class AfishaFilterForm {
 	 */
 	onChange = async (event) => {
 		console.log(event);
-		
+
 		this.map.setLocation(this.root.city.value);
 
 		this.state.hasChanges = this.hasFormChanges();
@@ -269,6 +271,12 @@ export class AfishaFilterForm {
 		}
 
 		this.outOfTimeContent.innerHTML = data.outOfTimeContent;
+
+		if (!data.content && !data.outOfTimeContent) {
+			this.emptyContent.style.display = 'block';
+		} else {
+			this.emptyContent.style.display = null;
+		}
 
 		if (data.maxPages) {
 			this.state.maxPages = parseInt(data.maxPages);

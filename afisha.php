@@ -542,7 +542,7 @@ defined( 'ABSPATH' ) || exit; ?>
 													</button>
 												<?php endif; ?>
 											</div>
-											<div class="error-afisha">
+											<div class="error-afisha" data-js-afisha-filter-form-empty>
 												<div class="vert g24 m-center">
 													<div class="new-p-18-21 upper">К сожалению, по вашему запросу ничего не нашлось</div>
 													<div class="new-p-16-19">Попробуйте изменить критерии фильтрации или уменьшить количество условий, чтобы увеличить вероятность нахождения нужного результата.</div>
