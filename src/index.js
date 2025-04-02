@@ -8,7 +8,9 @@ import './styles/index.scss';
 initCustomDatePicker();
 initCustomSelectComponents();
 
-const map = new YandexMap(document.querySelector('[data-js-yandex-map]'));
+// const map = new YandexMap(document.querySelector('[data-js-yandex-map]'));
+
+let map = null;
 
 new AfishaFilterForm(map);
 

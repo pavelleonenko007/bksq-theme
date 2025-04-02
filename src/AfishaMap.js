@@ -30,13 +30,7 @@ export default class YandexMap {
 		// Дождитесь резолва`ymaps3.ready`
 		await ymaps3.ready;
 
-		const {
-			YMapComplexEntity,
-			YMap,
-			YMapDefaultSchemeLayer,
-			YMapDefaultFeaturesLayer,
-			YMapMarker,
-		} = ymaps3;
+		const { YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer } = ymaps3;
 
 		this.ymaps = ymaps3;
 
@@ -255,5 +249,9 @@ export default class YandexMap {
 		this.selectedLocations.forEach((loc) => {
 			this.map.addChild(loc);
 		});
+	}
+
+	destroy() {
+		this.map.destroy();
 	}
 }
