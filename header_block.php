@@ -8,9 +8,7 @@
 		<script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
 		<link href="https://thevogne.ru/clients/creativepeople/bsqr/main.css" rel="stylesheet">
 		<link href="https://thevogne.ru/clients/creativepeople/bsqr/style.css" rel="stylesheet">
-		<link href="https://thevogne.ru/WEBFLOW-CONVERTER/dist/main.css" rel="stylesheet" type="text/css">
-		<script defer src="https://thevogne.ru/WEBFLOW-CONVERTER/dist/app.js"></script>
-		<script defer src="https://thevogne.ru/clients/creativepeople/bsqr/app.js"></script>
+		<!-- <script defer src="https://thevogne.ru/clients/creativepeople/bsqr/app.js"></script> -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
 		<style>
 .swiper {
