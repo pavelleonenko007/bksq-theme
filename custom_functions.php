@@ -171,6 +171,7 @@ function bksq_format_events_map_markers( $events = array() ) {
 				'address'        => str_replace( 'text-black', 'text-white', do_shortcode( get_field( 'full_address', $p->ID ) ) ),
 				'icon'           => bksq_get_activity_icon( bksq_get_event_activity( $p ) ),
 				'is_out_of_time' => get_field( 'is_out_of_time', $p->ID ),
+				'url'            => get_the_permalink( $p->ID ),
 			);
 
 			return $object;

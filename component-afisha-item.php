@@ -12,7 +12,7 @@ global $post;
 $address          = get_field( 'full_address' );
 $time_or_interval = get_field( 'time_or_interval' );
 ?>
-<a href="<?php the_permalink(); ?>" class="afisha-item no-barba w-inline-block">
+<a id="<?php echo esc_attr( 'afishaItem' . $post->ID ); ?>" href="<?php the_permalink(); ?>" class="afisha-item no-barba w-inline-block">
 	<?php if ( ! empty( $address ) ) : ?>
 		<div class="horiz">
 			<img src="<?php echo esc_url( get_template_directory_uri() . '/images/67b47ad9500500b95e543cdb_heroicons_map-pin-16-solid.svg' ); ?>" loading="lazy" alt class="new-icon-20">

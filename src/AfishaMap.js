@@ -167,7 +167,21 @@ export default class YandexMap {
 				this._marker.element.classList.add('marker--selected');
 
 				const element = document.createElement('div');
+				element.setAttribute(
+					'data-popup-trigger',
+					`afishaItem${this._props.id}`
+				);
 				element.className = 'popup popup--afisha';
+
+				/**
+				 *
+				 * @param {PointerEvent} event
+				 */
+				element.onclick = (event) => {
+					event.preventDefault();
+
+					document.getElementById(element.dataset.popupTrigger)?.click();
+				};
 
 				const dateElement = document.createElement('div');
 				dateElement.className = 'popup__date';
