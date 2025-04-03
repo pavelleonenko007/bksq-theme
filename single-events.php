@@ -361,6 +361,12 @@
 										'post__not_in'   => array( get_the_ID() ),
 										'post_type'      => 'events',
 										'posts_per_page' => 3,
+										'meta_query' => array(
+											array(
+												'key'   => 'afisha',
+												'value' => '1',
+											),
+										),
 									);
 
 									$custom_query = new WP_Query( $query_args );
