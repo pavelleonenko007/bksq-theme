@@ -207,13 +207,27 @@ function initSomeStaff() {
 		$('.mag5-popup-wrapper.mag').addClass('active');
 	});
 
-	$('.sw-btn').on('click', function () {
-		$('.sw-btn').toggleClass('active');
-		if ($(this).hasClass('map-bbtn')) {
-			$('.afisha-core').addClass('showmap');
-		} else {
-			$('.afisha-core').removeClass('showmap');
-		}
+	const afishaListMapToggleButtons = document.querySelectorAll('.sw-btn');
+
+	afishaListMapToggleButtons.forEach((button) => {
+		/**
+		 *
+		 * @param {PointerEvent} event
+		 */
+		button.onclick = (event) => {
+			event.preventDefault();
+			event.stopPropagation();
+
+			afishaListMapToggleButtons.forEach((b) => {
+				b.classList.remove('active');
+			});
+
+			button.classList.add('active');
+
+			document
+				.querySelector('.afisha-core')
+				.classList.toggle('showmap', button.classList.contains('map-bbtn'));
+		};
 	});
 
 	$('.close-popup').on('click', function () {
