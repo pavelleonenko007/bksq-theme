@@ -153,6 +153,87 @@
                     "parent_repeater": "field_67ebe6a1f63e7"
                 }
             ]
+        },
+        {
+            "key": "field_67ee8fe5d5abd",
+            "label": "Кнопки быстрых фильтров",
+            "name": "pre_selected_filters_button",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_67ee901bd5abe",
+                    "label": "Кнопка \"Фестиваль\"",
+                    "name": "activity_button",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67ee903ed5abf",
+                            "label": "Текст кнопки",
+                            "name": "text",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_67ee9053d5ac0",
+                            "label": "Значение",
+                            "name": "value",
+                            "aria-label": "",
+                            "type": "taxonomy",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "activity",
+                            "add_term": 0,
+                            "save_terms": 0,
+                            "load_terms": 0,
+                            "return_format": "object",
+                            "field_type": "select",
+                            "allow_null": 1,
+                            "bidirectional": 0,
+                            "multiple": 0,
+                            "bidirectional_target": []
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "location": [
@@ -175,5 +256,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1743685877
+    "modified": 1743687810
 }

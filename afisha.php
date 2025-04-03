@@ -296,7 +296,8 @@ defined( 'ABSPATH' ) || exit; ?>
 										<form id="afishaFilterForm" class="form-2 afisha-form" data-js-afisha-filter-form>
 											<div class="div-block-10 afisha-form__buttons">
 												<?php
-												$today_config = array(
+												$pre_selected_filters_button = get_field( 'pre_selected_filters_button' );
+												$today_config                = array(
 													'controlSelector' => '#afishaFilterFormDateControl',
 													'value' => wp_date( 'Y-m-d' ),
 												);
@@ -349,9 +350,12 @@ defined( 'ABSPATH' ) || exit; ?>
 													Выходные
 												</button>
 												<?php
-												$festival_config = array(
+												$festival_button       = $pre_selected_filters_button['activity_button'];
+												$festival_button_text  = $festival_button['text'] ?? 'Фестиваль';
+												$festival_button_value = ! empty( $festival_button['value'] ) ? $festival_button['value']->slug : 'festival';
+												$festival_config       = array(
 													'controlSelector' => '#afishaFilterFormActivityControl',
-													'value' => 'festival',
+													'value' => $festival_button_value,
 												);
 												?>
 												<button 
@@ -359,7 +363,7 @@ defined( 'ABSPATH' ) || exit; ?>
 													class="button button--outline"
 													data-js-afisha-filter-form-preselected-button="<?php echo esc_attr( wp_json_encode( $festival_config ) ); ?>"
 												>
-													Фестиваль
+													<?php echo esc_html( $festival_button_text ); ?>
 												</button>
 												<?php
 												$location_config = array(
@@ -647,7 +651,7 @@ defined( 'ABSPATH' ) || exit; ?>
 							'order'          => 'ASC',
 							'meta_query'     => array(
 								array(
-									'key' => 'afisha',
+									'key'   => 'afisha',
 									'value' => '1',
 								),
 								array(
