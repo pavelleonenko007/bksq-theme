@@ -2,33 +2,106 @@ import Select2 from 'select2';
 
 const CUSTOM_SELECT_SELECTOR = '[data-js-custom-select]';
 
-export const initCustomSelectComponents = () => {
-	const $customSelect = $(CUSTOM_SELECT_SELECTOR);
+class CustomSelect {
+	/**
+	 *
+	 * @param {HTMLSelectElement} element
+	 */
+	constructor(element) {
+		this.root = element;
+		this.config = {
+			searchable: true,
+			...(element.dataset.config ? JSON.parse(element.dataset.config) : {}),
+		};
+		this.$customSelect = $(element);
 
-	$customSelect.select2({
-		searchable: true,
-	});
+		this.$customSelect.select2(this.config);
 
-	$customSelect.on('select2:open', function () {
+		this.bindEvents();
+	}
+
+	onOpen = (event) => {
 		$('.select2-dropdown').attr('data-lenis-prevent', '');
 		$('.select2-search__field').attr('placeholder', 'Поиск');
-	});
+	};
 
-	const bubbleEvent = (e) => {
-		$customSelect.off('change', bubbleEvent);
+	onChangeBubble = (event) => {
+		this.$customSelect.off('change', this.onChangeBubble);
 
-		e.target.dispatchEvent(
+		event.target.dispatchEvent(
 			new Event('change', {
 				bubbles: true,
 			})
 		);
 
-		$customSelect.on('change', bubbleEvent);
+		this.$customSelect.on('change', this.onChangeBubble);
 	};
 
-	$customSelect.on('change', bubbleEvent);
+	onReset = () => {
+		this.$customSelect.val(null).trigger('change');
+	};
 
-	document.addEventListener('reset', (e) => {
-		$customSelect.val(null).trigger('change');
-	});
-};
+	bindEvents() {
+		document.addEventListener('reset', this.onReset);
+		this.$customSelect.on('change', this.onChangeBubble);
+		this.$customSelect.on('select2:open', this.onOpen);
+	}
+
+	destroy() {
+		this.$customSelect.select2('destroy');
+		document.removeEventListener('reset', this.onReset);
+	}
+}
+
+export default class CustomSelectCollection {
+	/**
+	 * @type {Map<HTMLSelectElement, CustomSelect>}
+	 */
+	static customSelectMap = new Map();
+
+	static init() {
+		document.querySelectorAll(CUSTOM_SELECT_SELECTOR).forEach((select) => {
+			const CustomSelectInstance = new CustomSelect(select);
+
+			CustomSelectCollection.customSelectMap.set(select, CustomSelectInstance);
+		});
+	}
+
+	static destroyAll() {
+		CustomSelectCollection.customSelectMap.forEach((CustomSelect) => {
+			CustomSelect.destroy();
+		});
+		CustomSelectCollection.customSelectMap.clear();
+	}
+}
+
+// export const initCustomSelectComponents = () => {
+// 	const $customSelect = $(CUSTOM_SELECT_SELECTOR);
+
+// 	$customSelect.select2({
+// 		searchable: true,
+// 	});
+
+// 	$customSelect.on('select2:open', function () {
+// 		$('.select2-dropdown').attr('data-lenis-prevent', '');
+// 		$('.select2-search__field').attr('placeholder', 'Поиск');
+// 	});
+
+// 	const bubbleEvent = (e) => {
+// 		$customSelect.off('change', bubbleEvent);
+
+// 		e.target.dispatchEvent(
+// 			new Event('change', {
+// 				bubbles: true,
+// 			})
+// 		);
+
+// 		$customSelect.on('change', bubbleEvent);
+// 	};
+
+// 	$customSelect.on('change', bubbleEvent);
+
+// 	document.addEventListener('reset', (e) => {
+// 		$customSelect.val(null).trigger('change');
+// 	});
+// };

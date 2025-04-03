@@ -14,11 +14,17 @@
 		"@wordpress/scripts": "^30.9.0"
 	},
 	"dependencies": {
+		"@ksedline/turnjs": "^0.1.0",
 		"@splidejs/splide": "^4.1.4",
 		"barba.js": "^1.0.0",
 		"classnames": "^2.5.1",
 		"flatpickr": "^4.6.13",
 		"imask": "^7.6.1",
-		"select2": "^4.1.0-rc.0"
+		"jquery": "^3.7.1",
+		"jquery-custom-select": "^1.6.4",
+		"js-cookie": "^3.0.5",
+		"lenis": "^1.2.3",
+		"select2": "^4.1.0-rc.0",
+		"swiper": "^11.2.6"
 	}
 }

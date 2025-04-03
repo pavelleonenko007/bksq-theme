@@ -226,7 +226,7 @@ defined( 'ABSPATH' ) || exit; ?>
 			</style>
 		</div>
 		<div id="barba-wrapper" class="barba-wrapper">
-			<div class="barba-container afisha-body">
+			<div class="barba-container afisha-body" data-namespace="afisha">
 				<div class="page-wrap afisha-page hp2">
 					<div class="main-wrap">
 						<section class="section about-hero-section afisha-page">
@@ -383,6 +383,7 @@ defined( 'ABSPATH' ) || exit; ?>
 														class="field__control" 
 														placeholder="Дата"
 														name="date"
+														data-js-custom-datepicker
 													>
 												</div>
 												<?php
@@ -880,6 +881,5 @@ defined( 'ABSPATH' ) || exit; ?>
 		</div>
 		<!-- FOOTER CODE -->
 		<?php get_template_part( 'footer_block', '' ); ?>
-		<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/afisha.js?ver=1742903617"></script>
 	</body>
 </html>

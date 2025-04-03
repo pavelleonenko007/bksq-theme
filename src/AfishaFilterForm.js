@@ -1,8 +1,9 @@
+import YandexMap from './AfishaMap';
 import { promiseWrapper } from './utils';
 
 const ROOT_SELECTOR = '[data-js-afisha-filter-form]';
 
-export class AfishaFilterForm {
+class AfishaFilterForm {
 	selectors = {
 		root: ROOT_SELECTOR,
 		afishaContent: '[data-js-afisha-filter-form-content]',
@@ -18,17 +19,17 @@ export class AfishaFilterForm {
 		isDisabled: 'is-disabled',
 	};
 
-	constructor(map) {
+	constructor(form) {
 		/**
 		 * @type {HTMLFormElement}
 		 */
-		this.root = document.querySelector(this.selectors.root);
+		this.root = form;
 
 		if (!this.root) {
 			return;
 		}
 
-		this.map = map;
+		this.map = new YandexMap(document.querySelector('[data-js-yandex-map]'));
 
 		this.pageControl = this.root.page;
 
@@ -37,8 +38,6 @@ export class AfishaFilterForm {
 			this.selectors.outOfTimeContent
 		);
 		this.emptyContent = document.querySelector(this.selectors.emptyContent);
-
-		console.log(this.outOfTimeContent);
 
 		/**
 		 * @type {HTMLButtonElement}
@@ -392,6 +391,44 @@ export class AfishaFilterForm {
 
 		this.preSelectedFilterButtons.forEach((button) => {
 			button.addEventListener('click', this.onPreSelectedButtonClick);
+		});
+	}
+
+	destroy() {
+		this.root.removeEventListener('change', this.onChange);
+		this.root.removeEventListener('reset', this.onReset);
+		if (this.moreButton) {
+			this.moreButton.removeEventListener('click', this.onMoreButtonClick);
+		}
+
+		this.preSelectedFilterButtons.forEach((button) => {
+			button.removeEventListener('click', this.onPreSelectedButtonClick);
+		});
+
+		this.map.destroy();
+	}
+}
+
+export default class AfishaFilterFormCollection {
+	/**
+	 * @type {Map<HTMLFormElement, AfishaFilterForm>}
+	 */
+	static afishaFilterForms = new Map();
+
+	static init() {
+		document.querySelectorAll(ROOT_SELECTOR).forEach((form) => {
+			const AfishaFilterFormInstance = new AfishaFilterForm(form);
+
+			AfishaFilterFormCollection.afishaFilterForms.set(
+				form,
+				AfishaFilterFormInstance
+			);
+		});
+	}
+
+	static destroyAll() {
+		AfishaFilterFormCollection.afishaFilterForms.forEach((formInstance) => {
+			formInstance.destroy();
 		});
 	}
 }
