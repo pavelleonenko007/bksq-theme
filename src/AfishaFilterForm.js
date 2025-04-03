@@ -54,6 +54,13 @@ class AfishaFilterForm {
 		this.preSelectedFilterButtons = this.root.querySelectorAll(
 			this.selectors.preSelectedFilterButton
 		);
+		this.preSelectedFilterButtonConfigs = new Map();
+		this.preSelectedFilterButtons.forEach((button) => {
+			this.preSelectedFilterButtonConfigs.set(
+				button,
+				JSON.parse(button.dataset.jsAfishaFilterFormPreselectedButton)
+			);
+		});
 
 		this.initialFormData = {
 			date: '',
@@ -142,6 +149,12 @@ class AfishaFilterForm {
 
 			this.moreButton.hidden = pageValue === this.state.maxPages;
 		}
+
+		// Maybe later :))
+		// this.preSelectedFilterButtonsConfigs.forEach((config, button) => {
+		// 	button.classList.toggle('active', )
+		// 	console.log({ config, button });
+		// });
 
 		this.resetButton.disabled = !this.state.hasChanges;
 		this.resetButton.hidden = !this.state.hasChanges;
@@ -307,61 +320,83 @@ class AfishaFilterForm {
 		event.preventDefault();
 		event.stopPropagation();
 
-		let value = '';
-
+		const button = event.target.closest('button');
+		const isActive = !button.classList.contains('active');
 		const config = JSON.parse(
-			event.target.closest('button').dataset.jsAfishaFilterFormPreselectedButton
+			button.dataset.jsAfishaFilterFormPreselectedButton
 		);
 		const targetControl = this.root.querySelector(config.controlSelector);
 
-		if (config.value) {
-			if (targetControl.type.includes('select')) {
-				Array.from(targetControl.options).forEach((option) => {
-					option.selected = option.value === config.value;
-				});
+		button.classList.toggle('active', isActive);
+
+		this.preSelectedFilterButtonConfigs.forEach((conf, buttonElement) => {
+			if (
+				conf.controlSelector === config.controlSelector &&
+				buttonElement !== button
+			) {
+				buttonElement.classList.remove('active');
+			}
+		});
+
+		let value = '';
+
+		if (isActive) {
+			if (config.action) {
+				const { data, error } = await promiseWrapper(this[config.action]());
+
+				if (error) {
+					return;
+				}
+				value = data;
 			} else {
-				targetControl.value = config.value;
+				value = config.value;
 			}
-
-			// $(targetControl).trigger('change');
-			targetControl.dispatchEvent(
-				new Event('change', {
-					bubbles: true,
-				})
-			);
-
-			return;
 		}
 
-		if (config.action) {
-			const { data, error } = await promiseWrapper(this[config.action]());
+		// if (config.value) {
+		// 	if (targetControl.type.includes('select')) {
+		// 		Array.from(targetControl.options).forEach((option) => {
+		// 			option.selected = option.value === config.value;
+		// 		});
+		// 	} else {
+		// 		targetControl.value = config.value;
+		// 	}
 
-			if (error) {
-				return;
-			}
-			value = data;
+		// 	// $(targetControl).trigger('change');
+		// 	targetControl.dispatchEvent(
+		// 		new Event('change', {
+		// 			bubbles: true,
+		// 		})
+		// 	);
+
+		// 	return;
+		// }
+
+		if (targetControl.type.includes('select')) {
+			Array.from(targetControl.options).forEach((option) => {
+				option.selected = option.value === value;
+			});
+		} else {
+			targetControl.value = value;
 		}
 
-		if (value) {
-			if (targetControl.type.includes('select')) {
-				Array.from(targetControl.options).forEach((option) => {
-					option.selected = option.value === value;
-				});
+		if (targetControl.name === 'date') {
+			const calendar = targetControl._flatpickr;
+
+			if (value !== 'Вечное') {
+				calendar.setDate(value, false);
+				calendar.close();
 			} else {
-				targetControl.value = value;
+				calendar.input.value = value;
+				calendar._input.value = value;
 			}
-
-			// $(targetControl).trigger('change');
-			targetControl.dispatchEvent(
-				new Event('change', {
-					bubbles: true,
-				})
-			);
-
-			return;
 		}
 
-		console.log(config);
+		targetControl.dispatchEvent(
+			new Event('change', {
+				bubbles: true,
+			})
+		);
 	};
 
 	/**
@@ -369,6 +404,10 @@ class AfishaFilterForm {
 	 * @param {Event} event
 	 */
 	onReset = (event) => {
+		this.preSelectedFilterButtons.forEach((button) => {
+			button.classList.remove('active');
+		});
+
 		for (const name in this.initialFormData) {
 			const value = this.initialFormData[name];
 
