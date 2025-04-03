@@ -324,7 +324,7 @@
 							<div class="new-divider _2"></div>
 							<div class="new-vert">
 								<div class="new-soc-share">
-									<a href="#" class="new-share-btn w-inline-block">
+									<a href="#" data-js-copy-button data-copy-text="<?php the_permalink(); ?>" class="new-share-btn w-inline-block">
 										<div class="new-sh-ico w-embed">
 											<svg width="100%" height="100%" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
 												<g opacity="0.6">
@@ -333,7 +333,7 @@
 											</svg>
 										</div>
 									</a>
-									<a href="#" class="new-share-btn w-inline-block">
+									<!-- <a href="#" class="new-share-btn w-inline-block">
 										<div class="new-sh-ico w-embed">
 											<svg width="100%" height="100%" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
 												<g opacity="0.6">
@@ -341,8 +341,9 @@
 												</g>
 											</svg>
 										</div>
-									</a>
-									<a href="#" class="new-share-btn w-inline-block">
+									</a> -->
+									<?php $tg_link = esc_url('https://telegram.me/share/url?url='. get_the_permalink() .'&text=' . get_the_title()); ?>
+									<a href="<?php echo $tg_link; ?>" class="new-share-btn w-inline-block" target="_blank">
 										<div class="new-sh-ico w-embed">
 											<svg width="100%" height="100%" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
 												<g opacity="0.6">

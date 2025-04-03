@@ -21,8 +21,11 @@ import { initFlippingBook } from './FlippingBook';
 import { initMagazineMap, initMagazineYandexMap } from './MagazineYandexMap';
 import { initjQueryCustomSelect } from './jQueryCustomSelect';
 import { initMagazineActionSwitcher } from './MagazineActionSwitcher';
+import { CopyButton } from './CopyButton';
 
 window.magazineYandexMapDestroyCallback = null;
+
+new CopyButton();
 
 document.addEventListener('DOMContentLoaded', function () {
 	console.log('DOMContentLoaded');
