@@ -28,10 +28,6 @@ $time_or_interval = get_field( 'time_or_interval' );
 		<?php if ( ! empty( $time_or_interval ) ) : ?>
 			<div class="new-p-14-16 black"><?php echo wp_kses_post( $time_or_interval ); ?></div>
 		<?php endif; ?>
-		<!--Test-->
-		<div class="new-p-14-16 black"><?php echo wp_kses_post( get_field( 'start_date' ) ); ?></div>
-		<div class="new-p-14-16 black"><?php echo wp_kses_post( get_field( 'end_date' ) ); ?></div>
-		<!--Test-->
 		<div class="new-p-18-21 upper black"><?php the_title(); ?></div>
 	</div>
 </a>
