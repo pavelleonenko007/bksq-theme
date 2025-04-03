@@ -91,6 +91,8 @@ export default class YandexMap {
 
 	setMarkers(locations = []) {
 		const { YMapComplexEntity, YMapMarker } = this.ymaps;
+
+		let map = this.map;
 		class CustomMarkerWithPopup extends YMapComplexEntity {
 			constructor(options) {
 				super(options);
