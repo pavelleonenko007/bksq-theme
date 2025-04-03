@@ -172,6 +172,7 @@ export default class YandexMap {
 					`afishaItem${this._props.id}`
 				);
 				element.className = 'popup popup--afisha';
+				element.style.cursor = 'pointer';
 
 				/**
 				 *
