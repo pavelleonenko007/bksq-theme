@@ -647,6 +647,10 @@ defined( 'ABSPATH' ) || exit; ?>
 							'order'          => 'ASC',
 							'meta_query'     => array(
 								array(
+									'key' => 'afisha',
+									'value' => '1',
+								),
+								array(
 									'key'   => 'in_archive',
 									'value' => '1',
 								),

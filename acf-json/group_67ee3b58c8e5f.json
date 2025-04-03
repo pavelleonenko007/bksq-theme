@@ -1,13 +1,13 @@
 {
-    "key": "group_67ea8d2379350",
-    "title": "Активности",
+    "key": "group_67ee3b58c8e5f",
+    "title": "Заявки с сайта",
     "fields": [
         {
-            "key": "field_67ea8d23b4d0e",
-            "label": "Иконка",
-            "name": "icon",
+            "key": "field_67ee3b5881789",
+            "label": "Прикрепленный файл",
+            "name": "attached_file",
             "aria-label": "",
-            "type": "image",
+            "type": "file",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,24 +16,19 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "url",
+            "return_format": "id",
             "library": "all",
-            "min_width": "",
-            "min_height": "",
             "min_size": "",
-            "max_width": "",
-            "max_height": "",
             "max_size": "",
-            "mime_types": "svg",
-            "preview_size": "medium"
+            "mime_types": ""
         }
     ],
     "location": [
         [
             {
-                "param": "taxonomy",
+                "param": "post_type",
                 "operator": "==",
-                "value": "activity"
+                "value": "website_message"
             }
         ]
     ],
@@ -46,5 +41,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1743685877
+    "modified": 1743685701
 }

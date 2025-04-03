@@ -2,12 +2,15 @@
 	/*
 	Template name: Black Square
 	*/
-	?>
+?>
 <!DOCTYPE html>
 <html data-wf-page="6704f17061cf6aa78bd63b0f" data-wf-site="6704f17061cf6aa78bd63b0e">
-	<?php get_template_part("header_block", ""); ?>
+	<?php get_template_part( 'header_block', '' ); ?>
 	<body class="body">
-		<?php if(function_exists('get_field')) { echo get_field('body_code', 'option'); } ?>
+		<?php
+		if ( function_exists( 'get_field' ) ) {
+			echo get_field( 'body_code', 'option' ); }
+		?>
 		<div class="css w-embed">
 			<style>
 				*[ww-cms="pageimg"],
@@ -280,7 +283,10 @@
 												<div class="code-embed cursor-hover w-embed">
 													<?php if ( have_rows( 'listalka', false ) ) : ?>
 													<div id="flipping" data-book="flipping-book">
-														<?php while ( have_rows( 'listalka', false ) ) : the_row(); ?>
+														<?php
+														while ( have_rows( 'listalka', false ) ) :
+															the_row();
+															?>
 														<div class="page-wrapper" page="1" >
 															<div >
 																<div class="page p1 odd"  ><img src="<?php echo get_sub_field( 'listalka-img' ); ?>" alt="book" class="book-page__img"></div>
@@ -296,19 +302,22 @@
 									</div>
 									<div class="s2-left omob">
 										<p class="text-16 mob-16 scrollobs"><?php echo get_field( 'mag-descr', false ); ?></p>
-										<div class="button-wrap s2-button-wrap scrollobs"><?php $link = get_field( 'tochki_prodazh_opc', 'option' );
-											if ( ! empty( $link ) ) :
-														$url = $link['url'];
-														$title = $link['title'];
-														$target = $link['target'] ? $link['target'] : '_self'; 
-													?>
+										<div class="button-wrap s2-button-wrap scrollobs">
+										<?php
+										$link = get_field( 'tochki_prodazh_opc', 'option' );
+										if ( ! empty( $link ) ) :
+													$url    = $link['url'];
+													$title  = $link['title'];
+													$target = $link['target'] ? $link['target'] : '_self';
+											?>
 											<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="dot-link big-button w-inline-block" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
-											<?php $link = get_field( 'tochki_prodazh_opc_2', 'option' );
-												if ( ! empty( $link ) ) :
-															$url = $link['url'];
-															$title = $link['title'];
-															$target = $link['target'] ? $link['target'] : '_self'; 
-														?>
+											<?php
+											$link = get_field( 'tochki_prodazh_opc_2', 'option' );
+											if ( ! empty( $link ) ) :
+														$url    = $link['url'];
+														$title  = $link['title'];
+														$target = $link['target'] ? $link['target'] : '_self';
+												?>
 											<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="dot-link big-button ghost-button w-inline-block" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 										</div>
 									</div>
@@ -324,19 +333,22 @@
 								<div class="content-block s2-content-block">
 									<div class="s2-left">
 										<div class="text-16 mob-16 scrollobs"><?php echo get_field( 's2-p1', false ); ?></div>
-										<div class="button-wrap s2-button-wrap scrollobs no-mob"><?php $link = get_field( 'tochki_prodazh_opc', 'option' );
-											if ( ! empty( $link ) ) :
-														$url = $link['url'];
-														$title = $link['title'];
-														$target = $link['target'] ? $link['target'] : '_self'; 
-													?>
+										<div class="button-wrap s2-button-wrap scrollobs no-mob">
+										<?php
+										$link = get_field( 'tochki_prodazh_opc', 'option' );
+										if ( ! empty( $link ) ) :
+													$url    = $link['url'];
+													$title  = $link['title'];
+													$target = $link['target'] ? $link['target'] : '_self';
+											?>
 											<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="dot-link big-button w-inline-block" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
-											<?php $link = get_field( 'tochki_prodazh_opc_2', 'option' );
-												if ( ! empty( $link ) ) :
-															$url = $link['url'];
-															$title = $link['title'];
-															$target = $link['target'] ? $link['target'] : '_self'; 
-														?>
+											<?php
+											$link = get_field( 'tochki_prodazh_opc_2', 'option' );
+											if ( ! empty( $link ) ) :
+														$url    = $link['url'];
+														$title  = $link['title'];
+														$target = $link['target'] ? $link['target'] : '_self';
+												?>
 											<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="dot-link big-button ghost-button w-inline-block" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 										</div>
 									</div>
@@ -362,22 +374,31 @@
 								<div class="content-block scrollobs">
 									<div class="book-polka">
 										<div class="book-slider">
-											<?php $query_args = array( 'posts_per_page' => 5,
+											<?php
+											$query_args = array(
+												'posts_per_page' => 5,
 												'post_type' => 'magazine',
-												 );
-												$custom_query = new WP_Query( $query_args );
-												
-													if ( $custom_query->have_posts() ): ?>
+											);
+																							$custom_query = new WP_Query( $query_args );
+
+											if ( $custom_query->have_posts() ) :
+												?>
 											<div data-query-arg-posts_per_page="5" data-query-arg-post_type="magazine" class="book-slider__container">
-												<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
+																						<?php
+																						while ( $custom_query->have_posts() ) :
+																							$custom_query->the_post();
+																							?>
 												<a data-if-exists="true" href="<?php the_permalink(); ?>" class="book-slider__slide book book--3 cursor-hover w-inline-block book-slider__slide--active" style="--root-width: -72px; rotate: y 0deg; translate: -892.804px; transition: 0.6s ease-out;">
 													<div class="book__root" style="transform: translate3d(50%, 0px, -36px) rotateY(-180deg);"><img src="<?php echo get_field( 'koreshok', false ); ?>" loading="eager" alt="" class="img-cover"></div>
 													<div class="book_shadow"></div>
 													<div data-wp="post_bg_image" class="book-forot"><img src="<?php the_post_thumbnail_url(); ?>" loading="eager" alt="" class="img-cover"></div>
 												</a>
-												<?php endwhile; wp_reset_postdata(); ?>
+																							<?php
+												endwhile;
+																						wp_reset_postdata();
+																						?>
 											</div>
-											<?php endif; ?>
+									<?php endif; ?>
 										</div>
 									</div>
 								</div>
@@ -391,12 +412,14 @@
 								<div class="content-block s4-content-block">
 									<div class="s4-left">
 										<div class="text-18 s4-text scrollobs"><?php echo get_field( 's3-p1', false ); ?></div>
-										<div class="button-wrap scrollobs"><?php $link = get_field( 's3-a1', false );
-											if ( ! empty( $link ) ) :
-														$url = $link['url'];
-														$title = $link['title'];
-														$target = $link['target'] ? $link['target'] : '_self'; 
-													?>
+										<div class="button-wrap scrollobs">
+										<?php
+										$link = get_field( 's3-a1', false );
+										if ( ! empty( $link ) ) :
+													$url    = $link['url'];
+													$title  = $link['title'];
+													$target = $link['target'] ? $link['target'] : '_self';
+											?>
 											<a href="<?php echo esc_url( $url ); ?>" class="dot-link underlined-link w-inline-block" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 										</div>
 									</div>
@@ -409,14 +432,20 @@
 								<div class="content-block s5-content-block scrollobs">
 									<div class="slider team-slider splide splide--slide splide--ltr splide--draggable is-active is-overflow is-initialized" id="splide01" role="region" aria-roledescription="carousel">
 										<div class="splide__track splide__track--slide splide__track--ltr splide__track--draggable" id="splide01-track" style="padding-left: 0px; padding-right: 0px;" aria-live="polite" aria-atomic="true">
-											<?php $query_args = array( 'posts_per_page' => 10,
+											<?php
+											$query_args = array(
+												'posts_per_page' => 10,
 												'post_type' => 'tgpost',
-												 );
-												$custom_query = new WP_Query( $query_args );
-												
-													if ( $custom_query->have_posts() ): ?>
+											);
+																									$custom_query = new WP_Query( $query_args );
+
+											if ( $custom_query->have_posts() ) :
+												?>
 											<div data-query-arg-posts_per_page="10" data-query-arg-post_type="tgpost" class="splide__list" id="splide01-list" role="presentation" style="transform: translateX(0px);">
-												<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
+																								<?php
+																								while ( $custom_query->have_posts() ) :
+																									$custom_query->the_post();
+																									?>
 												<div class="splide__slide is-active is-visible" id="splide01-slide01" role="group" aria-roledescription="slide" aria-label="1 of 5" style="width: calc(40%);">
 													<div class="slide-inner s5-slide-inner tg-cursor-hover">
 														<div class="slider-card-info">
@@ -431,7 +460,7 @@
 																			</svg>
 																		</div>
 																	</div>
-																	<?php if ( ! empty( get_field( 'kolichestvo_prosmotrov', false ) ) ) : ?>
+																									<?php if ( ! empty( get_field( 'kolichestvo_prosmotrov', false ) ) ) : ?>
 																	<div class="text-16 slider-card-detail-text"><?php echo get_field( 'kolichestvo_prosmotrov', false ); ?></div>
 																	<?php endif; ?>
 																</div>
@@ -445,7 +474,7 @@
 																			</svg>
 																		</div>
 																	</div>
-																	<?php if ( ! empty( get_field( 'kolichestvo_prosmotrov', false ) ) ) : ?>
+																									<?php if ( ! empty( get_field( 'kolichestvo_prosmotrov', false ) ) ) : ?>
 																	<div class="text-16 slider-card-detail-text"><?php echo get_field( 'kolichestvo_prosmotrov_data', false ); ?></div>
 																	<?php endif; ?>
 																</div>
@@ -453,18 +482,22 @@
 															<div class="text-18 slider-card-title"><?php the_title(); ?></div>
 														</div>
 														<div class="slider-card-image"><img class="image-cover" src="<?php the_post_thumbnail_url(); ?>" width="401" alt="" loading="lazy"></div>
-														<?php $link = get_field( 'tglink', false );
-															if ( ! empty( $link ) ) :
-																		$url = $link['url'];
-																		$title = $link['title'];
-																		$target = $link['target'] ? $link['target'] : '_self'; 
-																	?>
+																									<?php
+																									$link = get_field( 'tglink', false );
+																									if ( ! empty( $link ) ) :
+																												$url    = $link['url'];
+																												$title  = $link['title'];
+																												$target = $link['target'] ? $link['target'] : '_self';
+																										?>
 														<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" target="<?php echo esc_attr( $target ); ?>" class="link-block w-inline-block"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 													</div>
 												</div>
-												<?php endwhile; wp_reset_postdata(); ?>
+																									<?php
+												endwhile;
+																								wp_reset_postdata();
+																								?>
 											</div>
-											<?php endif; ?>
+									<?php endif; ?>
 										</div>
 									</div>
 								</div>
@@ -490,12 +523,13 @@
 											</video>
 										</div>
 									</div>
-									<?php $link = get_field( 's4-a1', false );
-										if ( ! empty( $link ) ) :
-													$url = $link['url'];
-													$title = $link['title'];
-													$target = $link['target'] ? $link['target'] : '_self'; 
-												?>
+									<?php
+									$link = get_field( 's4-a1', false );
+									if ( ! empty( $link ) ) :
+												$url    = $link['url'];
+												$title  = $link['title'];
+												$target = $link['target'] ? $link['target'] : '_self';
+										?>
 									<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" target="_blank" class="video-block abst w-inline-block" style="transform: translate3d(0px, 0px, 0px) scale3d(0.7, 0.7, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; will-change: transform;"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 								</div>
 							</div>
@@ -517,14 +551,32 @@
 								</div>
 							</div>
 							<div class="container events-container">
-								<?php $query_args = array( 'posts_per_page' => 5,
-									'post_type' => 'events',
-									 );
-									$custom_query = new WP_Query( $query_args );
-									
-										if ( $custom_query->have_posts() ): ?>
+								<?php
+								$query_args = array(
+									'posts_per_page' => 5,
+									'post_type'      => 'events',
+									'meta_query'     => array(
+										'relation' => 'OR',
+										array(
+											'key'     => 'afisha',
+											'compare' => 'NOT EXISTS',
+										),
+										array(
+											'key'   => 'afisha',
+											'value' => '0',
+										),
+									),
+								);
+
+								$custom_query = new WP_Query( $query_args );
+
+								if ( $custom_query->have_posts() ) :
+									?>
 								<div data-query-arg-posts_per_page="5" data-query-arg-post_type="events" class="content-block s6-content-block">
-									<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
+												<?php
+												while ( $custom_query->have_posts() ) :
+													$custom_query->the_post();
+													?>
 									<div class="event-row cursor-hover scrollobs-line">
 										<div class="div-block-2">
 											<div class="event-row-left scrollobs-opc">
@@ -548,18 +600,24 @@
 												</div>
 											</div>
 										</div>
-										<?php if ( have_rows( 'card-images', false ) ) : ?>
+													<?php if ( have_rows( 'card-images', false ) ) : ?>
 										<div class="event-row-right scrollobs-opc">
-											<?php while ( have_rows( 'card-images', false ) ) : the_row(); ?>
+														<?php
+														while ( have_rows( 'card-images', false ) ) :
+															the_row();
+															?>
 											<div class="event-image-box"><img src="<?php echo get_sub_field( 'card-image' ); ?>" loading="eager" alt="" class="event-image"></div>
 											<?php endwhile; ?>
 										</div>
 										<?php endif; ?>
 										<a href="<?php echo get_field( 'ssylka', false ); ?>" class="abs-link w-inline-block"></a>
 									</div>
-									<?php endwhile; wp_reset_postdata(); ?>
+													<?php
+									endwhile;
+												wp_reset_postdata();
+												?>
 								</div>
-								<?php endif; ?>
+						<?php endif; ?>
 							</div>
 						</section>
 						<section class="section s7-section">
@@ -585,12 +643,14 @@
 						<section class="section s8-section">
 							<div class="container">
 								<h2 class="h1 _34-mob scrollobs"><?php echo get_field( 's6-h1', false ); ?></h2>
-								<div class="button-wrap s8-button-wrap scrollobs"><?php $link = get_field( 's6-a1', false );
-									if ( ! empty( $link ) ) :
-												$url = $link['url'];
-												$title = $link['title'];
-												$target = $link['target'] ? $link['target'] : '_self'; 
-											?>
+								<div class="button-wrap s8-button-wrap scrollobs">
+								<?php
+								$link = get_field( 's6-a1', false );
+								if ( ! empty( $link ) ) :
+											$url    = $link['url'];
+											$title  = $link['title'];
+											$target = $link['target'] ? $link['target'] : '_self';
+									?>
 									<a href="<?php echo esc_url( $url ); ?>" class="dot-link underlined-link w-inline-block" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 								</div>
 								<div class="content-block s8-content-block scrollobs">
@@ -598,7 +658,10 @@
 										<div class="splide__track splide__track--slide splide__track--ltr splide__track--draggable" id="splide02-track" style="padding-left: 0px; padding-right: 0px;" aria-live="polite" aria-atomic="true">
 											<?php if ( have_rows( 'profes', false ) ) : ?>
 											<div class="splide__list" id="splide02-list" role="presentation" style="transform: translateX(0px);">
-												<?php while ( have_rows( 'profes', false ) ) : the_row(); ?>
+												<?php
+												while ( have_rows( 'profes', false ) ) :
+													the_row();
+													?>
 												<div class="splide__slide is-active is-visible" id="splide02-slide01" role="group" aria-roledescription="slide" aria-label="1 of 7" style="width: calc(40%);">
 													<div class="slide-inner">
 														<div class="slider-card-image a"><img src="<?php echo get_sub_field( 'foto' ); ?>" loading="eager" alt="" class="image-cover"></div>
@@ -627,19 +690,21 @@
 										<div class="text-14"><?php echo get_field( 'adress_opc', 'option' ); ?></div>
 										<a href="mailto:info@bksq.art" class="text-14 is-footer-link1"><?php echo get_field( 'email_opc', 'option' ); ?></a>
 									</div>
-									<?php $link = get_field( 'tochki_prodazh_opc', 'option' );
-										if ( ! empty( $link ) ) :
-													$url = $link['url'];
-													$title = $link['title'];
-													$target = $link['target'] ? $link['target'] : '_self'; 
-												?>
+									<?php
+									$link = get_field( 'tochki_prodazh_opc', 'option' );
+									if ( ! empty( $link ) ) :
+												$url    = $link['url'];
+												$title  = $link['title'];
+												$target = $link['target'] ? $link['target'] : '_self';
+										?>
 									<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="footer-link-block w-inline-block" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
-									<?php $link = get_field( 'tochki_prodazh_opc_2', 'option' );
-										if ( ! empty( $link ) ) :
-													$url = $link['url'];
-													$title = $link['title'];
-													$target = $link['target'] ? $link['target'] : '_self'; 
-												?>
+									<?php
+									$link = get_field( 'tochki_prodazh_opc_2', 'option' );
+									if ( ! empty( $link ) ) :
+												$url    = $link['url'];
+												$title  = $link['title'];
+												$target = $link['target'] ? $link['target'] : '_self';
+										?>
 									<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="footer-link-block w-inline-block" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 								</div>
 								<div class="footer-right">
@@ -652,12 +717,14 @@
 												</svg>
 											</div>
 										</div>
-										<div class="text-neue-44 footer-heading"><?php $link = get_field( 'ssylka_na_telegramm', 'option' );
-											if ( ! empty( $link ) ) :
-														$url = $link['url'];
-														$title = $link['title'];
-														$target = $link['target'] ? $link['target'] : '_self'; 
-													?>
+										<div class="text-neue-44 footer-heading">
+										<?php
+										$link = get_field( 'ssylka_na_telegramm', 'option' );
+										if ( ! empty( $link ) ) :
+													$url    = $link['url'];
+													$title  = $link['title'];
+													$target = $link['target'] ? $link['target'] : '_self';
+											?>
 											<a href="<?php echo esc_url( $url ); ?>" data-if-exists="true" target="<?php echo esc_attr( $target ); ?>" class="title-link cursor-hover"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 										</div>
 										<?php if ( ! empty( get_field( 'foobig-text', 'option' ) ) ) : ?>
@@ -680,55 +747,70 @@
 									<div>Black square</div>
 								</a>
 							</div>
-							<div class="div-block-4 center"><?php $link = get_field( 'ssylka_na_telegramm', 'option' );
-								if ( ! empty( $link ) ) :
-											$url = $link['url'];
-											$title = $link['title'];
-											$target = $link['target'] ? $link['target'] : '_self'; 
-										?>
+							<div class="div-block-4 center">
+							<?php
+							$link = get_field( 'ssylka_na_telegramm', 'option' );
+							if ( ! empty( $link ) ) :
+										$url    = $link['url'];
+										$title  = $link['title'];
+										$target = $link['target'] ? $link['target'] : '_self';
+								?>
 								<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" target="<?php echo esc_attr( $target ); ?>" class="nav-link cursor-hover"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 							</div>
-							<div class="div-block-4 r"><?php $link = get_field( 'menyu_biznes_soprovozhzhenie', 'option' );
-								if ( ! empty( $link ) ) :
-											$url = $link['url'];
-											$title = $link['title'];
-											$target = $link['target'] ? $link['target'] : '_self'; 
-										?>
+							<div class="div-block-4 r">
+							<?php
+							$link = get_field( 'menyu_biznes_soprovozhzhenie', 'option' );
+							if ( ! empty( $link ) ) :
+										$url    = $link['url'];
+										$title  = $link['title'];
+										$target = $link['target'] ? $link['target'] : '_self';
+								?>
 								<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="nav-link cursor-hover" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 							</div>
 						</div>
 					</div>
 					<div class="nav-bottom">
 						<div class="container nav-container">
-							<?php $link = get_field( 'menyu_o_proekte', 'option' );
-								if ( ! empty( $link ) ) :
-											$url = $link['url'];
-											$title = $link['title'];
-											$target = $link['target'] ? $link['target'] : '_self'; 
-										?>
+							<?php
+							$link = get_field( 'menyu_o_proekte', 'option' );
+							if ( ! empty( $link ) ) :
+										$url    = $link['url'];
+										$title  = $link['title'];
+										$target = $link['target'] ? $link['target'] : '_self';
+								?>
 							<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="nav-link cursor-hover" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
-							<?php $link = get_field( 'ssylka_na_telegramm_2', 'option' );
-								if ( ! empty( $link ) ) :
-											$url = $link['url'];
-											$title = $link['title'];
-											$target = $link['target'] ? $link['target'] : '_self'; 
-										?>
+							<?php
+							$link = get_field( 'ssylka_na_telegramm_2', 'option' );
+							if ( ! empty( $link ) ) :
+										$url    = $link['url'];
+										$title  = $link['title'];
+										$target = $link['target'] ? $link['target'] : '_self';
+								?>
 							<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" target="<?php echo esc_attr( $target ); ?>" class="nav-link cursor-hover"><?php echo esc_html( $title ); ?></a>
 							<?php endif; ?>
-							<?php $query_args = array( 'posts_per_page' => 1,
-								'post_type' => 'magazine',
-								 );
+							<?php
+							$query_args       = array(
+								'posts_per_page' => 1,
+								'post_type'      => 'magazine',
+							);
 								$custom_query = new WP_Query( $query_args );
-								
-									if ( $custom_query->have_posts() ): ?>
+
+							if ( $custom_query->have_posts() ) :
+								?>
 							<div data-query-arg-posts_per_page="1" data-query-arg-post_type="magazine">
-								<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
+								<?php
+								while ( $custom_query->have_posts() ) :
+									$custom_query->the_post();
+									?>
 								<a href="<?php the_permalink(); ?>" class="nav-link cursor-hover w-inline-block">
 									<?php if ( ! empty( get_field( 'zhur_opc', 'option' ) ) ) : ?>
 									<div><?php echo get_field( 'zhur_opc', 'option' ); ?></div>
 									<?php endif; ?>
 								</a>
-								<?php endwhile; wp_reset_postdata(); ?>
+									<?php
+								endwhile;
+								wp_reset_postdata();
+								?>
 							</div>
 							<?php endif; ?>
 						</div>
@@ -790,50 +872,64 @@
 							</div>
 						</a>
 						<div data-lenis-prevent="" class="mob-menu-line">
-							<a href="/" aria-current="page" class="menu-btn w--current">BKSQ</a><?php $link = get_field( 'menyu_o_proekte', 'option' );
-								if ( ! empty( $link ) ) :
-											$url = $link['url'];
-											$title = $link['title'];
-											$target = $link['target'] ? $link['target'] : '_self'; 
-										?>
+							<a href="/" aria-current="page" class="menu-btn w--current">BKSQ</a>
+							<?php
+							$link = get_field( 'menyu_o_proekte', 'option' );
+							if ( ! empty( $link ) ) :
+										$url    = $link['url'];
+										$title  = $link['title'];
+										$target = $link['target'] ? $link['target'] : '_self';
+								?>
 							<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="menu-btn" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a>
 							<?php endif; ?>
-							<?php $link = get_field( 'ssylka_na_telegramm', 'option' );
-								if ( ! empty( $link ) ) :
-											$url = $link['url'];
-											$title = $link['title'];
-											$target = $link['target'] ? $link['target'] : '_self'; 
-										?>
+							<?php
+							$link = get_field( 'ssylka_na_telegramm', 'option' );
+							if ( ! empty( $link ) ) :
+										$url    = $link['url'];
+										$title  = $link['title'];
+										$target = $link['target'] ? $link['target'] : '_self';
+								?>
 							<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" target="<?php echo esc_attr( $target ); ?>" class="menu-btn"><?php echo esc_html( $title ); ?></a>
 							<?php endif; ?>
-							<?php $link = get_field( 'ssylka_na_telegramm_2', 'option' );
-								if ( ! empty( $link ) ) :
-											$url = $link['url'];
-											$title = $link['title'];
-											$target = $link['target'] ? $link['target'] : '_self'; 
-										?>
+							<?php
+							$link = get_field( 'ssylka_na_telegramm_2', 'option' );
+							if ( ! empty( $link ) ) :
+										$url    = $link['url'];
+										$title  = $link['title'];
+										$target = $link['target'] ? $link['target'] : '_self';
+								?>
 							<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" target="<?php echo esc_attr( $target ); ?>" class="menu-btn"><?php echo esc_html( $title ); ?></a>
 							<?php endif; ?>
-							<?php $query_args = array( 'posts_per_page' => 1,
-								'post_type' => 'magazine',
-								 );
+							<?php
+							$query_args       = array(
+								'posts_per_page' => 1,
+								'post_type'      => 'magazine',
+							);
 								$custom_query = new WP_Query( $query_args );
-								
-									if ( $custom_query->have_posts() ): ?>
+
+							if ( $custom_query->have_posts() ) :
+								?>
 							<div data-query-arg-posts_per_page="1" data-query-arg-post_type="magazine">
-								<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
+								<?php
+								while ( $custom_query->have_posts() ) :
+									$custom_query->the_post();
+									?>
 								<a href="<?php the_permalink(); ?>" class="w-inline-block">
 									<div>Журнал</div>
 								</a>
-								<?php endwhile; wp_reset_postdata(); ?>
+									<?php
+								endwhile;
+								wp_reset_postdata();
+								?>
 							</div>
 							<?php endif; ?>
-							<?php $link = get_field( 'menyu_biznes_soprovozhzhenie', 'option' );
-								if ( ! empty( $link ) ) :
-											$url = $link['url'];
-											$title = $link['title'];
-											$target = $link['target'] ? $link['target'] : '_self'; 
-										?>
+							<?php
+							$link = get_field( 'menyu_biznes_soprovozhzhenie', 'option' );
+							if ( ! empty( $link ) ) :
+										$url    = $link['url'];
+										$title  = $link['title'];
+										$target = $link['target'] ? $link['target'] : '_self';
+								?>
 							<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="menu-btn" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 						</div>
 					</div>
@@ -866,6 +962,6 @@
 			</div>
 		</div>
 		<!-- FOOTER CODE -->
-		<?php get_template_part("footer_block", ""); ?>
+		<?php get_template_part( 'footer_block', '' ); ?>
 	</body>
 </html>

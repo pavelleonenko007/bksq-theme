@@ -58,6 +58,10 @@ function bksq_get_events_by_months( $params = array() ) {
 		'posts_per_page' => -1,
 		'meta_query'     => array(
 			array(
+				'key' => 'afisha',
+				'value' => '1',
+			),
+			array(
 				'key'     => 'end_date',
 				'value'   => $start_date,
 				'compare' => '>=',
@@ -98,7 +102,7 @@ function bksq_get_events_by_months( $params = array() ) {
 			'data'        => array(),
 			'all_events'  => array(),
 			'page'        => $page,
-			'total_count' => 0,
+			'totalCount' => 0,
 		);
 	}
 

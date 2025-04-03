@@ -3,8 +3,29 @@
     "title": "Мероприятия",
     "fields": [
         {
+            "key": "field_67ed8969f0263",
+            "label": "Добавить в афишу",
+            "name": "afisha",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "admin_column_enabled": 0,
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_6788c05bb2c05",
-            "label": "Дата мероприятия",
+            "label": "Дата мероприятия (в карточках)",
             "name": "data",
             "aria-label": "",
             "type": "text",
@@ -16,6 +37,7 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "default_value": "12\/2024",
             "maxlength": "",
             "placeholder": "",
@@ -24,7 +46,7 @@
         },
         {
             "key": "field_6784c151c6017",
-            "label": "Описание",
+            "label": "Описание (Текст под имиджем слева)",
             "name": "content",
             "aria-label": "",
             "type": "wysiwyg",
@@ -36,6 +58,7 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "default_value": "",
             "tabs": "all",
             "toolbar": "full",
@@ -44,7 +67,7 @@
         },
         {
             "key": "field_6784c1a6c6018",
-            "label": "Место",
+            "label": "Место  (в карточках)",
             "name": "place",
             "aria-label": "",
             "type": "text",
@@ -56,6 +79,7 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "default_value": "Тимирязев Центр",
             "maxlength": "",
             "placeholder": "",
@@ -64,7 +88,7 @@
         },
         {
             "key": "field_6784c1d0c6019",
-            "label": "Стенд",
+            "label": "Стенд  (в карточках)",
             "name": "stand",
             "aria-label": "",
             "type": "text",
@@ -76,6 +100,7 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "default_value": "Стенд 037",
             "maxlength": "",
             "placeholder": "",
@@ -83,8 +108,28 @@
             "append": ""
         },
         {
+            "key": "field_67ea6929af2d3",
+            "label": "Время или интервал",
+            "name": "time_or_interval",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6784c1f1c601a",
-            "label": "Изображения",
+            "label": "Изображения  (в карточках)",
             "name": "card-images",
             "aria-label": "",
             "type": "repeater",
@@ -134,7 +179,7 @@
         },
         {
             "key": "field_6788c0dfeefea",
-            "label": "Ссылка на заголовке",
+            "label": "Ссылка на заголовке  (в карточках)",
             "name": "ssylka",
             "aria-label": "",
             "type": "link",
@@ -146,6 +191,7 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "return_format": "url"
         },
         {
@@ -156,7 +202,15 @@
             "type": "date_picker",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -174,7 +228,15 @@
             "type": "date_picker",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -192,7 +254,15 @@
             "type": "true_false",
             "instructions": "Переведите переключатель в положение \"Да\", если мероприятие относится к Вечному",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -205,26 +275,6 @@
             "ui": 1
         },
         {
-            "key": "field_67ea6929af2d3",
-            "label": "Время или интервал",
-            "name": "time_or_interval",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_67e673474f4f2",
             "label": "Город",
             "name": "city",
@@ -232,7 +282,15 @@
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -252,7 +310,15 @@
             "type": "text",
             "instructions": "Чтобы выделить часть текста черным цветов поместите текст между тегами <strong>[black][\/black]<\/strong>",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -272,7 +338,15 @@
             "type": "group",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -334,7 +408,15 @@
             "type": "true_false",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -345,6 +427,239 @@
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_67ed4edc31c66",
+            "label": "Иконка главного вида активности",
+            "name": "ikonka_dlya_vida_aktivnosti1",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_67ed5189c8800",
+            "label": "Вид активности",
+            "name": "vid_aktivnosti1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "admin_column_enabled": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_67ed4f1dbe3fc",
+            "label": "Выноска до имиджа",
+            "name": "otzyv_kritika1",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "admin_column_enabled": 0,
+            "default_value": "",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_67ed4f3cb16f8",
+            "label": "Фото критика",
+            "name": "foto_kritika1",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_67ed4f4cb16f9",
+            "label": "Подпись для критика (критик или автор напр.)",
+            "name": "podpis_dlya_kritika1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_67ed4f66b16fa",
+            "label": "Имя критика",
+            "name": "imya_kritika1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_67ed4f96b16fb",
+            "label": "Особенности",
+            "name": "osobennosti1",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_67ed8a17d7a8c",
+            "label": "Ссылка на мероприятие на странице записи",
+            "name": "ccylka_na_meropriyatie1",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "admin_column_enabled": 0,
+            "return_format": "array"
         }
     ],
     "location": [
@@ -365,5 +680,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1743493035
+    "modified": 1743685877
 }

@@ -257,6 +257,23 @@
                 "id": ""
             },
             "return_format": "array"
+        },
+        {
+            "key": "field_67ee283280fbe",
+            "label": "МЕНЮ кнопка снизу по центру",
+            "name": "ssylka_na_telegramm_2",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "admin_column_enabled": 0,
+            "return_format": "array"
         }
     ],
     "location": [
@@ -277,5 +294,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1743493044
+    "modified": 1743685877
 }

@@ -769,9 +769,9 @@ function show_file_func( $atts ) {
 
 if ( is_admin() ) {
 	foreach ( get_taxonomies() as $taxonomy ) {
-		add_action( "manage_edit-${taxonomy}_columns", 'tax_add_col' );
-		add_filter( "manage_edit-${taxonomy}_sortable_columns", 'tax_add_col' );
-		add_filter( "manage_${taxonomy}_custom_column", 'tax_show_id', 10, 3 );
+		add_action( "manage_edit-{$taxonomy}_columns", 'tax_add_col' );
+		add_filter( "manage_edit-{$taxonomy}_sortable_columns", 'tax_add_col' );
+		add_filter( "manage_{$taxonomy}_custom_column", 'tax_show_id', 10, 3 );
 	}
 	add_action( 'admin_print_styles-edit-tags.php', 'tax_id_style' );
 	function tax_add_col( $columns ) {
