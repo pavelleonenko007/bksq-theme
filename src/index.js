@@ -112,6 +112,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	);
 
 	Barba.Dispatcher.on('initStateChange', () => {
+		$('html').removeClass('popupopened');
+		
 		BookSliderCollection.destroyAll();
 		CustomDatePickerCollection.destroyAll();
 		CustomSelectCollection.destroyAll();
