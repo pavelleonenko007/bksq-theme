@@ -1,3 +1,5 @@
+import { lenis } from './lenis';
+
 /**
  *
  * @param {Promise<any>} promise
@@ -32,4 +34,19 @@ export const throttle = (fn, delay) => {
 			}, delay);
 		}
 	};
+};
+
+export const pageScroll = (x, time = 0) => {
+	lenis.scrollTo($(x).offset().top, {
+		duration: time / 1_000,
+		lock: true,
+	});
+	// setTimeout(function () {
+	// 	$('html, body').animate(
+	// 		{
+	// 			scrollTop: $(x).offset().top,
+	// 		},
+	// 		ms
+	// 	);
+	// }, 500);
 };

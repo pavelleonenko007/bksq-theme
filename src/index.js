@@ -22,10 +22,15 @@ import { initMagazineMap, initMagazineYandexMap } from './MagazineYandexMap';
 import { initjQueryCustomSelect } from './jQueryCustomSelect';
 import { initMagazineActionSwitcher } from './MagazineActionSwitcher';
 import { CopyButton } from './CopyButton';
+import { pageScroll } from './utils';
 
 window.magazineYandexMapDestroyCallback = null;
 
 new CopyButton();
+
+if (location.hash) {
+	pageScroll(location.hash);
+}
 
 $(function () {
 	console.log('DOMContentLoaded');
@@ -73,6 +78,10 @@ $(function () {
 			Webflow.require('ix2').init();
 
 			lenis.start();
+
+			if (location.hash) {
+				pageScroll(location.hash, 250);
+			}
 		},
 	});
 
@@ -138,6 +147,18 @@ $(function () {
 			actions[currentStatus.namespace]();
 		}
 	);
+
+	Barba.Pjax.originalPreventCheck = Barba.Pjax.preventCheck;
+
+	Barba.Pjax.preventCheck = function (evt, element) {
+		if (
+			element &&
+			element.getAttribute('href') &&
+			element.getAttribute('href').indexOf('#') > -1
+		)
+			return true;
+		else return Barba.Pjax.originalPreventCheck(evt, element);
+	};
 });
 
 function initPage() {
