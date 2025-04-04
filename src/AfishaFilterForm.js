@@ -70,6 +70,7 @@ class AfishaFilterForm {
 		};
 
 		this.state = this._getProxyState({
+			isFindingCity: false,
 			isFetching: false,
 			maxPages: this.moreButton
 				? parseInt(this.moreButton.dataset.maxPages)
@@ -142,6 +143,8 @@ class AfishaFilterForm {
 			this.stateSelectors.isFetching,
 			this.state.isFetching
 		);
+
+		document.body.style.cursor = this.state.isFindingCity ? 'wait' : null;
 
 		this.afishaContent
 			.closest('.r-afisha')
@@ -217,6 +220,8 @@ class AfishaFilterForm {
 			return;
 		}
 
+		this.state.isFindingCity = true;
+
 		if (!data.coords.longitude || !data.coords.latitude) {
 			throw new Error('Ошибка при опредении координат');
 		}
@@ -239,6 +244,8 @@ class AfishaFilterForm {
 		} catch (error) {
 			console.error(error);
 			throw error;
+		} finally {
+			this.state.isFindingCity = false;
 		}
 	}
 

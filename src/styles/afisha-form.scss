@@ -12,9 +12,17 @@
 	}
 }
 
+.afisha-core:has(.is-fetching) {
+	cursor: wait;
+}
+
+.afisha-form,
+.r-afisha {
+	transition: opacity 0.3s ease;
+}
+
 .afisha-form.is-fetching,
 .r-afisha.is-fetching {
 	opacity: 0.5;
 	pointer-events: none;
-	cursor: wait;
 }
