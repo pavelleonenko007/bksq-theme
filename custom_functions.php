@@ -591,3 +591,29 @@ function bksq_load_more_passed_events_via_ajax() {
 		)
 	);
 }
+
+/**
+ * Рекурсивно формирует плоский список опций из иерархической структуры терминов
+ *
+ * @param array $terms      Массив терминов WP_Term
+ * @param array &$options   Ссылка на результирующий массив опций
+ * @param int   $level      Текущий уровень вложенности
+ */
+function bksq_flatten_terms_for_select( $terms, &$options, $level = 0 ) {
+	if ( empty( $terms ) || ! is_array( $terms ) ) {
+			return;
+	}
+
+	foreach ( $terms as $term ) {
+			// Добавляем дефисы в зависимости от уровня вложенности
+			$prefix = $level > 0 ? str_repeat( '&nbsp;&nbsp;', $level ) . ' ' : '';
+
+			// Добавляем опцию в результирующий массив
+			$options[ $term->slug ] = $prefix . $term->name;
+
+			// Если у термина есть дочерние элементы, обрабатываем их рекурсивно
+		if ( ! empty( $term->children ) ) {
+			bksq_flatten_terms_for_select( $term->children, $options, $level + 1 );
+		}
+	}
+}

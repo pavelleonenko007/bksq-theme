@@ -442,6 +442,9 @@ defined( 'ABSPATH' ) || exit; ?>
 
 												$activity_tree = build_activity_tree( $activities_hierarchy );
 
+												$options = array();
+												bksq_flatten_terms_for_select( $activity_tree, $options );
+												
 												if ( ! empty( $activity_tree ) ) :
 													?>
 													<div class="afisha-form__field field">
@@ -451,14 +454,8 @@ defined( 'ABSPATH' ) || exit; ?>
 															data-js-custom-select
 														>
 															<option value="">Вид активности</option>
-															<?php foreach ( $activity_tree as $activity_item ) : ?>
-																<?php if ( isset( $activity_item->children ) ) : ?>
-																	<optgroup label="<?php echo esc_attr( $activity_item->name ); ?>">
-																		<?php foreach ( $activity_item->children as $child_item ) : ?>
-																			<option value="<?php echo esc_attr( $child_item->slug ); ?>"><?php echo esc_attr( $child_item->name ); ?></option>
-																		<?php endforeach; ?>
-																	</optgroup>
-																<?php endif; ?>
+															<?php foreach ( $options as $value => $title ) : ?>
+																<option value="<?php echo esc_attr( $value ); ?>"><?php echo esc_html( $title ); ?></option>
 															<?php endforeach; ?>
 														</select>
 													</div>
