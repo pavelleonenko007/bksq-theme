@@ -27,7 +27,7 @@ window.magazineYandexMapDestroyCallback = null;
 
 new CopyButton();
 
-document.addEventListener('DOMContentLoaded', function () {
+$(function () {
 	console.log('DOMContentLoaded');
 
 	initPage();
