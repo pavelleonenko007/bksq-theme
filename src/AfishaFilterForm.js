@@ -373,9 +373,22 @@ class AfishaFilterForm {
 		// }
 
 		if (targetControl.type.includes('select')) {
-			Array.from(targetControl.options).forEach((option) => {
-				option.selected = option.value === value;
-			});
+			if (targetControl.name === 'city') {
+				const targetOption = [...targetControl.options].find(
+					(option) => option.value === value
+				);
+
+				if (targetOption) {
+					targetOption.selected = true;
+				} else {
+					const newOption = new Option(value, value, true, true);
+					$(targetControl).append(newOption);
+				}
+			} else {
+				Array.from(targetControl.options).forEach((option) => {
+					option.selected = option.value === value;
+				});
+			}
 		} else {
 			targetControl.value = value;
 		}
