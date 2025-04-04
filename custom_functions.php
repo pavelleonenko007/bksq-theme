@@ -58,7 +58,7 @@ function bksq_get_events_by_months( $params = array() ) {
 		'posts_per_page' => -1,
 		'meta_query'     => array(
 			array(
-				'key' => 'afisha',
+				'key'   => 'afisha',
 				'value' => '1',
 			),
 			array(
@@ -99,9 +99,9 @@ function bksq_get_events_by_months( $params = array() ) {
 
 	if ( count( $events ) < 1 ) {
 		return array(
-			'data'        => array(),
-			'all_events'  => array(),
-			'page'        => $page,
+			'data'       => array(),
+			'all_events' => array(),
+			'page'       => $page,
 			'totalCount' => 0,
 		);
 	}
@@ -238,11 +238,10 @@ add_action( 'wp_ajax_filter_afisha_posts', 'bksq_filter_afisha_posts_via_ajax' )
 add_action( 'wp_ajax_nopriv_filter_afisha_posts', 'bksq_filter_afisha_posts_via_ajax' );
 function bksq_filter_afisha_posts_via_ajax() {
 	if ( ! isset( $_POST['_filter_afisha_posts_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_filter_afisha_posts_nonce'] ) ), 'filter_afisha_posts' ) ) {
-		error_log( 'Не пройдена проверка nonce при попытке фильтрации постов на странице Афиша' );
-
 		wp_send_json_error(
 			array(
 				'message' => 'Ошибка в запросе!',
+				'debug'   => $_POST,
 			)
 		);
 	}
