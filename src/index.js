@@ -147,7 +147,7 @@ function initPage() {
 	initCookies();
 	initLenisButtons();
 	initNumberInputs();
-	initVladsScripts();
+	// initVladsScripts();
 	initSplideSliders();
 	ObserverController.init();
 	initMagazineForms();
