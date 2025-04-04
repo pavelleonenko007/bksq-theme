@@ -11,6 +11,19 @@ class CustomSelect {
 		this.root = element;
 		this.config = {
 			searchable: true,
+			templateSelection: function (data) {
+				if (!data.id) {
+					return data.text; // Возвращаем текст без изменений для placeholder
+				}
+
+				// Убираем дефисы и начальные пробелы из текста
+				var cleanText = data.text.replace(/^[–\s]+/, '');
+
+				// Если нужно удалить все дефисы из названия (даже внутри слов), используйте:
+				// var cleanText = data.text.replace(/–/g, '').trim();
+
+				return cleanText;
+			},
 			...(element.dataset.config ? JSON.parse(element.dataset.config) : {}),
 		};
 		this.$customSelect = $(element);
