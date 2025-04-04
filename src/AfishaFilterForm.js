@@ -143,6 +143,10 @@ class AfishaFilterForm {
 			this.state.isFetching
 		);
 
+		this.afishaContent
+			.closest('.r-afisha')
+			.classList.toggle(this.stateSelectors.isFetching, this.state.isFetching);
+
 		if (this.moreButton) {
 			this.moreButton.disabled =
 				this.state.isFetching || pageValue === this.state.maxPages;

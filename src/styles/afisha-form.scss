@@ -11,3 +11,10 @@
 		width: 100%;
 	}
 }
+
+.afisha-form.is-fetching,
+.r-afisha.is-fetching {
+	opacity: 0.5;
+	pointer-events: none;
+	cursor: wait;
+}
