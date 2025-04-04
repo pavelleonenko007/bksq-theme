@@ -12,9 +12,9 @@ export const initSplideSliders = () => {
 			speed: 400,
 			//	trimSpace: false,
 			wheelMinThreshold: 50,
-			releaseWheel: true,
-			wheelSleep: 500,
-			wheel: true,
+			// releaseWheel: true,
+			// wheelSleep: 500,
+			// wheel: true,
 			autoplay: false,
 			drag: true,
 			interval: 2000,
@@ -30,44 +30,44 @@ export const initSplideSliders = () => {
 		splide.mount();
 	});
 
-	// document.querySelectorAll('.slider-loop').forEach((swiperElement2) => {
-	// 	var splide = new Splide(swiperElement2, {
-	// 		// 		type: 'loop',
-	// 		perMove: 1,
-	// 		perPage: 1.2,
-	// 		wheelMinThreshold: 50,
-	// 		releaseWheel: true,
-	// 		wheelSleep: 500,
-	// 		wheel: true,
-	// 		pagination: false,
-	// 		wheel: true,
-	// 		arrows: false,
-	// 		focus: 'сenter',
-	// 		speed: 500,
-	// 		autoplay: false,
-	// 		drag: true,
-	// 		interval: 2000,
-	// 		focus: 'center',
-	// 		// wheel: true,
-	// 		// waitForTransition: true,
-	// 		direction: 'ltr',
-	// 		breakpoints: {
-	// 			991: {},
-	// 			767: { perPage: 1 },
-	// 		},
-	// 	});
+	document.querySelectorAll('.slider-loop').forEach((swiperElement2) => {
+		var splide = new Splide(swiperElement2, {
+			// 		type: 'loop',
+			perMove: 1,
+			perPage: 1.2,
+			wheelMinThreshold: 50,
+			releaseWheel: true,
+			wheelSleep: 500,
+			wheel: true,
+			pagination: false,
+			wheel: true,
+			arrows: false,
+			focus: 'сenter',
+			speed: 500,
+			autoplay: false,
+			drag: true,
+			interval: 2000,
+			focus: 'center',
+			// wheel: true,
+			// waitForTransition: true,
+			direction: 'ltr',
+			breakpoints: {
+				991: {},
+				767: { perPage: 1 },
+			},
+		});
 
-	// 	// 	 var bar    = splide.root.querySelector( '.my-carousel-progress-bar' );
-	// 	splide.on('mounted move', function () {
-	// 		console.log('dsds');
-	// 		var end = splide.Components.Controller.getEnd() + 1;
-	// 		var rate = Math.min((splide.index + 1) / end, 1);
-	// 		var progggg = String(100 * rate) + '%';
-	// 		console.log(progggg);
-	// 		$('.my-slider-progress-bar').css('width', progggg);
-	// 		// bar.style.width = String( 100 * rate ) + '%';
-	// 	});
+		// 	 var bar    = splide.root.querySelector( '.my-carousel-progress-bar' );
+		splide.on('mounted move', function () {
+			console.log('dsds');
+			var end = splide.Components.Controller.getEnd() + 1;
+			var rate = Math.min((splide.index + 1) / end, 1);
+			var progggg = String(100 * rate) + '%';
+			console.log(progggg);
+			$('.my-slider-progress-bar').css('width', progggg);
+			// bar.style.width = String( 100 * rate ) + '%';
+		});
 
-	// 	splide.mount();
-	// });
+		splide.mount();
+	});
 };
