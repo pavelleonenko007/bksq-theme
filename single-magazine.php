@@ -240,6 +240,22 @@
 		</div>
 		<div id="barba-wrapper" class="barba-wrapper" aria-live="polite">
 			<div class="barba-container magazine-body" data-namespace="single-magazine">
+				<div class="w-embed">
+				<style>
+					:root {
+					--maincolor: <?php the_field( 'cvet' ); ?>;
+					}
+					:root {
+					--magazine-1:  <?php the_field( 'cvet' ); ?>;
+					}
+					.switcher__checkbox:checked+.switcher__label,
+					.custom-select__option--value{
+					background-color: var(--maincolor);
+					}
+					.popup__link:hover{color:var(--maincolor);}
+					.popup__link:hover:before{background-color:var(--maincolor);}
+				</style>
+			</div>
 				<div class="page-wrap">
 					<div class="main-wrap">
 						<section class="section magazine-hero-section is-yellow-bg">

@@ -786,14 +786,50 @@ defined( 'ABSPATH' ) || exit; ?>
 							<div class="div-block-4 r"><a data-if-exists="true" data-acf-link="menyu_biznes_soprovozhzhenie" data-acf-context="option" href="/b2b" class="nav-link cursor-hover">БИЗНЕС-СОПРОВОЖДЕНИЕ</a></div>
 						</div>
 					</div>
-					<div class="nav-bottom">
+				<div class="nav-bottom">
 						<div class="container nav-container">
-							<a data-if-exists="true" data-acf-link="menyu_o_proekte" data-acf-context="option" href="/about" class="nav-link cursor-hover">о проекте</a><a href="/afisha" aria-current="page" class="nav-link cursor-hover w--current">афиша</a>
-							<div data-query-arg-posts_per_page="1" data-wp="wp_query" data-query-arg-post_type="magazine">
-								<a data-wp="post_link" href="/magazine3" class="nav-link cursor-hover w-inline-block">
-									<div data-if-exists="true" data-acf="zhur_opc" data-acf-context="option">журнал</div>
+							<?php
+							$link = get_field( 'menyu_o_proekte', 'option' );
+							if ( ! empty( $link ) ) :
+										$url    = $link['url'];
+										$title  = $link['title'];
+										$target = $link['target'] ? $link['target'] : '_self';
+								?>
+							<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="nav-link cursor-hover" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
+							<?php
+							$link = get_field( 'ssylka_na_telegramm_2', 'option' );
+							if ( ! empty( $link ) ) :
+										$url    = $link['url'];
+										$title  = $link['title'];
+										$target = $link['target'] ? $link['target'] : '_self';
+								?>
+							<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" target="<?php echo esc_attr( $target ); ?>" class="nav-link cursor-hover"><?php echo esc_html( $title ); ?></a>
+							<?php endif; ?>
+							<?php
+							$query_args       = array(
+								'posts_per_page' => 1,
+								'post_type'      => 'magazine',
+							);
+								$custom_query = new WP_Query( $query_args );
+
+							if ( $custom_query->have_posts() ) :
+								?>
+							<div data-query-arg-posts_per_page="1" data-query-arg-post_type="magazine">
+								<?php
+								while ( $custom_query->have_posts() ) :
+									$custom_query->the_post();
+									?>
+								<a href="<?php the_permalink(); ?>" class="nav-link cursor-hover w-inline-block">
+									<?php if ( ! empty( get_field( 'zhur_opc', 'option' ) ) ) : ?>
+									<div><?php echo get_field( 'zhur_opc', 'option' ); ?></div>
+									<?php endif; ?>
 								</a>
+									<?php
+								endwhile;
+								wp_reset_postdata();
+								?>
 							</div>
+							<?php endif; ?>
 						</div>
 					</div>
 					<div class="cursor-wrap">
