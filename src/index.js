@@ -131,7 +131,7 @@ $(function () {
 
 			const actions = {
 				afisha: initAfishaPage,
-				homepage: initHomePage,
+				homepage: initHomePage.bind(null, false),
 				'single-magazine': initSingleMagazinePage,
 			};
 
@@ -319,61 +319,63 @@ function initLenisButtons() {
 	});
 }
 
-function initHomePage() {
-	console.log('initHomePage');
+function countTo100(currentCount) {
+	if (currentCount < 100) {
+		$('#loadertext').text(currentCount);
 
+		setTimeout(function () {
+			countTo100(currentCount + 1);
+		}, 10);
+	} else if (currentCount > 98) {
+		$('#loadertext').text(100);
+		$('html').removeClass('startloaded');
+		$('html').addClass('loaded');
+		lenis.start();
+	} else {
+		$('html').removeClass('startloaded');
+		$('html').addClass('loaded');
+		lenis.start();
+	}
+}
+
+function initHomePage(isFirtsLoad = true) {
 	BookSliderCollection.init();
 	initFlippingBook();
 	if ($('.home-page').length) {
 		// 	  $('.s7-left').find('img').attr('src', $(".s7-right").find("img").attr("src"));
 
 		if ($('.home-page').hasClass('hp2')) {
-			setTimeout(function () {
-				$('html').addClass('startloaded');
+			if (isFirtsLoad) {
+				setTimeout(function () {
+					$('html').addClass('startloaded');
 
-				$('video').each(function () {
-					$(this)[0].play();
-					console.log('video');
+					$('video').each(function () {
+						$(this)[0].play();
+					});
+				}, 10_000);
+
+				//	$('#520b82ca-5889-57f3-7d4d-af38d7e037a1-video').removeAttr( "loop" );
+
+				$('#fa638008-8774-3ace-e4f6-f7ea57a4cabb-video').on(
+					'ended',
+					function () {
+						// What you want to do after the event
+
+						$('html').removeClass('startloaded');
+						$('html').addClass('loaded');
+						lenis.start();
+					}
+				);
+
+				$('.skip-btn').on('click', function () {
+					$('html').removeClass('startloaded');
+					$('html').addClass('loaded');
+					lenis.start();
 				});
-			}, 10000);
-
-			//	$('#520b82ca-5889-57f3-7d4d-af38d7e037a1-video').removeAttr( "loop" );
-
-			$('#fa638008-8774-3ace-e4f6-f7ea57a4cabb-video').on('ended', function () {
-				// What you want to do after the event
-
-				$('html').removeClass('startloaded');
-				$('html').addClass('loaded');
-				lenis.start();
-			});
-
-			$('.skip-btn').on('click', function () {
-				$('html').removeClass('startloaded');
-				$('html').addClass('loaded');
-				lenis.start();
-			});
-		} else {
-			function countTo100(currentCount) {
-				if (currentCount < 100) {
-					$('#loadertext').text(currentCount);
-
-					setTimeout(function () {
-						countTo100(currentCount + 1);
-					}, 10);
-				} else if (currentCount > 98) {
-					$('#loadertext').text(100);
-					$('html').removeClass('startloaded');
-					$('html').addClass('loaded');
-					lenis.start();
-				} else {
-					$('html').removeClass('startloaded');
-					$('html').addClass('loaded');
-					lenis.start();
-				}
 			}
-
-			countTo100(0);
-			$('html').addClass('startloaded');
+		} else {
+			// countTo100(0);
+			// $('html').addClass('startloaded');
 		}
 	} else {
 		lenis.start();
