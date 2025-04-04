@@ -241,8 +241,8 @@
 							</div>
 							<div class="new-vert vert-bottom new-top-block">
 								<div class="new-horiz">
-									<img src="<?php echo get_field( 'ikonka_dlya_vida_aktivnosti', false ); ?>" loading="lazy" alt="" class="newicon48"><?php if ( ! empty( get_field( 'vid_aktivnosti', false ) ) ) : ?>
-									<div class="new-p-18-21"><?php echo get_field( 'vid_aktivnosti', false ); ?></div>
+									<img src="<?php echo get_field( 'ikonka_dlya_vida_aktivnosti1', false ); ?>" loading="lazy" alt="" class="newicon48"><?php if ( ! empty( get_field( 'vid_aktivnosti1', false ) ) ) : ?>
+									<div class="new-p-18-21"><?php echo get_field( 'vid_aktivnosti1', false ); ?></div>
 									<?php endif; ?>
 								</div>
 								<h1 class="new-h1-72"><?php the_title(); ?></h1>
@@ -252,15 +252,15 @@
 							<div class="new-div-104"></div>
 							<div class="new-vert event-line">
 								<div class="new-line-event-spleet">
-									<?php if ( ! empty( get_field( 'otzyv_kritika', false ) ) ) : ?>
-									<div class="new-p-36-32 mmax638"><?php echo get_field( 'otzyv_kritika', false ); ?></div>
-									<?php endif; ?><img src="<?php echo get_field( 'foto_kritika', false ); ?>" loading="lazy" alt="" class="new-img-171-171">
+									<?php if ( ! empty( get_field( 'otzyv_kritika1', false ) ) ) : ?>
+									<div class="new-p-36-32 mmax638"><?php echo get_field( 'otzyv_kritika1', false ); ?></div>
+									<?php endif; ?><img src="<?php echo get_field( 'foto_kritika1', false ); ?>" loading="lazy" alt="" class="new-img-171-171">
 								</div>
 								<div class="new-vert-6">
-									<?php if ( ! empty( get_field( 'podpis_dlya_kritika', false ) ) ) : ?>
-									<div class="new-p-16-19"><?php echo get_field( 'podpis_dlya_kritika', false ); ?></div>
-									<?php endif; ?><?php if ( ! empty( get_field( 'imya_kritika', false ) ) ) : ?>
-									<div class="new-p-20-24"><?php echo get_field( 'imya_kritika', false ); ?></div>
+									<?php if ( ! empty( get_field( 'podpis_dlya_kritika1', false ) ) ) : ?>
+									<div class="new-p-16-19"><?php echo get_field( 'podpis_dlya_kritika1', false ); ?></div>
+									<?php endif; ?><?php if ( ! empty( get_field( 'imya_kritika1', false ) ) ) : ?>
+									<div class="new-p-20-24"><?php echo get_field( 'imya_kritika1', false ); ?></div>
 									<?php endif; ?>
 								</div>
 								<img src="https://cdn.prod.website-files.com/6704f17061cf6aa78bd63b0e/67b46d9fe17c2fb46ebdacf4_Frame%201321316681.jpg" loading="lazy" alt="" class="new-img-171-171 non">
@@ -275,8 +275,8 @@
 									<?php endif; ?>
 									<div class="new-vert-24">
 										<div class="new-p-16-19">Особенности</div>
-										<?php if ( ! empty( get_field( 'osobennosti', false ) ) ) : ?>
-										<div class="new-p-16-19 colorer"><?php echo get_field( 'osobennosti', false ); ?></div>
+										<?php if ( ! empty( get_field( 'osobennosti1', false ) ) ) : ?>
+										<div class="new-p-16-19 colorer"><?php echo get_field( 'osobennosti1', false ); ?></div>
 										<?php endif; ?>
 									</div>
 								</div>
