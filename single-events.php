@@ -263,7 +263,9 @@
 									<div class="new-p-20-24"><?php echo get_field( 'imya_kritika1', false ); ?></div>
 									<?php endif; ?>
 								</div>
-								<img src="https://cdn.prod.website-files.com/6704f17061cf6aa78bd63b0e/67b46d9fe17c2fb46ebdacf4_Frame%201321316681.jpg" loading="lazy" alt="" class="new-img-171-171 non">
+								<?php if ( ! empty( get_field( 'foto_kritika1', false ) ) ) : ?>
+								<img src="<?php echo get_field( 'foto_kritika1', false ); ?>" loading="lazy" alt="" class="new-img-171-171 non">
+								<?php endif; ?>
 							</div>
 							<div class="new-div-104"></div>
 							<img class="img-fw" src="<?php the_post_thumbnail_url(); ?>" alt="" loading="lazy">
@@ -463,7 +465,7 @@
 							</div>
 						</div>
 					</section>
-					<div class="nav-top">
+				<div class="nav-top">
 						<div class="container nav-container">
 							<div class="div-block-4">
 								<a href="/" aria-current="page" class="brand cursor-hover w-inline-block w--current">

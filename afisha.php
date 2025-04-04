@@ -775,12 +775,30 @@ defined( 'ABSPATH' ) || exit; ?>
 					<div class="nav-top">
 						<div class="container nav-container">
 							<div class="div-block-4">
-								<a href="/" class="brand cursor-hover w-inline-block">
+								<a href="/" aria-current="page" class="brand cursor-hover w-inline-block w--current">
 									<div>Black square</div>
 								</a>
 							</div>
-							<div class="div-block-4 center"><a href="/events" class="nav-link cursor-hover">мероприятия</a></div>
-							<div class="div-block-4 r"><a data-if-exists="true" data-acf-link="menyu_biznes_soprovozhzhenie" data-acf-context="option" href="/b2b" class="nav-link cursor-hover">БИЗНЕС-СОПРОВОЖДЕНИЕ</a></div>
+							<div class="div-block-4 center">
+							<?php
+							$link = get_field( 'ssylka_na_telegramm', 'option' );
+							if ( ! empty( $link ) ) :
+										$url    = $link['url'];
+										$title  = $link['title'];
+										$target = $link['target'] ? $link['target'] : '_self';
+								?>
+								<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" target="<?php echo esc_attr( $target ); ?>" class="nav-link cursor-hover"><?php echo esc_html( $title ); ?></a><?php endif; ?>
+							</div>
+							<div class="div-block-4 r">
+							<?php
+							$link = get_field( 'menyu_biznes_soprovozhzhenie', 'option' );
+							if ( ! empty( $link ) ) :
+										$url    = $link['url'];
+										$title  = $link['title'];
+										$target = $link['target'] ? $link['target'] : '_self';
+								?>
+								<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="nav-link cursor-hover" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
+							</div>
 						</div>
 					</div>
 				<div class="nav-bottom">
