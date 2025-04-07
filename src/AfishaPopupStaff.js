@@ -46,4 +46,12 @@ export const initAfishaPopupStaff = () => {
 		lenis.start();
 		history.pushState(null, null, prevlink);
 	});
+
+	window.addEventListener('popstate', (event) => {
+		if (document.documentElement.classList.contains('popupopened')) {
+			$('html').removeClass('popupopened');
+			lenis.start();
+			history.pushState(null, null, prevlink);
+		}
+	});
 };
