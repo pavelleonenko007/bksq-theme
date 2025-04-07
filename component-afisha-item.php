@@ -9,8 +9,8 @@ defined( 'ABSPATH' ) || exit;
 
 global $post;
 
-$address          = get_field( 'full_address' );
-$time_or_interval = get_field( 'time_or_interval' );
+$address  = get_field( 'full_address' );
+$subtitle = get_field( 'subtitle' );
 ?>
 <a id="<?php echo esc_attr( 'afishaItem' . $post->ID ); ?>" href="<?php the_permalink(); ?>" class="afisha-item no-barba w-inline-block">
 	<?php if ( ! empty( $address ) ) : ?>
@@ -25,8 +25,8 @@ $time_or_interval = get_field( 'time_or_interval' );
 		</div>
 	<?php endif; ?>
 	<div class="vert g8">
-		<?php if ( ! empty( $time_or_interval ) ) : ?>
-			<div class="new-p-14-16 black"><?php echo wp_kses_post( $time_or_interval ); ?></div>
+		<?php if ( ! empty( $subtitle ) ) : ?>
+			<div class="new-p-14-16 black"><?php echo wp_kses_post( $subtitle ); ?></div>
 		<?php endif; ?>
 		<div class="new-p-18-21 upper black"><?php the_title(); ?></div>
 	</div>

@@ -617,3 +617,29 @@ function bksq_flatten_terms_for_select( $terms, &$options, $level = 0 ) {
 		}
 	}
 }
+
+function bksq_get_single_page_event_date( $post_id ) {
+	$date_string = '';
+	$start_date  = get_field( 'start_date', $post_id );
+	$end_date    = get_field( 'end_date', $post_id );
+
+	if ( empty( $start_date ) ) {
+		return $date_string;
+	}
+
+	$formatted_start_date = date_i18n( 'd F Y', strtotime( $start_date ) );
+
+	$date_string .= '<span>' . $formatted_start_date . '</span>';
+
+	if ( empty( $end_date ) ) {
+		return $date_string;
+	}
+
+	$date_string .= ' — ';
+
+	$formatted_end_date = date_i18n( 'd F Y', strtotime( $start_date ) );
+
+	$date_string .= '<span>' . $formatted_end_date . '</span>';
+
+	return $date_string;
+}

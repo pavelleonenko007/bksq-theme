@@ -297,14 +297,8 @@
 											<div class="new-p-18-21 color">Дата</div>
 											<div class="new-vert-4">
 												<div class="new-p-18-21 upper">
-												<?php
-												if ( ! empty( get_field( 'start_date', false ) ) ) :
-													?>
-													<span><?php echo get_field( 'start_date', false ); ?></span><?php endif; ?> — 
-													<?php
-													if ( ! empty( get_field( 'end_date', false ) ) ) :
-														?>
-													<span><?php echo get_field( 'end_date', false ); ?></span><?php endif; ?></div>
+													<?php echo wp_kses_post( bksq_get_single_page_event_date( get_the_ID() ) ); ?>
+												</div>
 												<?php if ( ! empty( get_field( 'time_or_interval', false ) ) ) : ?>
 												<div class="new-p-16-19"><?php echo get_field( 'time_or_interval', false ); ?></div>
 												<?php endif; ?>
@@ -355,7 +349,7 @@
 											</svg>
 										</div>
 									</a> -->
-									<?php $tg_link = esc_url('https://telegram.me/share/url?url='. get_the_permalink() .'&text=' . get_the_title()); ?>
+									<?php $tg_link = esc_url( 'https://telegram.me/share/url?url=' . get_the_permalink() . '&text=' . get_the_title() ); ?>
 									<a href="<?php echo $tg_link; ?>" class="new-share-btn w-inline-block" target="_blank">
 										<div class="new-sh-ico w-embed">
 											<svg width="100%" height="100%" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -375,7 +369,7 @@
 										'post__not_in'   => array( get_the_ID() ),
 										'post_type'      => 'events',
 										'posts_per_page' => 3,
-										'meta_query' => array(
+										'meta_query'     => array(
 											array(
 												'key'   => 'afisha',
 												'value' => '1',

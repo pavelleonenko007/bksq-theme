@@ -196,6 +196,26 @@
             "append": ""
         },
         {
+            "key": "field_67f3dcb5eef22",
+            "label": "Подзаголовок",
+            "name": "subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Небольшой текст. Отображается над заголовком в карточке на странице Афиша.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_67e51e69e1ca2",
             "label": "Дата начала  (в афишах)",
             "name": "start_date",
@@ -720,5 +740,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1744007253
+    "modified": 1744035089
 }
