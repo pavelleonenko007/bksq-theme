@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit; ?>
 <!DOCTYPE html>
-<html data-wf-page="679b621de9985efb7f6e92fa" data-wf-site="6704f17061cf6aa78bd63b0e">
+<html data-wf-page="6704f17061cf6aa78bd63b28" data-wf-site="6704f17061cf6aa78bd63b0e">
 	<?php get_template_part( 'header_block', '' ); ?>
 	<body class="body">
 		<?php
@@ -453,7 +453,7 @@ defined( 'ABSPATH' ) || exit; ?>
 															id="afishaFilterFormActivityControl" class="field__select"
 															data-js-custom-select
 														>
-															<option value="">Вид активности</option>
+															<option value="">Категория</option>
 															<?php foreach ( $options as $value => $title ) : ?>
 																<option value="<?php echo esc_attr( $value ); ?>"><?php echo esc_html( $title ); ?></option>
 															<?php endforeach; ?>
@@ -602,9 +602,9 @@ defined( 'ABSPATH' ) || exit; ?>
 													the_row();
 													?>
 											<div class="cons-s6-left active">
-													<?php if ( ! empty( get_field( 'nabtext' ) ) ) : ?>
-												<div class="text-16 _18-on-1600"><?php echo get_field( 'nabtext' ); ?></div>
-												<?php endif; ?>
+													<div class="text-16 _18-on-1600"><p>Деятельность Black Square, в том числе издание коллекционного журнала, сформировала пул специалистов и друзей, к которым мы обращаемся<br>
+за консультациями, исследованиями и осуществлением совместных инициатив</p>
+</div>
 											<div class="consultant-images-block">
 													<div class="consultamt-image"><img src="<?php echo get_sub_field( 'img' ); ?>" loading="lazy" alt="" class="image-cover"></div>
 												</div>
@@ -703,20 +703,30 @@ defined( 'ABSPATH' ) || exit; ?>
 								</div>
 							</section>
 						<?php endif; ?>
-						<section class="section prefooter-section afisha-prefooter">
+					<section class="section prefooter-section">
 							<div class="container">
 								<div class="content-block mag-telegram-content-block scrollobs">
 									<div class="text-24 _18-tab">Смотрите далее</div>
-									<a href="/events" class="prefooter-link cursor-hover w-inline-block">
-										<div class="h1">Мероприятия</div>
-										<div class="prefooter-link-icon">
-											<div class="svg w-embed">
-												<svg width="100%" style viewbox="0 0 78 79" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-													<path fill-rule="evenodd" clip-rule="evenodd" d="M35.7134 3.44387L35.9209 3.23633L50.0201 3.23633L78.0002 31.2164V47.0982L50.0201 75.0782H35.9209L35.7134 74.8707L66.2939 44.2902L0 44.2902V34.0271L66.2966 34.0271L35.7134 3.44387Z" fill="currentColor"></path>
-												</svg>
+									<div class="rel">
+										<div class="prefooter-link cursor-hover">
+											<div class="h1">Телеграм</div>
+											<div class="prefooter-link-icon">
+												<div class="svg w-embed">
+													<svg width="100%" style="" viewBox="0 0 78 79" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+														<path fill-rule="evenodd" clip-rule="evenodd" d="M35.7134 3.44387L35.9209 3.23633L50.0201 3.23633L78.0002 31.2164V47.0982L50.0201 75.0782H35.9209L35.7134 74.8707L66.2939 44.2902L0 44.2902V34.0271L66.2966 34.0271L35.7134 3.44387Z" fill="currentColor"></path>
+													</svg>
+												</div>
 											</div>
+											<?php
+											$link = get_field( 'ssylka_na_telegramm', 'option' );
+											if ( ! empty( $link ) ) :
+														$url    = $link['url'];
+														$title  = $link['title'];
+														$target = $link['target'] ? $link['target'] : '_self';
+												?>
+											<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" target="<?php echo esc_attr( $target ); ?>" class="prefooter-link cursor-hover abs w-inline-block"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 										</div>
-									</a>
+									</div>
 								</div>
 							</div>
 						</section>
@@ -732,46 +742,79 @@ defined( 'ABSPATH' ) || exit; ?>
 							</a>
 						</div>
 					</div>
+					
+					
+					
+					
+					
+					
 					<section class="section footer-section">
 						<div class="container footer-container">
 							<div class="footer-content">
 								<div class="footer-left">
 									<div class="footer-left-top">
 										<div class="text-14 is-opacity-60">контакты</div>
-										<div data-acf-context="option" data-acf="llc_ooo" class="text-14">ООО "Артмедиа Групп"</div>
-										<div data-acf-context="option" data-acf="adress_opc" class="text-14">119333, Москва, <br>Ленинский проспект, <br>д.60/2, помещение XXIV</div>
-										<a data-acf-context="option" data-acf="email_opc" href="mailto:info@bksq.art" class="text-14 is-footer-link1">info@bksq.art</a>
+										<div class="text-14"><?php echo get_field( 'llc_ooo', 'option' ); ?></div>
+										<div class="text-14"><?php echo get_field( 'adress_opc', 'option' ); ?></div>
+										<a href="mailto:info@bksq.art" class="text-14 is-footer-link1"><?php echo get_field( 'email_opc', 'option' ); ?></a>
 									</div>
-									<a data-if-exists="true" data-acf-link="tochki_prodazh_opc" data-acf-context="option" href="/magazine-3#tochki-prodazh" class="footer-link-block w-inline-block">
-										<div>Точки продаж</div>
-									</a>
-									<a data-if-exists="true" data-acf-link="tochki_prodazh_opc_2" data-acf-context="option" href="/magazine-2?magazineAction=read#tochki-prodazh" class="footer-link-block w-inline-block">
-										<div class="no-tab">Где почитать</div>
-										<div class="from-tab">Почитать</div>
-									</a>
+									<?php
+									$link = get_field( 'tochki_prodazh_opc', 'option' );
+									if ( ! empty( $link ) ) :
+												$url    = $link['url'];
+												$title  = $link['title'];
+												$target = $link['target'] ? $link['target'] : '_self';
+										?>
+									<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="footer-link-block w-inline-block" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
+									<?php
+									$link = get_field( 'tochki_prodazh_opc_2', 'option' );
+									if ( ! empty( $link ) ) :
+												$url    = $link['url'];
+												$title  = $link['title'];
+												$target = $link['target'] ? $link['target'] : '_self';
+										?>
+									<a data-if-exists="true" href="<?php echo esc_url( $url ); ?>" class="footer-link-block w-inline-block" target="<?php echo esc_attr( $target ); ?>"><?php echo esc_html( $title ); ?></a><?php endif; ?>
 								</div>
 								<div class="footer-right">
 									<div class="footer-title-wrap">
 										<div class="tg-icon footer-tg-icon">
 											<div class="svg w-embed">
-												<svg width="100%" style viewbox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<svg width="100%" style="" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<circle cx="18" cy="18" r="16.9474" fill="currentColor" stroke="none" stroke-width="2.10526"></circle>
 													<path fill-rule="evenodd" clip-rule="evenodd" d="M22.1881 25.8972C22.4462 26.0812 22.779 26.1272 23.0756 26.0142C23.3722 25.9005 23.5903 25.6455 23.656 25.3365C24.3527 22.0411 26.0427 13.7002 26.6769 10.7026C26.725 10.4766 26.6448 10.2418 26.4684 10.0909C26.292 9.94004 26.0475 9.89647 25.8294 9.97796C22.4679 11.2303 12.1155 15.1397 7.88406 16.7156C7.61549 16.8156 7.44072 17.0754 7.44954 17.3603C7.45916 17.6459 7.64996 17.8936 7.92495 17.9767C9.82259 18.548 12.3135 19.3428 12.3135 19.3428C12.3135 19.3428 13.4776 22.8811 14.0845 24.6804C14.1606 24.9064 14.3362 25.0839 14.5679 25.1452C14.7988 25.2057 15.0457 25.142 15.2181 24.9782C16.1929 24.0519 17.7001 22.6196 17.7001 22.6196C17.7001 22.6196 20.5638 24.7329 22.1881 25.8972ZM13.3613 18.8958L14.7074 23.3644L15.0064 20.5346C15.0064 20.5346 20.2071 15.8134 23.1718 13.1224C23.2584 13.0434 23.2704 12.911 23.1982 12.8182C23.1269 12.7255 22.9954 12.7037 22.8968 12.7666C19.4607 14.9751 13.3613 18.8958 13.3613 18.8958Z" fill="black"></path>
 												</svg>
 											</div>
 										</div>
-										<div class="text-neue-44 footer-heading"><a href="https://t.me/bksqart" data-if-exists="true" data-acf-link="ssylka_na_telegramm" data-acf-context="option" target="_blank" class="title-link cursor-hover">BKSQ                 <span class="from-tab">     </span>Telegram</a></div>
-										<div data-if-exists="true" data-acf="foobig-text" data-acf-context="option" class="text-neue-44 footer-heading"><a href="https://t.me/bksqart" data-if-exists="true" data-acf-link="ssylka_na_telegramm" data-acf-context="option" target="_blank" class="title-link cursor-hover">‍</a>культура, искусство, мода, <span class="no-wrap">арт-рынок,</span> <span class="no-wrap-mob">герои, архивы</span></div>
+										<div class="text-neue-44 footer-heading">
+										<?php
+										$link = get_field( 'ssylka_na_telegramm', 'option' );
+										if ( ! empty( $link ) ) :
+													$url    = $link['url'];
+													$title  = $link['title'];
+													$target = $link['target'] ? $link['target'] : '_self';
+											?>
+											<a href="<?php echo esc_url( $url ); ?>" data-if-exists="true" target="<?php echo esc_attr( $target ); ?>" class="title-link cursor-hover"><?php echo esc_html( $title ); ?></a><?php endif; ?>
+										</div>
+										<?php if ( ! empty( get_field( 'foobig-text', 'option' ) ) ) : ?>
+										<div class="text-neue-44 footer-heading"><?php echo get_field( 'foobig-text', 'option' ); ?></div>
+										<?php endif; ?>
 									</div>
 									<div class="footer-right-bottom">
-										<a data-acf-context="option" data-acf-file="policy_opc" data-output-attribute="href" href="/policy.pdf" target="_blank" class="text-16 is-footer-link2">Политика обработки персональных данных</a><a href="#" class="text-16 is-footer-link2 show-coocky">Использование cookie-файлов</a>
-										<p data-acf-context="option" data-acf="art_opc" class="text-16 is-opacity-40">© ООО "Артмедиа Групп", 2024</p>
+										<a href="<?php echo get_field( 'policy_opc', 'option' ); ?>" target="_blank" class="text-16 is-footer-link2">Политика обработки персональных данных</a><a href="#" class="text-16 is-footer-link2 show-coocky">Использование cookie-файлов</a>
+										<p class="text-16 is-opacity-40"><?php echo get_field( 'art_opc', 'option' ); ?></p>
 										<p class="text-16"><span class="is-opacity-40">Сделано в</span> <a href="https://cpeople.ru/" target="_blank" class="footer-link3">CreativePeople</a></p>
 									</div>
 								</div>
 							</div>
 						</div>
 					</section>
+					
+					
+					
+					
+					
+					
+					
 					<div class="nav-top">
 						<div class="container nav-container">
 							<div class="div-block-4">

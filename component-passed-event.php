@@ -10,7 +10,8 @@ defined( 'ABSPATH' ) || exit;
 global $post;
 
 $start_date = get_field( 'start_date' );
-$company    = get_field( 'kompaniya' ); ?>
+$company    = get_field( 'vid_aktivnosti1' );
+$mesto    = get_field( 'stand' ); ?>
 <div class="events-item">
 	<div class="event-inside-block">
 		<div class="event-keeper">
@@ -41,7 +42,7 @@ $company    = get_field( 'kompaniya' ); ?>
 					<div data-acf-repeater="card-images" class="event-row-right scrollobs-opc col2">
 						<div class="event-image-box in"><img src="<?php echo get_template_directory_uri(); ?>/images/67121772eb04270c8b304d4c_001.avif" loading="eager" alt class="event-image"></div>
 					</div>
-					<a href="#" class="abs-link w-inline-block"></a>
+					<a href="<?php the_permalink(); ?>" class="abs-link w-inline-block"></a>
 				</div>
 			</div>
 			<div class="event-var">
@@ -63,9 +64,10 @@ $company    = get_field( 'kompaniya' ); ?>
 							<div class="text-16 mob-16 opacity-60-tab modified bolded"><?php echo esc_html( date_i18n( 'd/m', strtotime( $start_date ) ) ); ?></div>
 						<?php endif; ?>
 						<div class="new-p-36-32 mmax638"><?php the_title(); ?></div>
-						<div data-acf="rich" class="text-16 mob-16 opacity-60-tab modified">Организация корпоративной экскурсии <br>по выставкам Эрика Булатова, Алексей Каллимы и проекта про спорт</div>
+						<div data-acf="rich" class="text-16 mob-16 opacity-60-tab modified"><?php echo esc_html( $mesto ); ?></div>
 					</div>
 				</div>
+				<a href="<?php the_permalink(); ?>" class="afisha-item no-barba abs-link w-inline-block"></a>
 			</div>
 		</div>
 	</div>

@@ -4,7 +4,7 @@
 	*/
 ?>
 <!DOCTYPE html>
-<html data-wf-page="67b47fa42e4275aa6ac3162a" data-wf-site="6704f17061cf6aa78bd63b0e">
+<html data-wf-page="6704f17061cf6aa78bd63b28" data-wf-site="6704f17061cf6aa78bd63b0e">
 	<?php get_template_part( 'header_block', '' ); ?>
 	<body class="body">
 		<?php
@@ -229,7 +229,7 @@
 						<div class="popupin">
 							<div class="new-vert vert-bottom new-top-block back-btn-bloack">
 								<div class="new-div-104"></div>
-								<a href="/afisha" class="new-back-btn w-inline-block">
+								<a href="/afisha" class="new-back-btn no-barba w-inline-block">
 									<div class="new-scg17 w-embed">
 										<svg width="100%" height="100%" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M9.67486 15.3986L9.63207 15.4414L6.74035 15.4414L1.00031 9.70137L1.00031 6.44417L6.73991 0.704566L9.6325 0.704566L9.67485 0.746916L3.40203 7.01974L17 7.01974L17 9.125L3.40124 9.125L9.67486 15.3986Z" fill="#282828"></path>
@@ -276,7 +276,13 @@
 									<div class="new-p-20-24 mmax545"><?php echo get_field( 'content', false ); ?></div>
 									<?php endif; ?>
 									<div class="new-vert-24">
-										<div class="new-p-16-19">Особенности</div>
+										
+										<?php if ( ! empty( get_field( 'zagosobennosti1', false ) ) ) : ?>
+										<div class="new-p-16-19"><?php echo get_field( 'zagosobennosti1', false ); ?></div>
+										<?php endif; ?>
+										
+										
+										
 										<?php if ( ! empty( get_field( 'osobennosti1', false ) ) ) : ?>
 										<div class="new-p-16-19 colorer"><?php echo get_field( 'osobennosti1', false ); ?></div>
 										<?php endif; ?>
@@ -314,7 +320,7 @@
 										</div>
 									</div>
 									<?php
-									$link = get_field( 'ccylka_na_meropriyatie', false );
+									$link = get_field( 'ccylka_na_meropriyatie1', false );
 									if ( ! empty( $link ) ) :
 												$url    = $link['url'];
 												$title  = $link['title'];
@@ -381,7 +387,7 @@
 										while ( $custom_query->have_posts() ) :
 											$custom_query->the_post();
 											?>
-									<a href="<?php the_permalink(); ?>" class="new-link-afisha w-inline-block">
+									<a href="<?php the_permalink(); ?>" class="new-link-afisha no-barba w-inline-block">
 										<div class="new-horiz gg12">
 											<img src="https://cdn.prod.website-files.com/6704f17061cf6aa78bd63b0e/67b47ad9500500b95e543cdb_heroicons_map-pin-16-solid.svg" loading="lazy" alt="" class="new-icon-20"><?php if ( ! empty( get_field( 'full_address', false ) ) ) : ?>
 											<div class="new-p-16-19"><?php echo get_field( 'full_address', false ); ?></div>
@@ -405,6 +411,12 @@
 							<div class="new-div-104"></div>
 						</div>
 					</div>
+					
+					
+					
+					
+					
+					
 					<section class="section footer-section">
 						<div class="container footer-container">
 							<div class="footer-content">
@@ -465,6 +477,13 @@
 							</div>
 						</div>
 					</section>
+					
+					
+					
+					
+					
+					
+					
 				<div class="nav-top">
 						<div class="container nav-container">
 							<div class="div-block-4">

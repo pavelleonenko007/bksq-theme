@@ -25,7 +25,7 @@
         },
         {
             "key": "field_6788c05bb2c05",
-            "label": "Дата мероприятия (в карточках)",
+            "label": "Дата мероприятия (в карточках на главной странице)",
             "name": "data",
             "aria-label": "",
             "type": "text",
@@ -46,7 +46,7 @@
         },
         {
             "key": "field_6784c151c6017",
-            "label": "Описание (Текст под имиджем слева)",
+            "label": "Описание (Текст под имиджем слева)  (в афишах и на главной)",
             "name": "content",
             "aria-label": "",
             "type": "wysiwyg",
@@ -102,26 +102,6 @@
             },
             "admin_column_enabled": 0,
             "default_value": "Стенд 037",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_67ea6929af2d3",
-            "label": "Время или интервал",
-            "name": "time_or_interval",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -195,8 +175,29 @@
             "return_format": "url"
         },
         {
+            "key": "field_67ea6929af2d3",
+            "label": "Время или интервал (в афишах)",
+            "name": "time_or_interval",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "admin_column_enabled": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_67e51e69e1ca2",
-            "label": "Дата начала",
+            "label": "Дата начала  (в афишах)",
             "name": "start_date",
             "aria-label": "",
             "type": "date_picker",
@@ -216,13 +217,14 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "display_format": "F j, Y",
             "return_format": "Y-m-d",
             "first_day": 1
         },
         {
             "key": "field_67e51e9fe1ca3",
-            "label": "Дата конца",
+            "label": "Дата конца  (в афишах)",
             "name": "end_date",
             "aria-label": "",
             "type": "date_picker",
@@ -242,13 +244,14 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "display_format": "F j, Y",
             "return_format": "Y-m-d",
             "first_day": 1
         },
         {
             "key": "field_67e51eb6e1ca4",
-            "label": "Вечное",
+            "label": "Вечное  (в афишах)",
             "name": "is_out_of_time",
             "aria-label": "",
             "type": "true_false",
@@ -268,6 +271,7 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "message": "",
             "default_value": 0,
             "ui_on_text": "",
@@ -276,7 +280,7 @@
         },
         {
             "key": "field_67e673474f4f2",
-            "label": "Город",
+            "label": "Город  (в афишах)",
             "name": "city",
             "aria-label": "",
             "type": "text",
@@ -296,6 +300,7 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "default_value": "",
             "maxlength": "",
             "placeholder": "",
@@ -304,7 +309,7 @@
         },
         {
             "key": "field_67e673544f4f3",
-            "label": "Полный адрес",
+            "label": "Полный адрес  (в афишах)",
             "name": "full_address",
             "aria-label": "",
             "type": "text",
@@ -324,6 +329,7 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "default_value": "",
             "maxlength": "",
             "placeholder": "",
@@ -332,7 +338,7 @@
         },
         {
             "key": "field_67e673657d6d6",
-            "label": "Координаты",
+            "label": "Координаты  (в афишах)",
             "name": "coordinates",
             "aria-label": "",
             "type": "group",
@@ -402,7 +408,7 @@
         },
         {
             "key": "field_67ead49bec46f",
-            "label": "Добавить в архив",
+            "label": "Добавить в архив  (в афишах)",
             "name": "in_archive",
             "aria-label": "",
             "type": "true_false",
@@ -422,6 +428,7 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "message": "",
             "default_value": 0,
             "ui": 0,
@@ -430,7 +437,7 @@
         },
         {
             "key": "field_67ed4edc31c66",
-            "label": "Иконка главного вида активности",
+            "label": "Иконка главного вида активности  (в афишах)",
             "name": "ikonka_dlya_vida_aktivnosti1",
             "aria-label": "",
             "type": "image",
@@ -450,6 +457,7 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "return_format": "url",
             "library": "all",
             "min_width": "",
@@ -463,7 +471,7 @@
         },
         {
             "key": "field_67ed5189c8800",
-            "label": "Вид активности",
+            "label": "Вид активности  (в афишах)",
             "name": "vid_aktivnosti1",
             "aria-label": "",
             "type": "text",
@@ -492,7 +500,7 @@
         },
         {
             "key": "field_67ed4f1dbe3fc",
-            "label": "Выноска до имиджа",
+            "label": "Выноска до имиджа  (в афишах)",
             "name": "otzyv_kritika1",
             "aria-label": "",
             "type": "textarea",
@@ -521,7 +529,7 @@
         },
         {
             "key": "field_67ed4f3cb16f8",
-            "label": "Фото критика",
+            "label": "Фото критика  (в афишах)",
             "name": "foto_kritika1",
             "aria-label": "",
             "type": "image",
@@ -541,6 +549,7 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "return_format": "url",
             "library": "all",
             "min_width": "",
@@ -582,7 +591,7 @@
         },
         {
             "key": "field_67ed4f66b16fa",
-            "label": "Имя критика",
+            "label": "Имя критика  (в афишах)",
             "name": "imya_kritika1",
             "aria-label": "",
             "type": "text",
@@ -602,6 +611,7 @@
                 "class": "",
                 "id": ""
             },
+            "admin_column_enabled": 0,
             "default_value": "",
             "maxlength": "",
             "placeholder": "",
@@ -609,11 +619,11 @@
             "append": ""
         },
         {
-            "key": "field_67ed4f96b16fb",
-            "label": "Особенности",
-            "name": "osobennosti1",
+            "key": "field_67f1028d8fb93",
+            "label": "Заголовок над особенности (информация)  (в афишах)",
+            "name": "zagosobennosti1",
             "aria-label": "",
-            "type": "textarea",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": [
@@ -630,15 +640,45 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "admin_column_enabled": 0,
+            "default_value": "Информация",
             "maxlength": "",
-            "rows": "",
             "placeholder": "",
-            "new_lines": ""
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_67ed4f96b16fb",
+            "label": "Особенности  (в афишах)",
+            "name": "osobennosti1",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "admin_column_enabled": 0,
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         },
         {
             "key": "field_67ed8a17d7a8c",
-            "label": "Ссылка на мероприятие на странице записи",
+            "label": "Ссылка на мероприятие на странице записи  (в афишах)",
             "name": "ccylka_na_meropriyatie1",
             "aria-label": "",
             "type": "link",
@@ -680,5 +720,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1743685877
+    "modified": 1744007253
 }
