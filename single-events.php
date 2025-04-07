@@ -332,7 +332,12 @@
 							<div class="new-divider _2"></div>
 							<div class="new-vert">
 								<div class="new-soc-share">
-									<a href="#" data-js-copy-button data-copy-text="<?php the_permalink(); ?>" class="new-share-btn w-inline-block">
+									<a 
+										href="#" 
+										data-js-share-button 
+										data-title="<?php the_title(); ?>"
+										data-url="<?php the_permalink(); ?>" 
+										class="new-share-btn w-inline-block">
 										<div class="new-sh-ico w-embed">
 											<svg width="100%" height="100%" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
 												<g opacity="0.6">

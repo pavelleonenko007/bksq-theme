@@ -21,12 +21,12 @@ import { initFlippingBook } from './FlippingBook';
 import { initMagazineMap, initMagazineYandexMap } from './MagazineYandexMap';
 import { initjQueryCustomSelect } from './jQueryCustomSelect';
 import { initMagazineActionSwitcher } from './MagazineActionSwitcher';
-import { CopyButton } from './CopyButton';
+import { ShareButton } from './ShareButton';
 import { pageScroll } from './utils';
 
 window.magazineYandexMapDestroyCallback = null;
 
-new CopyButton();
+new ShareButton();
 
 if (location.hash) {
 	pageScroll(location.hash);

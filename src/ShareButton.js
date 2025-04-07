@@ -1,6 +1,6 @@
-const ROOT_SELECTOR = '[data-js-copy-button]';
+const ROOT_SELECTOR = '[data-js-share-button]';
 
-export class CopyButton {
+export class ShareButton {
 	selectors = {
 		root: ROOT_SELECTOR,
 	};
@@ -11,6 +11,10 @@ export class CopyButton {
 	 */
 	constructor(element) {
 		this.root = element;
+
+		if (!navigator.share) {
+			return;
+		}
 
 		this.bindEvents();
 	}
@@ -24,16 +28,10 @@ export class CopyButton {
 
 			event.preventDefault();
 
-			const copyText = button.dataset.copyText;
-
-			navigator.clipboard
-				.writeText(copyText)
-				.then(() => {
-					console.log('Text copied to clipboard');
-				})
-				.catch((err) => {
-					console.error('Failed to copy text: ', err);
-				});
+			navigator.share({
+				title: button.dataset.title,
+				url: button.dataset.url,
+			});
 		});
 	}
 }
