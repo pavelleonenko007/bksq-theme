@@ -631,13 +631,13 @@ function bksq_get_single_page_event_date( $post_id ) {
 
 	$date_string .= '<span>' . $formatted_start_date . '</span>';
 
-	if ( empty( $end_date ) ) {
+	if ( empty( $end_date ) || $end_date === $start_date ) {
 		return $date_string;
 	}
 
 	$date_string .= ' — ';
 
-	$formatted_end_date = date_i18n( 'd F Y', strtotime( $start_date ) );
+	$formatted_end_date = date_i18n( 'd F Y', strtotime( $end_date ) );
 
 	$date_string .= '<span>' . $formatted_end_date . '</span>';
 
