@@ -12,10 +12,6 @@ export class ShareButton {
 	constructor(element) {
 		this.root = element;
 
-		if (!navigator.share) {
-			return;
-		}
-
 		this.bindEvents();
 	}
 
@@ -27,11 +23,15 @@ export class ShareButton {
 			}
 
 			event.preventDefault();
+			event.stopPropagation();
+			event.stopImmediatePropagation();
 
-			navigator.share({
-				title: button.dataset.title,
-				url: button.dataset.url,
-			});
+			if (navigator.share) {
+				navigator.share({
+					title: button.dataset.title,
+					url: button.dataset.url,
+				});
+			}
 		});
 	}
 }

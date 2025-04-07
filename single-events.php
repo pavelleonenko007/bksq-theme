@@ -332,8 +332,8 @@
 							<div class="new-divider _2"></div>
 							<div class="new-vert">
 								<div class="new-soc-share">
-									<a 
-										href="#" 
+									<button 
+										type="button"
 										data-js-share-button 
 										data-title="<?php the_title(); ?>"
 										data-url="<?php the_permalink(); ?>" 
@@ -345,7 +345,7 @@
 												</g>
 											</svg>
 										</div>
-									</a>
+									</button>
 									<!-- <a href="#" class="new-share-btn w-inline-block">
 										<div class="new-sh-ico w-embed">
 											<svg width="100%" height="100%" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
