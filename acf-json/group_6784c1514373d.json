@@ -59,15 +59,7 @@
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_67ed8969f0263",
-                        "operator": "!=",
-                        "value": "1"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -798,5 +790,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1744038366
+    "modified": 1744040468
 }
