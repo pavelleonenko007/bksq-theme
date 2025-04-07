@@ -31,13 +31,20 @@
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "admin_column_enabled": 0,
             "default_value": "12\/2024",
             "maxlength": "",
             "placeholder": "",
@@ -52,13 +59,20 @@
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "admin_column_enabled": 0,
             "default_value": "",
             "tabs": "all",
             "toolbar": "full",
@@ -73,13 +87,20 @@
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "admin_column_enabled": 0,
             "default_value": "Тимирязев Центр",
             "maxlength": "",
             "placeholder": "",
@@ -94,13 +115,20 @@
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "admin_column_enabled": 0,
             "default_value": "Стенд 037",
             "maxlength": "",
             "placeholder": "",
@@ -115,7 +143,15 @@
             "type": "repeater",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -165,13 +201,20 @@
             "type": "link",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "admin_column_enabled": 0,
             "return_format": "url"
         },
         {
@@ -182,13 +225,20 @@
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "admin_column_enabled": 0,
             "default_value": "",
             "maxlength": "",
             "placeholder": "",
@@ -203,7 +253,15 @@
             "type": "text",
             "instructions": "Небольшой текст. Отображается над заголовком в карточке на странице Афиша.",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -740,5 +798,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1744035089
+    "modified": 1744038366
 }
