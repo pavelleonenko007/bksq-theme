@@ -296,6 +296,24 @@ defined( 'ABSPATH' ) || exit; ?>
 										<form id="afishaFilterForm" class="form-2 afisha-form" data-js-afisha-filter-form>
 											<div class="div-block-10 afisha-form__buttons">
 												<?php
+												$activities = get_terms(
+													array(
+														'taxonomy'   => 'activity',
+													)
+												);
+
+												$out_of_time_args  = array(
+													'post_type' => 'events',
+													'posts_per_page' => -1,
+													'meta_query' => array(
+														array(
+															'key' => 'is_out_of_time',
+															'value' => '1',
+														),
+													),
+												);
+												$out_of_time_query = new WP_Query( $out_of_time_args );
+
 												$pre_selected_filters_button = get_field( 'pre_selected_filters_button' );
 												$today_config                = array(
 													'controlSelector' => '#afishaFilterFormDateControl',
@@ -323,19 +341,21 @@ defined( 'ABSPATH' ) || exit; ?>
 													Завтра
 												</button>
 												<?php
-												$out_of_time_config = array(
-													'controlSelector' => '#afishaFilterFormDateControl',
-													'value' => 'Вечное',
-												);
-												?>
-												<button 
-													type="button" 
-													class="button button--outline"
-													data-js-afisha-filter-form-preselected-button="<?php echo esc_attr( wp_json_encode( $out_of_time_config ) ); ?>"
-												>
-													Вечное
-												</button>
-												<?php
+												if ( 0 < $out_of_time_query->post_count ) :
+													$out_of_time_config = array(
+														'controlSelector' => '#afishaFilterFormDateControl',
+														'value' => 'Вечное',
+													);
+													?>
+													<button 
+														type="button" 
+														class="button button--outline"
+														data-js-afisha-filter-form-preselected-button="<?php echo esc_attr( wp_json_encode( $out_of_time_config ) ); ?>"
+													>
+														Вечное
+													</button>
+													<?php
+												endif;
 												$upcoming_weekends        = array_values( bksq_get_upcoming_weekends() );
 												$upcoming_weekends_config = array(
 													'controlSelector' => '#afishaFilterFormDateControl',
@@ -351,21 +371,24 @@ defined( 'ABSPATH' ) || exit; ?>
 												</button>
 												<?php
 												$festival_button       = $pre_selected_filters_button['activity_button'];
-												$festival_button_text  = $festival_button['text'] ?? 'Фестиваль';
-												$festival_button_value = ! empty( $festival_button['value'] ) ? $festival_button['value']->slug : 'festival';
-												$festival_config       = array(
-													'controlSelector' => '#afishaFilterFormActivityControl',
-													'value' => $festival_button_value,
-												);
-												?>
-												<button 
-													type="button" 
-													class="button button--outline"
-													data-js-afisha-filter-form-preselected-button="<?php echo esc_attr( wp_json_encode( $festival_config ) ); ?>"
-												>
-													<?php echo esc_html( $festival_button_text ); ?>
-												</button>
-												<?php
+												$festival_button_text  = $festival_button['text'];
+												$festival_button_value = $festival_button['value'];
+
+												if ( ! empty( $festival_button_text ) && ! empty( $festival_button_value ) ) :
+													$festival_config = array(
+														'controlSelector' => '#afishaFilterFormActivityControl',
+														'value' => $festival_button_value,
+													);
+													?>
+													<button 
+														type="button" 
+														class="button button--outline"
+														data-js-afisha-filter-form-preselected-button="<?php echo esc_attr( wp_json_encode( $festival_config ) ); ?>"
+													>
+														<?php echo esc_html( $festival_button_text ); ?>
+													</button>
+													<?php
+												endif;
 												$location_config = array(
 													'controlSelector' => '#afishaFilterFormCityControl',
 													'action' => 'getUserCity',
@@ -408,12 +431,6 @@ defined( 'ABSPATH' ) || exit; ?>
 													</div>
 												<?php endif; ?>
 												<?php
-												$activities = get_terms(
-													array(
-														'taxonomy'   => 'activity',
-														'hide_empty' => false,
-													)
-												);
 
 												$activities_hierarchy = array();
 
@@ -444,7 +461,7 @@ defined( 'ABSPATH' ) || exit; ?>
 
 												$options = array();
 												bksq_flatten_terms_for_select( $activity_tree, $options );
-												
+
 												if ( ! empty( $activity_tree ) ) :
 													?>
 													<div class="afisha-form__field field">
@@ -479,18 +496,6 @@ defined( 'ABSPATH' ) || exit; ?>
 											<div id="w-node-e435ccf6-9045-8eb7-9de9-5a13b181bdd4-7f6e92fa" class="resoult-afisha">
 												<?php
 												$event_blocks = bksq_get_events_by_months();
-
-												$out_of_time_args  = array(
-													'post_type' => 'events',
-													'posts_per_page' => -1,
-													'meta_query' => array(
-														array(
-															'key' => 'is_out_of_time',
-															'value' => '1',
-														),
-													),
-												);
-												$out_of_time_query = new WP_Query( $out_of_time_args );
 												if ( ! empty( $event_blocks['data'] ) ) :
 													?>
 													<div id="w-node-c8196337-e5d6-dc97-d79a-b4ebf53b8ad1-7f6e92fa" class="text-core" data-js-afisha-filter-form-content>
