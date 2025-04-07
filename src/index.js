@@ -248,9 +248,17 @@ function initSomeStaff() {
 
 			button.classList.add('active');
 
-			document
-				.querySelector('.afisha-core')
-				.classList.toggle('showmap', button.classList.contains('map-bbtn'));
+			const afishaContentContainer = document.querySelector('.afisha-core');
+			const isMapButton = button.classList.contains('map-bbtn');
+
+			afishaContentContainer.classList.toggle('showmap', isMapButton);
+
+			if (isMapButton) {
+				lenis.scrollTo(afishaContentContainer, {
+					immediate: true,
+					lock: true,
+				});
+			}
 		};
 	});
 
