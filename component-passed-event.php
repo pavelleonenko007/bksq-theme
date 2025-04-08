@@ -50,7 +50,7 @@ $mesto    = get_field( 'stand' ); ?>
 					<div class="wp-tag-row">
 						<?php if ( ! empty( $company ) ) : ?>
 							<div class="wp-tag modyfid">
-								<div class="text-16 _14-tab"><?php echo esc_html( $company ); ?></div>
+								<div class="text-16 _14-tab"><?php echo wp_kses_post( $company ); ?></div>
 							</div>
 						<?php endif; ?>
 					</div>
