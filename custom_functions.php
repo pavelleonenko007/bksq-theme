@@ -161,10 +161,12 @@ function bksq_format_events_map_markers( $events = array() ) {
 				$p = get_post( $p );
 			}
 
-			$date_range = array_filter(
-				array(
-					date_i18n( 'd F', strtotime( get_field( 'start_date', $p ) ) ),
-					date_i18n( 'd F', strtotime( get_field( 'end_date', $p ) ) ),
+			$date_range = array_unique(
+				array_filter(
+					array(
+						date_i18n( 'd F', strtotime( get_field( 'start_date', $p ) ) ),
+						date_i18n( 'd F', strtotime( get_field( 'end_date', $p ) ) ),
+					)
 				)
 			);
 
