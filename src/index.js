@@ -105,6 +105,7 @@ $(function () {
 	Barba.Dispatcher.on(
 		'newPageReady',
 		function (currentStatus, oldStatus, container) {
+			console.log('BARBA: newPageReady');
 			// Найдем все скрипты на новой странице
 			var scripts = container.querySelectorAll('script');
 
@@ -124,6 +125,8 @@ $(function () {
 	);
 
 	Barba.Dispatcher.on('initStateChange', () => {
+		console.log('BARBA: initStateChange');
+		
 		$('html').removeClass('popupopened');
 
 		BookSliderCollection.destroyAll();
@@ -136,6 +139,7 @@ $(function () {
 	Barba.Dispatcher.on(
 		'transitionCompleted',
 		function (currentStatus, prevStatus) {
+			console.log('BARBA: transitionCompleted');
 			initPage();
 
 			const actions = {

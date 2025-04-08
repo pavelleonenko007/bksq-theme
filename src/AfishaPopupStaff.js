@@ -4,16 +4,17 @@ export const initAfishaPopupStaff = () => {
 	// Обработчик клика на элементы с классом 'afisha-item'
 
 	var prevlink = 0;
+	let currentScroll = 0;
 
 	$('.r-afisha').on('click', function (e) {
-		console.log('kkkk');
-
 		e.preventDefault(); // Отменяем стандартное поведение ссылки
 		$('.popupin').remove();
 
 		if (!e.target.closest('.afisha-item')) {
 			return;
 		}
+
+		currentScroll = lenis.actualScroll;
 
 		const $afishaItem = $(e.target.closest('.afisha-item'));
 
@@ -50,8 +51,16 @@ export const initAfishaPopupStaff = () => {
 	window.addEventListener('popstate', (event) => {
 		if (document.documentElement.classList.contains('popupopened')) {
 			$('html').removeClass('popupopened');
-			lenis.start();
-			history.pushState(null, null, prevlink);
+			// history.pushState(null, null, prevlink);
+			console.log({ currentScroll });
+
+			setTimeout(() => {
+				lenis.scrollTo(currentScroll, {
+					lock: true,
+					immediate: true,
+				});
+				lenis.start();
+			}, 5);
 		}
 	});
 };
