@@ -544,7 +544,7 @@
             "label": "Вид активности  (в афишах)",
             "name": "vid_aktivnosti1",
             "aria-label": "",
-            "type": "text",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
             "conditional_logic": [
@@ -561,12 +561,11 @@
                 "class": "",
                 "id": ""
             },
-            "admin_column_enabled": 0,
             "default_value": "",
             "maxlength": "",
+            "rows": "",
             "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "new_lines": "br"
         },
         {
             "key": "field_67ed4f1dbe3fc",
@@ -790,5 +789,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1744040468
+    "modified": 1744103882
 }

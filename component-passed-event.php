@@ -9,8 +9,8 @@ defined( 'ABSPATH' ) || exit;
 
 global $post;
 
-$start_date = get_field( 'start_date' );
-$company    = get_field( 'vid_aktivnosti1' );
+$subtitle = get_field( 'subtitle' );
+$company  = get_field( 'vid_aktivnosti1' );
 $mesto    = get_field( 'stand' ); ?>
 <div class="events-item">
 	<div class="event-inside-block">
@@ -21,9 +21,9 @@ $mesto    = get_field( 'stand' ); ?>
 						<div class="event-row-left scrollobs-opc col1">
 							<div class="event-left1 col1">
 								<?php
-								if ( ! empty( $start_date ) ) :
+								if ( ! empty( $subtitle ) ) :
 									?>
-									<div class="text-neue-36 colored"><?php echo date_i18n( 'd/m', strtotime( $start_date ) ); ?></div>
+									<div class="text-neue-36 colored"><?php echo wp_kses_post( $subtitle ); ?></div>
 								<?php endif; ?>
 							</div>
 							<div class="event-left2">
