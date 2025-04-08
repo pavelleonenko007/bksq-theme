@@ -443,52 +443,36 @@ function bksq_get_event_meta_value_by_key( string $key ): array {
 }
 
 function bksq_get_all_event_cities() {
-	// $cities = array();
+	$cities = array();
 
-	// $afisha_events = get_posts(
-	// 	array(
-	// 		'post_type'   => 'events',
-	// 		'numberposts' => -1,
-	// 		'meta_query'  => array(
-	// 			array(
-	// 				'key'   => 'afisha',
-	// 				'value' => '1',
-	// 			),
-	// 		),
-	// 	)
-	// );
-
-	// foreach ( $afisha_events as $event ) {
-	// 	if ( ! empty( get_field( 'city', $event->ID ) ) ) {
-	// 		$cities[] = get_field( 'city', $event->ID );
-	// 	}
-	// }
-
-	// $cities = array_values( array_unique( $cities ) );
-
-	// return $cities;
-
-	global $wpdb;
-
-	$query = $wpdb->prepare(
-		"SELECT DISTINCT meta_value AS city
-		FROM {$wpdb->postmeta}
-		WHERE meta_key = 'city' 
-		AND post_id IN (
-			SELECT ID 
-			FROM {$wpdb->posts} 
-			WHERE post_type = 'events' 
-			AND post_status = 'publish'
-			AND ID IN (
-				SELECT post_id 
-				FROM {$wpdb->postmeta} 
-				WHERE meta_key = 'afisha' 
-				AND meta_value = '1'
-			)
-		)"
+	$afisha_events = get_posts(
+		array(
+			'post_type'      => 'events',
+			'posts_per_page' => -1,
+			'meta_query'     => array(
+				array(
+					'key'   => 'afisha',
+					'value' => '1',
+				),
+				array(
+					'key'     => 'end_date',
+					'value'   => wp_date( 'Y-m-d' ),
+					'compare' => '>=',
+					'type'    => 'DATE',
+				),
+			),
+		)
 	);
 
-	return array_filter( $wpdb->get_col( $query ) );
+	foreach ( $afisha_events as $event ) {
+		if ( ! empty( get_field( 'city', $event->ID ) ) ) {
+			$cities[] = get_field( 'city', $event->ID );
+		}
+	}
+
+	$cities = array_values( array_unique( $cities ) );
+
+	return $cities;
 }
 
 function bksq_get_all_event_activities() {
