@@ -103,6 +103,7 @@ function bksq_get_events_by_months( $params = array() ) {
 			'all_events' => array(),
 			'page'       => $page,
 			'totalCount' => 0,
+			'maxPages'   => 0,
 		);
 	}
 
@@ -119,10 +120,11 @@ function bksq_get_events_by_months( $params = array() ) {
 		$period = new DatePeriod( $start, new DateInterval( 'P1M' ), $end );
 
 		foreach ( $period as $date ) {
-			// var_dump( $start_date, '<br>' );
-			// var_dump( $date->format( 'Y-m' ), '<br>' );
-			// var_dump( $event_end_date, '<br><br>' );
 			if ( strtotime( $start_date_month ) > $date->getTimestamp() ) {
+				continue;
+			}
+
+			if ( ! empty( $end_date ) && $date > new DateTime( $end_date ) ) {
 				continue;
 			}
 
@@ -363,6 +365,7 @@ function bksq_filter_afisha_posts_via_ajax() {
 			'message'          => 'Блоки с постами успешно загружены',
 			'all_events'       => $event_blocks['all_events'],
 			'maxPages'         => $event_blocks['maxPages'],
+			'formData'         => $_POST,
 		)
 	);
 }
