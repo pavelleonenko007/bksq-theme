@@ -443,6 +443,31 @@ function bksq_get_event_meta_value_by_key( string $key ): array {
 }
 
 function bksq_get_all_event_cities() {
+	// $cities = array();
+
+	// $afisha_events = get_posts(
+	// 	array(
+	// 		'post_type'   => 'events',
+	// 		'numberposts' => -1,
+	// 		'meta_query'  => array(
+	// 			array(
+	// 				'key'   => 'afisha',
+	// 				'value' => '1',
+	// 			),
+	// 		),
+	// 	)
+	// );
+
+	// foreach ( $afisha_events as $event ) {
+	// 	if ( ! empty( get_field( 'city', $event->ID ) ) ) {
+	// 		$cities[] = get_field( 'city', $event->ID );
+	// 	}
+	// }
+
+	// $cities = array_values( array_unique( $cities ) );
+
+	// return $cities;
+
 	global $wpdb;
 
 	$query = $wpdb->prepare(
@@ -454,6 +479,12 @@ function bksq_get_all_event_cities() {
 			FROM {$wpdb->posts} 
 			WHERE post_type = 'events' 
 			AND post_status = 'publish'
+			AND ID IN (
+				SELECT post_id 
+				FROM {$wpdb->postmeta} 
+				WHERE meta_key = 'afisha' 
+				AND meta_value = '1'
+			)
 		)"
 	);
 
