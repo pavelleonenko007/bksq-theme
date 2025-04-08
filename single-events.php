@@ -394,8 +394,8 @@
 										</div>
 										<img class="new-img-item" src="<?php the_post_thumbnail_url(); ?>" alt="" loading="lazy">
 										<div class="new-vert gg8">
-											<?php if ( ! empty( get_field( 'time_or_interval', false ) ) ) : ?>
-											<div class="new-p-16-19 colorer"><?php echo get_field( 'time_or_interval', false ); ?></div>
+											<?php if ( ! empty( get_field( 'subtitle', false ) ) ) : ?>
+											<div class="new-p-16-19 colorer"><?php echo get_field( 'subtitle', false ); ?></div>
 											<?php endif; ?>
 											<div class="new-p-18-21 upper"><?php the_title(); ?></div>
 										</div>
