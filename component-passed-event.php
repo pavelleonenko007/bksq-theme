@@ -11,7 +11,7 @@ global $post;
 
 $subtitle = get_field( 'subtitle' );
 $company  = get_field( 'vid_aktivnosti1' );
-$mesto    = get_field( 'stand' ); ?>
+$mesto    = get_field( 'subtitle' ); ?>
 <div class="events-item">
 	<div class="event-inside-block">
 		<div class="event-keeper">
