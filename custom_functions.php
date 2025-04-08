@@ -29,16 +29,34 @@ function bksq_enqueue_scripts() {
 function bksq_get_upcoming_weekends() {
 	$weekends     = array();
 	$current_date = new DateTime();
+	$day_of_week  = $current_date->format( 'N' ); // 1 (понедельник) - 7 (воскресенье)
 
-	// Find the next Saturday
-	$current_date->modify( 'next Saturday' );
+	if ( $day_of_week == 6 ) { // Если сегодня суббота
+			// Используем текущую дату как субботу
+			$saturday = clone $current_date;
+			// Воскресенье - следующий день
+			$sunday = clone $current_date;
+			$sunday->modify( '+1 day' );
+	} elseif ( $day_of_week == 7 ) { // Если сегодня воскресенье
+			// Только текущее воскресенье
+			$sunday = clone $current_date;
+			// Для субботы используем пустое значение или можно оставить пустым
+			$saturday = null;
+	} else { // Если будний день
+			// Находим следующую субботу
+			$saturday = clone $current_date;
+			$saturday->modify( 'next Saturday' );
 
-	$saturday = clone $current_date;
-	$sunday   = clone $current_date;
-	$sunday->modify( '+1 day' );
+			// Воскресенье - следующий день после субботы
+			$sunday = clone $saturday;
+			$sunday->modify( '+1 day' );
+	}
 
-	$weekends['saturday'] = $saturday->format( 'Y-m-d' );
-	$weekends['sunday']   = $sunday->format( 'Y-m-d' );
+	// Записываем даты в массив
+	if ( $saturday ) {
+			$weekends['saturday'] = $saturday->format( 'Y-m-d' );
+	}
+	$weekends['sunday'] = $sunday->format( 'Y-m-d' );
 
 	return $weekends;
 }

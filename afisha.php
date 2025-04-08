@@ -359,7 +359,7 @@ defined( 'ABSPATH' ) || exit; ?>
 												$upcoming_weekends        = array_values( bksq_get_upcoming_weekends() );
 												$upcoming_weekends_config = array(
 													'controlSelector' => '#afishaFilterFormDateControl',
-													'value' => implode( ',', $upcoming_weekends ),
+													'value' => $upcoming_weekends,
 												);
 												?>
 												<button 

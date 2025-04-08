@@ -338,6 +338,8 @@ class AfishaFilterForm {
 		);
 		const targetControl = this.root.querySelector(config.controlSelector);
 
+		console.log(config);
+
 		button.classList.toggle('active', isActive);
 
 		this.preSelectedFilterButtonConfigs.forEach((conf, buttonElement) => {
@@ -437,6 +439,11 @@ class AfishaFilterForm {
 
 			this.root[name].value = value;
 		}
+
+		const datepicker = this.root?.date?._flatpickr
+
+		datepicker?.clear();
+		datepicker?.close();
 
 		this.root.dispatchEvent(
 			new Event('change', {
