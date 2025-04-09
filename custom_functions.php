@@ -407,6 +407,15 @@ function bksq_filter_afisha_posts_via_ajax() {
 
 	$out_of_time_html = ob_get_clean();
 
+	$out_of_time_ids = array_map(
+		function ( $event ) {
+			return $event->ID;
+		},
+		$out_of_time_event_query->posts
+	);
+
+	$combined_data = array_unique( array_merge( $event_blocks['all_events'], $out_of_time_ids ), SORT_NUMERIC );
+
 	wp_send_json_success(
 		array(
 			'content'          => $html,
@@ -414,7 +423,7 @@ function bksq_filter_afisha_posts_via_ajax() {
 			'page'             => $page,
 			'totalCount'       => $event_blocks['totalCount'],
 			'message'          => 'Блоки с постами успешно загружены',
-			'all_events'       => $event_blocks['all_events'],
+			'all_events'       => $combined_data,
 			'maxPages'         => $event_blocks['maxPages'],
 			'formData'         => $_POST,
 		)
