@@ -21,7 +21,7 @@ function bksq_enqueue_scripts() {
 		'BKSQ',
 		array(
 			'AJAX_URL'  => admin_url( 'admin-ajax.php' ),
-			'LOCATIONS' => bksq_format_events_map_markers( bksq_get_events_by_months()['all_events'] ),
+			'LOCATIONS' => bksq_format_events_map_markers( bksq_get_afisha_events() ),
 		)
 	);
 }
@@ -170,6 +170,37 @@ function bksq_get_events_by_months( $params = array() ) {
 		'totalCount' => count( $result ),
 		'maxPages'   => ceil( count( $result ) / $months_per_page ),
 	);
+}
+
+function bksq_get_afisha_events() {
+	$query_args = array(
+		'post_type'      => 'events',
+		'posts_per_page' => -1,
+		'meta_query'     => array(
+			'relation' => 'OR',
+			array(
+				'key'   => 'is_out_of_time',
+				'value' => '1',
+			),
+			array(
+				'relation' => 'AND',
+				array(
+					'key'   => 'afisha',
+					'value' => '1',
+				),
+				array(
+					'key'     => 'end_date',
+					'value'   => wp_date( 'Y-m-d' ),
+					'compare' => '>=',
+					'type'    => 'DATE',
+				),
+			),
+		),
+	);
+
+	$query = new WP_Query( $query_args );
+
+	return $query->posts;
 }
 
 function bksq_format_events_map_markers( $events = array() ) {
