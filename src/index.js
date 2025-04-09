@@ -40,129 +40,129 @@ $(function () {
 	initAfishaPage();
 	initSingleMagazinePage();
 
-	Barba.Pjax.start();
-	Barba.Prefetch.init();
-	var FadeTransition = Barba.BaseTransition.extend({
-		start: function () {
-			this.newContainerLoading
-				.then(this.perehod.bind(this))
-				.then(this.fadeOut.bind(this))
-				.then(this.fadeIn.bind(this));
-		},
-		perehod: function () {
-			lenis.stop();
-			$('html').addClass('perehod');
-		},
-		fadeOut: function () {
-			return $(this.oldContainer)
-				.animate({ visibility: 'visible' }, 4000)
-				.promise();
-		},
-		fadeIn: function () {
-			$(window).scrollTop(0);
+	// Barba.Pjax.start();
+	// Barba.Prefetch.init();
+	// var FadeTransition = Barba.BaseTransition.extend({
+	// 	start: function () {
+	// 		this.newContainerLoading
+	// 			.then(this.perehod.bind(this))
+	// 			.then(this.fadeOut.bind(this))
+	// 			.then(this.fadeIn.bind(this));
+	// 	},
+	// 	perehod: function () {
+	// 		lenis.stop();
+	// 		$('html').addClass('perehod');
+	// 	},
+	// 	fadeOut: function () {
+	// 		return $(this.oldContainer)
+	// 			.animate({ visibility: 'visible' }, 4000)
+	// 			.promise();
+	// 	},
+	// 	fadeIn: function () {
+	// 		$(window).scrollTop(0);
 
-			var _this = this;
-			_this.done();
+	// 		var _this = this;
+	// 		_this.done();
 
-			$('html').removeClass('menuopened');
+	// 		$('html').removeClass('menuopened');
 
-			$('html').addClass('perehoddone');
+	// 		$('html').addClass('perehoddone');
 
-			setTimeout(function () {
-				$('html').removeClass('perehod');
-				$('html').removeClass('perehoddone');
-			}, 2_000);
+	// 		setTimeout(function () {
+	// 			$('html').removeClass('perehod');
+	// 			$('html').removeClass('perehoddone');
+	// 		}, 2_000);
 
-			Webflow.destroy();
-			Webflow.ready();
-			Webflow.require('ix2').init();
+	// 		Webflow.destroy();
+	// 		Webflow.ready();
+	// 		Webflow.require('ix2').init();
 
-			lenis.start();
+	// 		lenis.start();
 
-			if (location.hash) {
-				pageScroll(location.hash, 250);
-			}
-		},
-	});
+	// 		if (location.hash) {
+	// 			pageScroll(location.hash, 250);
+	// 		}
+	// 	},
+	// });
 
-	Barba.Pjax.getTransition = function () {
-		return FadeTransition;
-	};
+	// Barba.Pjax.getTransition = function () {
+	// 	return FadeTransition;
+	// };
 
-	Barba.Dispatcher.on(
-		'newPageReady',
-		function (currentStatus, oldStatus, container, newPageRawHTML) {
-			var response = newPageRawHTML.replace(
-				/(<\/?)html( .+?)?>/gi,
-				'$1nothtml$2>',
-				newPageRawHTML
-			);
-			var bodyClasses = $(response).filter('nothtml').attr('data-wf-page');
-			$('html').attr('data-wf-page', bodyClasses);
-		}
-	);
+	// Barba.Dispatcher.on(
+	// 	'newPageReady',
+	// 	function (currentStatus, oldStatus, container, newPageRawHTML) {
+	// 		var response = newPageRawHTML.replace(
+	// 			/(<\/?)html( .+?)?>/gi,
+	// 			'$1nothtml$2>',
+	// 			newPageRawHTML
+	// 		);
+	// 		var bodyClasses = $(response).filter('nothtml').attr('data-wf-page');
+	// 		$('html').attr('data-wf-page', bodyClasses);
+	// 	}
+	// );
 
-	Barba.Dispatcher.on(
-		'newPageReady',
-		function (currentStatus, oldStatus, container) {
-			console.log('BARBA: newPageReady');
-			// Найдем все скрипты на новой странице
-			var scripts = container.querySelectorAll('script');
+	// Barba.Dispatcher.on(
+	// 	'newPageReady',
+	// 	function (currentStatus, oldStatus, container) {
+	// 		console.log('BARBA: newPageReady');
+	// 		// Найдем все скрипты на новой странице
+	// 		var scripts = container.querySelectorAll('script');
 
-			scripts.forEach(function (script) {
-				// Если у скрипта есть src, создаем новый элемент script
-				if (script.src) {
-					var newScript = document.createElement('script');
-					newScript.src = script.src;
-					document.body.appendChild(newScript);
-				}
-				// Для инлайновых скриптов
-				else {
-					eval(script.innerHTML);
-				}
-			});
-		}
-	);
+	// 		scripts.forEach(function (script) {
+	// 			// Если у скрипта есть src, создаем новый элемент script
+	// 			if (script.src) {
+	// 				var newScript = document.createElement('script');
+	// 				newScript.src = script.src;
+	// 				document.body.appendChild(newScript);
+	// 			}
+	// 			// Для инлайновых скриптов
+	// 			else {
+	// 				eval(script.innerHTML);
+	// 			}
+	// 		});
+	// 	}
+	// );
 
-	Barba.Dispatcher.on('initStateChange', () => {
-		console.log('BARBA: initStateChange');
+	// Barba.Dispatcher.on('initStateChange', () => {
+	// 	console.log('BARBA: initStateChange');
 		
-		$('html').removeClass('popupopened');
+	// 	$('html').removeClass('popupopened');
 
-		BookSliderCollection.destroyAll();
-		CustomDatePickerCollection.destroyAll();
-		CustomSelectCollection.destroyAll();
-		AfishaFilterFormCollection.destroyAll();
-		ObserverController.disconnectAll();
-	});
+	// 	BookSliderCollection.destroyAll();
+	// 	CustomDatePickerCollection.destroyAll();
+	// 	CustomSelectCollection.destroyAll();
+	// 	AfishaFilterFormCollection.destroyAll();
+	// 	ObserverController.disconnectAll();
+	// });
 
-	Barba.Dispatcher.on(
-		'transitionCompleted',
-		function (currentStatus, prevStatus) {
-			console.log('BARBA: transitionCompleted');
-			initPage();
+	// Barba.Dispatcher.on(
+	// 	'transitionCompleted',
+	// 	function (currentStatus, prevStatus) {
+	// 		console.log('BARBA: transitionCompleted');
+	// 		initPage();
 
-			const actions = {
-				afisha: initAfishaPage,
-				homepage: initHomePage.bind(null, false),
-				'single-magazine': initSingleMagazinePage,
-			};
+	// 		const actions = {
+	// 			afisha: initAfishaPage,
+	// 			homepage: initHomePage.bind(null, false),
+	// 			'single-magazine': initSingleMagazinePage,
+	// 		};
 
-			actions[currentStatus.namespace]();
-		}
-	);
+	// 		actions[currentStatus.namespace]();
+	// 	}
+	// );
 
-	Barba.Pjax.originalPreventCheck = Barba.Pjax.preventCheck;
+	// Barba.Pjax.originalPreventCheck = Barba.Pjax.preventCheck;
 
-	Barba.Pjax.preventCheck = function (evt, element) {
-		if (
-			element &&
-			element.getAttribute('href') &&
-			element.getAttribute('href').indexOf('#') > -1
-		)
-			return true;
-		else return Barba.Pjax.originalPreventCheck(evt, element);
-	};
+	// Barba.Pjax.preventCheck = function (evt, element) {
+	// 	if (
+	// 		element &&
+	// 		element.getAttribute('href') &&
+	// 		element.getAttribute('href').indexOf('#') > -1
+	// 	)
+	// 		return true;
+	// 	else return Barba.Pjax.originalPreventCheck(evt, element);
+	// };
 });
 
 function initPage() {
