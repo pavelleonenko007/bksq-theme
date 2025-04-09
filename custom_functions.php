@@ -450,19 +450,23 @@ function bksq_get_all_event_cities() {
 			'post_type'      => 'events',
 			'posts_per_page' => -1,
 			'meta_query'     => array(
-				array(
-					'key'   => 'afisha',
-					'value' => '1',
-				),
-				array(
-					'key'     => 'end_date',
-					'value'   => wp_date( 'Y-m-d' ),
-					'compare' => '>=',
-					'type'    => 'DATE',
-				),
+				'relation' => 'OR',
 				array(
 					'key'   => 'is_out_of_time',
 					'value' => '1',
+				),
+				array(
+					'relation' => 'AND',
+					array(
+						'key'   => 'afisha',
+						'value' => '1',
+					),
+					array(
+						'key'     => 'end_date',
+						'value'   => wp_date( 'Y-m-d' ),
+						'compare' => '>=',
+						'type'    => 'DATE',
+					),
 				),
 			),
 		)
