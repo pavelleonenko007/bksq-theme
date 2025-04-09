@@ -460,6 +460,10 @@ function bksq_get_all_event_cities() {
 					'compare' => '>=',
 					'type'    => 'DATE',
 				),
+				array(
+					'key'   => 'is_out_of_time',
+					'value' => '1',
+				),
 			),
 		)
 	);
