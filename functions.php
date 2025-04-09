@@ -616,8 +616,8 @@ function add_site_scripts() {
 		array( 'jquery', 'jquery-ui-core' )
 	);
 
-	wp_enqueue_style( 'main', get_stylesheet_directory_uri() . '/css/main.css', array(), $theme_version );
-	wp_enqueue_style( 'thevogne-style', '//thevogne.ru/clients/creativepeople/bsqr/style.css', array( 'main' ), null );
+	wp_enqueue_style( 'main', get_stylesheet_directory_uri() . '/css/main.css', array(), time() );
+	wp_enqueue_style( 'thevogne-style', '//thevogne.ru/clients/creativepeople/bsqr/style.css', array( 'main' ), time() );
 }
 
 add_filter( 'wp_default_scripts', 'remove_jquery_migrate' );
