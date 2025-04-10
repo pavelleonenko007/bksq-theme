@@ -377,7 +377,7 @@ defined( 'ABSPATH' ) || exit; ?>
 												if ( ! empty( $festival_button_text ) && ! empty( $festival_button_value ) ) :
 													$festival_config = array(
 														'controlSelector' => '#afishaFilterFormActivityControl',
-														'value' => $festival_button_value,
+														'value' => $festival_button_value->slug,
 													);
 													?>
 													<button 
