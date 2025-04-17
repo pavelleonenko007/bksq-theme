@@ -229,7 +229,7 @@
 						<div class="popupin">
 							<div class="new-vert vert-bottom new-top-block back-btn-bloack">
 								<div class="new-div-104"></div>
-								<a href="/afisha" class="new-back-btn no-barba w-inline-block">
+								<a href="/guide" class="new-back-btn no-barba w-inline-block">
 									<div class="new-scg17 w-embed">
 										<svg width="100%" height="100%" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path fill-rule="evenodd" clip-rule="evenodd" d="M9.67486 15.3986L9.63207 15.4414L6.74035 15.4414L1.00031 9.70137L1.00031 6.44417L6.73991 0.704566L9.6325 0.704566L9.67485 0.746916L3.40203 7.01974L17 7.01974L17 9.125L3.40124 9.125L9.67486 15.3986Z" fill="#282828"></path>
@@ -293,7 +293,22 @@
 							<div class="new-vert">
 								<div class="new-horiz-spleet vom">
 									<div class="new-info-line">
-										<div class="new-vert-24 mmax265">
+										
+										
+										
+										
+										<?php if ( ! empty( get_field( 'is_out_of_time', false ) ) ) : ?>
+										
+										
+										<style>
+											.datatixc{display:none !important}
+										</style>
+
+										
+										<?php endif; ?>
+										
+										
+										<div class="new-vert-24 mmax265 datatixc">
 											<div class="new-p-18-21 color">Дата</div>
 											<div class="new-vert-4">
 												<div class="new-p-18-21 upper">
