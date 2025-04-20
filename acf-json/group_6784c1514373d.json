@@ -769,6 +769,45 @@
             },
             "admin_column_enabled": 0,
             "return_format": "array"
+        },
+        {
+            "key": "field_6800f284b8692",
+            "label": "Критик",
+            "name": "critic",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67ed8969f0263",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "critic"
+            ],
+            "post_status": [
+                "publish"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "return_format": "id",
+            "min": "",
+            "max": "",
+            "elements": "",
+            "bidirectional": 0,
+            "bidirectional_target": []
         }
     ],
     "location": [
@@ -789,5 +828,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1744884839
+    "modified": 1744892598
 }

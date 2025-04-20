@@ -432,8 +432,6 @@ function initSingleMagazinePage() {
 	initMagazineMaps();
 	initMagazineActionSwitcher();
 	initMagazineYandexMap().then((cb) => {
-		console.log({ cb });
-
 		window.magazineYandexMapDestroyCallback = cb;
 		initjQueryCustomSelect();
 	});

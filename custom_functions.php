@@ -101,16 +101,34 @@ function bksq_get_events_by_months( $params = array() ) {
 		$event_args['tax_query'][] = array(
 			'taxonomy' => 'activity',
 			'field'    => 'slug',
-			'terms'    => array( $params['activity'] ),
+			'terms'    => $params['activity'],
 		);
 	}
 
-	if ( ! empty( $params['city'] ) ) {
-		$event_args['meta_query'][] = array(
-			'key'   => 'city',
-			'value' => $params['city'],
+	if ( ! empty( $params['location'] ) ) {
+		$event_args['tax_query'][] = array(
+			'taxonomy' => 'location',
+			'field'    => 'name',
+			'terms'    => array( $params['location'] ),
 		);
 	}
+
+	// if ( ! empty( $params['city'] ) ) {
+	// $event_args['meta_query'][] = array(
+	// 'key'   => 'city',
+	// 'value' => $params['city'],
+	// );
+	// }
+
+	if ( ! empty( $params['critic'] ) ) {
+		$event_args['meta_query'][] = array(
+			'key'     => 'critic',
+			'value'   => $params['critic'],
+			'compare' => 'LIKE',
+		);
+	}
+
+	error_log( 'QUERY_ARGS: ' . wp_json_encode( $event_args ) );
 
 	$event_query = new WP_Query( $event_args );
 	$events      = $event_query->posts;
@@ -299,10 +317,14 @@ function bksq_filter_afisha_posts_via_ajax() {
 		);
 	}
 
+	// wp_send_json_success( $_POST );
+
 	$date     = ! empty( $_POST['date'] ) ? sanitize_text_field( wp_unslash( $_POST['date'] ) ) : '';
+	$location = ! empty( $_POST['location'] ) ? sanitize_text_field( wp_unslash( $_POST['location'] ) ) : '';
 	$city     = isset( $_POST['city'] ) ? sanitize_text_field( wp_unslash( $_POST['city'] ) ) : '';
-	$activity = isset( $_POST['activity'] ) ? sanitize_text_field( wp_unslash( $_POST['activity'] ) ) : '';
-	$page     = isset( $_POST['page'] ) ? intval( sanitize_text_field( wp_unslash( $_POST['page'] ) ) ) : 1;
+	$activity = ! empty( $_POST['activity'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['activity'] ) ) : array();
+	$page     = isset( $_POST['page'] ) ? absint( sanitize_text_field( wp_unslash( $_POST['page'] ) ) ) : 1;
+	$critic   = isset( $_POST['critic'] ) ? sanitize_text_field( wp_unslash( $_POST['critic'] ) ) : '';
 
 	$params = array();
 
@@ -310,8 +332,16 @@ function bksq_filter_afisha_posts_via_ajax() {
 		$params['activity'] = $activity;
 	}
 
+	if ( ! empty( $location ) ) {
+		$params['location'] = $location;
+	}
+
 	if ( ! empty( $city ) ) {
 		$params['city'] = $city;
+	}
+
+	if ( ! empty( $critic ) ) {
+		$params['critic'] = $critic;
 	}
 
 	if ( ! empty( $date ) ) {
@@ -349,11 +379,27 @@ function bksq_filter_afisha_posts_via_ajax() {
 		);
 	}
 
+	if ( ! empty( $critic ) ) {
+		$out_of_time_event_args['meta_query'][] = array(
+			'key'     => 'critic',
+			'value'   => $critic,
+			'compare' => 'LIKE',
+		);
+	}
+
 	if ( ! empty( $activity ) ) {
 		$out_of_time_event_args['tax_query'][] = array(
 			'taxonomy' => 'activity',
 			'field'    => 'slug',
-			'terms'    => array( $activity ),
+			'terms'    => $activity,
+		);
+	}
+
+	if ( ! empty( $location ) ) {
+		$out_of_time_event_args['tax_query'][] = array(
+			'taxonomy' => 'location',
+			'field'    => 'slug',
+			'terms'    => array( $location ),
 		);
 	}
 
@@ -414,7 +460,7 @@ function bksq_filter_afisha_posts_via_ajax() {
 		$out_of_time_event_query->posts
 	);
 
-	$combined_data = array_unique( array_merge( $event_blocks['all_events'], $out_of_time_ids ), SORT_NUMERIC );
+	$combined_data = array_values( array_unique( array_merge( $event_blocks['all_events'], $out_of_time_ids ), SORT_NUMERIC ) );
 
 	wp_send_json_success(
 		array(
@@ -431,8 +477,8 @@ function bksq_filter_afisha_posts_via_ajax() {
 }
 
 // хук для регистрации
-add_action( 'init', 'bksq_create_taxonomies' );
-function bksq_create_taxonomies() {
+add_action( 'init', 'bksq_create_post_types_and_taxonomies' );
+function bksq_create_post_types_and_taxonomies() {
 	register_taxonomy(
 		'activity',
 		array( 'events' ),
@@ -460,6 +506,77 @@ function bksq_create_taxonomies() {
 			'show_admin_column' => true,
 			'show_in_rest'      => null,
 			'rest_base'         => null,
+		)
+	);
+
+	register_taxonomy(
+		'location',
+		array( 'events' ),
+		array(
+			'label'             => '',
+			'labels'            => array(
+				'name'          => 'Локации',
+				'singular_name' => 'Локация',
+				'search_items'  => 'Искать локации',
+				'all_items'     => 'Все локации',
+				'view_item '    => 'Просмотреть локацию',
+				'edit_item'     => 'Редактировать локацию',
+				'update_item'   => 'Обновить локацию',
+				'add_new_item'  => 'Добавить новую локацию',
+				'new_item_name' => 'Название локации',
+				'back_to_items' => '← Назад к локациям',
+				'menu_name'     => 'Локации',
+			),
+			'description'       => '',
+			'public'            => true,
+			'hierarchical'      => true,
+			'rewrite'           => true,
+			'capabilities'      => array(),
+			'meta_box_cb'       => null,
+			'show_admin_column' => true,
+			'show_in_rest'      => null,
+			'rest_base'         => null,
+		)
+	);
+
+	register_post_type(
+		'critic',
+		array(
+			'label'         => null,
+			'labels'        => array(
+				'name'               => 'Критики',
+				'singular_name'      => 'Критик',
+				'add_new'            => 'Добавить критика',
+				'add_new_item'       => 'Добавление нового критика',
+				'edit_item'          => 'Редактирование критика',
+				'new_item'           => 'Новый критик',
+				'view_item'          => 'Смотреть критика',
+				'search_items'       => 'Искать критика',
+				'not_found'          => 'Критики не найдены',
+				'not_found_in_trash' => 'Критиков не найдено в корзине',
+				'menu_name'          => 'Критики',
+			),
+			'description'   => '',
+			'public'        => false,
+			// 'publicly_queryable'  => null, // зависит от public
+			// 'exclude_from_search' => null, // зависит от public
+			'show_ui'       => true, // зависит от public
+		// 'show_in_nav_menus'   => null, // зависит от public
+			'show_in_menu'  => true, // показывать ли в меню админки
+		// 'show_in_admin_bar'   => null, // зависит от show_in_menu
+			'show_in_rest'  => true, // добавить в REST API. C WP 4.7
+			'rest_base'     => null, // $post_type. C WP 4.7
+			'menu_position' => null,
+			'menu_icon'     => 'dashicons-businessperson',
+			// 'capability_type'   => 'post',
+			// 'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
+			// 'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
+			'hierarchical'  => false,
+			'supports'      => array( 'title', 'page-attributes' ), // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+			'taxonomies'    => array(),
+			'has_archive'   => false,
+			'rewrite'       => true,
+			'query_var'     => true,
 		)
 	);
 }
@@ -728,4 +845,45 @@ function bksq_get_single_page_event_date( $post_id ) {
 	$date_string .= '<span>' . $formatted_end_date . '</span>';
 
 	return $date_string;
+}
+
+function bksq_build_terms_tree( $terms, $parent_id = 0 ) {
+	$branch = array();
+
+	if ( isset( $terms[ $parent_id ] ) ) {
+		foreach ( $terms[ $parent_id ] as $term ) {
+			$children = build_activity_tree( $terms, $term->term_id );
+			if ( $children ) {
+				$term->children = $children;
+			}
+			$branch[] = $term;
+		}
+	}
+
+	return $branch;
+}
+
+function bksq_get_location_afisha_options() {
+	$locations = get_terms(
+		array(
+			'taxonomy' => 'location',
+		)
+	);
+
+	$locations_hierarchy = array();
+
+	foreach ( $locations as $location ) {
+		$parent_id = $location->parent; // Get the parent ID of the current activity
+		if ( ! isset( $locations_hierarchy[ $parent_id ] ) ) {
+			$locations_hierarchy[ $parent_id ] = array();
+		}
+		$locations_hierarchy[ $parent_id ][] = $location; // Add the activity to its parent's array
+	}
+
+	$location_tree = bksq_build_terms_tree( $locations_hierarchy );
+
+	$options = array();
+	bksq_flatten_terms_for_select( $location_tree, $options );
+
+	return $options;
 }

@@ -10,7 +10,7 @@ class CustomSelect {
 	constructor(element) {
 		this.root = element;
 		this.config = {
-			searchable: true,
+			minimumResultsForSearch: Infinity,
 			templateSelection: function (data) {
 				if (!data.id) {
 					return data.text; // Возвращаем текст без изменений для placeholder
@@ -48,16 +48,41 @@ class CustomSelect {
 		);
 
 		this.$customSelect.on('change', this.onChangeBubble);
+
+		if (
+			this.$customSelect.data('select2').options.options.multiple &&
+			Array.isArray(this.$customSelect.val())
+		) {
+			this.$customSelect
+				.parent()
+				.find('.select2-search__field')
+				.prop('disabled', false)
+				.css('display', 'block');
+		}
 	};
 
 	onReset = () => {
 		this.$customSelect.val(null).trigger('change');
 	};
 
+	hideSearchOnOpenOrClose = () => {
+		if (this.config.minimumResultsForSearch === Infinity) {
+			this.$customSelect
+				.parent()
+				.find('.select2-search__field')
+				.prop('disabled', true)
+				.css('display', 'none');
+		}
+	};
+
 	bindEvents() {
 		document.addEventListener('reset', this.onReset);
 		this.$customSelect.on('change', this.onChangeBubble);
 		this.$customSelect.on('select2:open', this.onOpen);
+		this.$customSelect.on(
+			'select2:opening select2:closing',
+			this.hideSearchOnOpenOrClose
+		);
 	}
 
 	destroy() {

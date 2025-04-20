@@ -1,5 +1,6 @@
 import YandexMap from './AfishaMap';
-import { promiseWrapper } from './utils';
+import { lenis } from './lenis';
+import { debounce, promiseWrapper } from './utils';
 
 const ROOT_SELECTOR = '[data-js-afisha-filter-form]';
 
@@ -62,11 +63,13 @@ class AfishaFilterForm {
 			);
 		});
 
+		this.debounsedOnChange = debounce(this.onChange, 50);
+
 		this.initialFormData = {
-			date: '',
-			city: '',
-			activity: '',
-			page: '1',
+			date: null,
+			location: null,
+			'activity[]': null,
+			critic: null,
 		};
 
 		this.state = this._getProxyState({
@@ -214,8 +217,6 @@ class AfishaFilterForm {
 	async getUserCity() {
 		const { data, error } = await promiseWrapper(this.getUserLocation());
 
-		console.log({ data, error });
-
 		if (error) {
 			return;
 		}
@@ -257,19 +258,27 @@ class AfishaFilterForm {
 		console.error(error);
 	}
 
+	scrollToTopOfAfisha() {
+		const afishaElement = document.querySelector('.r-afisha');
+		if (afishaElement && lenis.actualScroll > afishaElement.offsetTop) {
+			lenis.scrollTo(afishaElement, {
+				duration: 1,
+			});
+		}
+	}
+
 	/**
 	 *
 	 * @param {Event} event
 	 */
 	onChange = async (event) => {
-		console.log(event);
-
-		this.map.setLocation(this.root.city.value);
+		this.map.setLocation(this.root.location.value);
 
 		this.state.hasChanges = this.hasFormChanges();
 
 		if (event.target !== this.pageControl) {
 			this.pageControl.value = 1;
+			this.scrollToTopOfAfisha();
 		}
 
 		const { data, error } = await promiseWrapper(this.fetchPosts());
@@ -338,8 +347,6 @@ class AfishaFilterForm {
 		);
 		const targetControl = this.root.querySelector(config.controlSelector);
 
-		console.log(config);
-
 		button.classList.toggle('active', isActive);
 
 		this.preSelectedFilterButtonConfigs.forEach((conf, buttonElement) => {
@@ -386,7 +393,7 @@ class AfishaFilterForm {
 		// }
 
 		if (targetControl.type.includes('select')) {
-			if (targetControl.name === 'city') {
+			if (targetControl.name === 'location') {
 				const targetOption = [...targetControl.options].find(
 					(option) => option.value === value
 				);
@@ -440,7 +447,7 @@ class AfishaFilterForm {
 			this.root[name].value = value;
 		}
 
-		const datepicker = this.root?.date?._flatpickr
+		const datepicker = this.root?.date?._flatpickr;
 
 		datepicker?.clear();
 		datepicker?.close();
@@ -453,7 +460,7 @@ class AfishaFilterForm {
 	};
 
 	bindEvents() {
-		this.root.addEventListener('change', this.onChange);
+		this.root.addEventListener('change', this.debounsedOnChange);
 		this.root.addEventListener('reset', this.onReset);
 		if (this.moreButton) {
 			this.moreButton.addEventListener('click', this.onMoreButtonClick);
@@ -465,7 +472,7 @@ class AfishaFilterForm {
 	}
 
 	destroy() {
-		this.root.removeEventListener('change', this.onChange);
+		this.root.removeEventListener('change', this.debounsedOnChange);
 		this.root.removeEventListener('reset', this.onReset);
 		if (this.moreButton) {
 			this.moreButton.removeEventListener('click', this.onMoreButtonClick);

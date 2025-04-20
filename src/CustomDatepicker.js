@@ -111,8 +111,6 @@ class CustomDatePicker {
 						fp.loadedPlugins.push('extraBKSQButtons');
 					},
 					onChange(selectedDates, dateStr, instance) {
-						console.log({ selectedDates, dateStr, instance });
-
 						fp.bksqApplyButton.disabled = fp.selectedDates.length <= 0;
 
 						instance.open();
@@ -130,9 +128,6 @@ class CustomDatePicker {
 			locale: Russian,
 			plugins: [new extraBKSQButtons()],
 		});
-
-		console.log(this.customDatePicker);
-		
 	}
 
 	destroy() {

@@ -414,18 +414,39 @@ defined( 'ABSPATH' ) || exit; ?>
 													>
 												</div>
 												<?php
-												$cities = bksq_get_all_event_cities();
-												if ( ! empty( $cities ) && count( $cities ) > 1 ) :
+												$locations = get_terms(
+													array(
+														'taxonomy' => 'location',
+													)
+												);
+
+												$locations_hierarchy = array();
+
+												foreach ( $locations as $location ) {
+													$parent_id = $location->parent; // Get the parent ID of the current activity
+													if ( ! isset( $locations_hierarchy[ $parent_id ] ) ) {
+														$locations_hierarchy[ $parent_id ] = array();
+													}
+													$locations_hierarchy[ $parent_id ][] = $location; // Add the activity to its parent's array
+												}
+												$locations = array_filter( bksq_build_terms_tree( $locations_hierarchy ), fn( $location ) => ! empty( $location->children ) );
+												if ( ! empty( $locations ) ) :
 													?>
 													<div class="afisha-form__field field">
 														<select 
-															name="city" 
-															id="afishaFilterFormCityControl" class="field__select"
+															name="location" 
+															id="afishaFilterFormLocationControl" class="field__select"
 															data-js-custom-select
 														>
-															<option value="">Город</option>
-															<?php foreach ( $cities as $city ) : ?>
-																<option value="<?php echo esc_attr( $city ); ?>"><?php echo esc_html( $city ); ?></option>
+															<option value="">Локация</option>
+															<?php
+															foreach ( $locations as $parent_location ) :
+																?>
+															<optgroup label="<?php echo esc_attr( $parent_location->name ); ?>">
+																<?php foreach ( $parent_location->children as $child_location ) : ?>
+																	<option value="<?php echo esc_attr( $child_location->name ); ?>"><?php echo esc_html( $child_location->name ); ?></option>
+																<?php endforeach; ?>
+															</optgroup>
 															<?php endforeach; ?>
 														</select>
 													</div>
@@ -464,15 +485,44 @@ defined( 'ABSPATH' ) || exit; ?>
 
 												if ( ! empty( $activity_tree ) ) :
 													?>
-													<div class="afisha-form__field field">
+													<div class="afisha-form__field field field--with-icon">
 														<select 
-															name="activity" 
+															name="activity[]" 
 															id="afishaFilterFormActivityControl" class="field__select"
+															multiple
+															data-placeholder="Сфера культуры"
 															data-js-custom-select
 														>
-															<option value="">Категория</option>
 															<?php foreach ( $options as $value => $title ) : ?>
-																<option value="<?php echo esc_attr( $value ); ?>"><?php echo esc_html( $title ); ?></option>
+																<option 
+																	value="<?php echo esc_attr( $value ); ?>"
+																>
+																	<?php echo esc_html( $title ); ?>
+																</option>
+															<?php endforeach; ?>
+														</select>
+													</div>
+												<?php endif; ?>
+												<?php
+												$critics = get_posts(
+													array(
+														'post_type'   => 'critic',
+														'numberposts' => -1,
+														'order' => 'ASC',
+													)
+												);
+
+												if ( ! empty( $critics ) ) :
+													?>
+													<div class="afisha-form__field field">
+														<select 
+															name="critic" 
+															id="afishaFilterFormCriticControl" class="field__select"
+															data-js-custom-select
+														>
+															<option value="">Критик</option>
+															<?php foreach ( $critics as $critic ) : ?>
+																<option value="<?php echo esc_attr( $critic->ID ); ?>"><?php echo get_the_title( $critic->ID ); ?></option>
 															<?php endforeach; ?>
 														</select>
 													</div>

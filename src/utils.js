@@ -36,6 +36,19 @@ export const throttle = (fn, delay) => {
 	};
 };
 
+export const debounce = (fn, delay) => {
+	let timeout;
+
+	return function (...args) {
+		const context = this;
+
+		clearTimeout(timeout);
+		timeout = setTimeout(() => {
+			fn.apply(context, args);
+		}, delay);
+	};
+};
+
 export const pageScroll = (x, time = 0) => {
 	lenis.scrollTo($(x).offset().top, {
 		duration: time / 1_000,
