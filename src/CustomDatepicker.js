@@ -119,7 +119,11 @@ class CustomDatePicker {
 			};
 		}
 
+		console.log(this.root.parentElement, this.root.parentNode);
+
 		this.customDatePicker = flatpickr(this.root, {
+			appendTo: this.root.parentNode,
+			positionElement: $(this.root.parentNode),
 			altInput: true,
 			mode: 'range',
 			altFormat: 'F j, Y',
@@ -128,6 +132,12 @@ class CustomDatePicker {
 			locale: Russian,
 			plugins: [new extraBKSQButtons()],
 		});
+
+		setTimeout(() => {
+			this.customDatePicker.open();
+
+			console.log(this.customDatePicker);
+		}, 2_000);
 	}
 
 	destroy() {
@@ -184,25 +194,25 @@ export default class CustomDatePickerCollection {
 
 // 						const markup = `
 // 						<div class="bksq-actions">
-// 							<button 
-// 								id="bksqCalendarApplyButton" 
-// 								type="button" 
-// 								class="bksq-actions__button button" 
+// 							<button
+// 								id="bksqCalendarApplyButton"
+// 								type="button"
+// 								class="bksq-actions__button button"
 // 								disabled
 // 							>
 // 								Выбрать
 // 							</button>
-// 							<button 
-// 								id="bksqCalendarCloseButton" 
-// 								type="button" 
+// 							<button
+// 								id="bksqCalendarCloseButton"
+// 								type="button"
 // 								class="bksq-actions__button button button--link"
 // 							>
 // 								Закрыть
 // 							</button>
 // 							<div class="bksq-actions__separator"></div>
-// 							<button 
-// 								id="bksqCalendarOutOfTimeButton" 
-// 								type="button" 
+// 							<button
+// 								id="bksqCalendarOutOfTimeButton"
+// 								type="button"
 // 								class="bksq-actions__button button button--outline"
 // 							>
 // 								Вне времени и дат
