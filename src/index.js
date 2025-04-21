@@ -126,7 +126,7 @@ $(function () {
 
 	// Barba.Dispatcher.on('initStateChange', () => {
 	// 	console.log('BARBA: initStateChange');
-		
+
 	// 	$('html').removeClass('popupopened');
 
 	// 	BookSliderCollection.destroyAll();
@@ -372,8 +372,10 @@ function countTo100(currentCount) {
 }
 
 function initHomePage(isFirtsLoad = true) {
-	BookSliderCollection.init();
-	initFlippingBook();
+	setTimeout(() => {
+		BookSliderCollection.init();
+		initFlippingBook();
+	}, 1_000);
 	if ($('.home-page').length) {
 		// 	  $('.s7-left').find('img').attr('src', $(".s7-right").find("img").attr("src"));
 
