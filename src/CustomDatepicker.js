@@ -132,12 +132,6 @@ class CustomDatePicker {
 			locale: Russian,
 			plugins: [new extraBKSQButtons()],
 		});
-
-		setTimeout(() => {
-			this.customDatePicker.open();
-
-			console.log(this.customDatePicker);
-		}, 2_000);
 	}
 
 	destroy() {
