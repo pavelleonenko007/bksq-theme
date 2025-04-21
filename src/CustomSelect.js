@@ -38,6 +38,16 @@ class CustomSelect {
 		// $('.select2-search__field').attr('placeholder', 'Поиск');
 	};
 
+	onClose = (event) => {
+		const $searchField = this.$customSelect
+			.parent()
+			.find('.select2-search__field');
+
+		if ($searchField.length > 0) {
+			$searchField[0].blur();
+		}
+	};
+
 	onChangeBubble = (event) => {
 		this.$customSelect.off('change', this.onChangeBubble);
 
@@ -65,20 +75,28 @@ class CustomSelect {
 		this.$customSelect.val(null).trigger('change');
 	};
 
-	hideSearchOnOpenOrClose = () => {
-		console.log('hideSearchOnOpenOrClose');
+	hideSearchOnOpenOrClose = (event) => {
+		console.log('hideSearchOnOpenOrClose', event);
 
 		if (
 			this.$customSelect.data('select2').options.options.multiple &&
 			Array.isArray(this.$customSelect.val()) &&
-			this.$customSelect.val().length > 0 &&
 			this.config.minimumResultsForSearch === Infinity
 		) {
-			this.$customSelect
+			const $searchField = this.$customSelect
 				.parent()
-				.find('.select2-search__field')
-				.prop('disabled', true)
-				.css('display', 'none');
+				.find('.select2-search__field');
+
+			const isOpeningEvent = event.type === 'select2:opening';
+			$searchField.prop('disabled', isOpeningEvent);
+
+			$searchField[0].blur();
+
+			if (this.$customSelect.val().length === 0) {
+				$searchField.css('display', 'block');
+			} else {
+				$searchField.css('display', 'none');
+			}
 		}
 	};
 
@@ -90,6 +108,7 @@ class CustomSelect {
 			'select2:opening select2:closing',
 			this.hideSearchOnOpenOrClose
 		);
+		this.$customSelect.on('select2:close', this.onClose);
 	}
 
 	destroy() {
