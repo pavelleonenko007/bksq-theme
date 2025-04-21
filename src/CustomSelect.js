@@ -35,7 +35,7 @@ class CustomSelect {
 
 	onOpen = (event) => {
 		$('.select2-dropdown').attr('data-lenis-prevent', '');
-		$('.select2-search__field').attr('placeholder', 'Поиск');
+		// $('.select2-search__field').attr('placeholder', 'Поиск');
 	};
 
 	onChangeBubble = (event) => {
@@ -66,7 +66,14 @@ class CustomSelect {
 	};
 
 	hideSearchOnOpenOrClose = () => {
-		if (this.config.minimumResultsForSearch === Infinity) {
+		console.log('hideSearchOnOpenOrClose');
+
+		if (
+			this.$customSelect.data('select2').options.options.multiple &&
+			Array.isArray(this.$customSelect.val()) &&
+			this.$customSelect.val().length > 0 &&
+			this.config.minimumResultsForSearch === Infinity
+		) {
 			this.$customSelect
 				.parent()
 				.find('.select2-search__field')
