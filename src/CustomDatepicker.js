@@ -105,6 +105,12 @@ class CustomDatePicker {
 							fp._input.value = 'Вечное';
 							fp.input.value = 'Вечное';
 
+							fp._input.dispatchEvent(
+								new Event('change', {
+									bubbles: true,
+								})
+							);
+
 							fp.close();
 						};
 
