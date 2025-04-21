@@ -76,8 +76,6 @@ class CustomSelect {
 	};
 
 	hideSearchOnOpenOrClose = (event) => {
-		console.log('hideSearchOnOpenOrClose', event);
-
 		if (
 			this.$customSelect.data('select2').options.options.multiple &&
 			Array.isArray(this.$customSelect.val()) &&
