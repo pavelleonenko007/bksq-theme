@@ -10,6 +10,7 @@ class CustomSelect {
 	constructor(element) {
 		this.root = element;
 		this.config = {
+			dropdownParent: $(this.root).parent(),
 			minimumResultsForSearch: Infinity,
 			templateSelection: function (data) {
 				if (!data.id) {
