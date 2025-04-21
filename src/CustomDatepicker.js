@@ -119,8 +119,6 @@ class CustomDatePicker {
 			};
 		}
 
-		console.log(this.root.parentElement, this.root.parentNode);
-
 		this.customDatePicker = flatpickr(this.root, {
 			static: true,
 			// appendTo: this.root.parentNode,
