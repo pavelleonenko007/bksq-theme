@@ -122,8 +122,10 @@ class CustomDatePicker {
 		console.log(this.root.parentElement, this.root.parentNode);
 
 		this.customDatePicker = flatpickr(this.root, {
-			appendTo: this.root.parentNode,
-			positionElement: $(this.root.parentNode),
+			static: true,
+			// appendTo: this.root.parentNode,
+			// position: 'above',
+			positionElement: this.root.parentNode,
 			altInput: true,
 			mode: 'range',
 			altFormat: 'F j, Y',
